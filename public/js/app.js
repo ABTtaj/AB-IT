@@ -2173,6 +2173,149 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2180,6 +2323,7 @@ __webpack_require__.r(__webpack_exports__);
       showLangagesDropDown: false,
       showCollapseNavBar: false,
       mouseStillOnServices: false,
+      device: null,
       nosServices: [{
         title: 'Création de Site Web',
         routeName: 'website-creation'
@@ -2222,14 +2366,22 @@ __webpack_require__.r(__webpack_exports__);
         this.mouseStillOnServices = false;
       }
     },
-    toggleLangagesDropDown: function toggleLangagesDropDown() {
+    langageDropDownMouseEnter: function langageDropDownMouseEnter() {
       if (!this.showCollapseNavBar) {
-        this.showLangagesDropDown = !this.showLangagesDropDown;
+        this.showLangagesDropDown = true;
+      }
+    },
+    langageDropDownMouseLeave: function langageDropDownMouseLeave() {
+      if (!this.showCollapseNavBar) {
+        this.showLangagesDropDown = false;
       }
     },
     selectLangage: function selectLangage(langage) {
       this.selectedLangage = langage;
-      this.showLangagesDropDown = false;
+
+      if (this.device === 'pc') {
+        this.showLangagesDropDown = false;
+      }
     },
     toggleCollapseNavBar: function toggleCollapseNavBar() {
       this.showCollapseNavBar = !this.showCollapseNavBar;
@@ -2244,7 +2396,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.showCollapseNavBar) {
         this.showNosServicesDropDown = false;
         this.showLangagesDropDown = !this.showLangagesDropDown;
-      } else {}
+      }
     },
     onServicesClicked: function onServicesClicked() {
       this.mouseStillOnServices = true;
@@ -2261,6 +2413,10 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     });
+    window.addEventListener('resize', function (event) {
+      _this.device = window.innerWidth < 992 ? 'mobile' : 'pc';
+    });
+    this.device = window.innerWidth < 992 ? 'mobile' : 'pc';
   }
 });
 
@@ -2506,7 +2662,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.red-background-item[data-v-78da06bf]:hover{\n    color: #fff !important;\n    background-color:#e3342f;\n    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;\n}\n.black-border-hover[data-v-78da06bf]:hover{\n    border : 2px solid rgba(0,0,0,1);\n}\n.red-background-dropdown[data-v-78da06bf]{\n    color: #fff !important;\n    background-color:#e3342f;\n}\n.custom-nav-link[data-v-78da06bf]{\n    font-weight: 500;\n}\n.transparent-border[data-v-78da06bf]{\n    border : 2px solid rgba(0,0,0,0);\n}\n.custom-dropdown-menu[data-v-78da06bf]{\n    min-width: -webkit-fit-content;\n    min-width: -moz-fit-content;\n    min-width: fit-content;\n}\n.border-left-collapse[data-v-78da06bf]{\n    border-left: 2px solid rgb(0,0,0) !important;\n}\n.border-right-collapse[data-v-78da06bf]{\n    border-right: 2px solid rgb(0,0,0) !important;\n}\n.border-top-collapse[data-v-78da06bf]{\n    border-top: 2px solid rgb(0,0,0) !important;\n}\n.border-bottom-collapse[data-v-78da06bf]{\n    border-bottom: 2px solid rgb(0,0,0) !important;\n}\n.border-left-collapse-hover[data-v-78da06bf]:hover{\n    border-left: 2px solid rgb(0,0,0) !important;\n}\n.border-right-collapse-hover[data-v-78da06bf]:hover{\n    border-right: 2px solid rgb(0,0,0) !important;\n}\n.border-top-collapse-hover[data-v-78da06bf]:hover{\n    border-top: 2px solid rgb(0,0,0) !important;\n}\n.border-bottom-collapse-hover[data-v-78da06bf]:hover{\n    border-bottom: 2px solid rgb(0,0,0) !important;\n}\n.black-border[data-v-78da06bf]{\n    border: 2px solid rgb(0,0,0);\n}\nbutton[data-v-78da06bf]:focus{\n    outline: none;\n}\n.bar-toggle[data-v-78da06bf]{\n    color: black;\n    font-size: 30px;\n}\n.bg-white-30[data-v-78da06bf]{\n    background-color: rgba(247,247,247,0.9);\n}\n.cursor-pointer[data-v-78da06bf]{\n    cursor:pointer;\n}\n", ""]);
+exports.push([module.i, "\n.red-background-item[data-v-78da06bf]:hover{\n    color: #fff !important;\n    background-color:#e3342f;\n    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;\n}\n.black-border-hover[data-v-78da06bf]:hover{\n    border : 2px solid rgba(0,0,0,1);\n}\n.red-background-dropdown[data-v-78da06bf]{\n    color: #fff !important;\n    background-color:#e3342f;\n}\n.custom-nav-link[data-v-78da06bf]{\n    font-weight: 500;\n}\n.transparent-border[data-v-78da06bf]{\n    border : 2px solid rgba(0,0,0,0);\n}\n.custom-dropdown-menu[data-v-78da06bf]{\n    min-width: -webkit-fit-content;\n    min-width: -moz-fit-content;\n    min-width: fit-content;\n}\n.border-left-collapse[data-v-78da06bf]{\n    border-left: 2px solid rgb(0,0,0) !important;\n}\n.border-right-collapse[data-v-78da06bf]{\n    border-right: 2px solid rgb(0,0,0) !important;\n}\n.border-top-collapse[data-v-78da06bf]{\n    border-top: 2px solid rgb(0,0,0) !important;\n}\n.border-bottom-collapse[data-v-78da06bf]{\n    border-bottom: 2px solid rgb(0,0,0) !important;\n}\n.border-left-collapse-hover[data-v-78da06bf]:hover{\n    border-left: 2px solid rgb(0,0,0) !important;\n}\n.border-right-collapse-hover[data-v-78da06bf]:hover{\n    border-right: 2px solid rgb(0,0,0) !important;\n}\n.border-top-collapse-hover[data-v-78da06bf]:hover{\n    border-top: 2px solid rgb(0,0,0) !important;\n}\n.border-bottom-collapse-hover[data-v-78da06bf]:hover{\n    border-bottom: 2px solid rgb(0,0,0) !important;\n}\n.black-border[data-v-78da06bf]{\n    border: 2px solid rgb(0,0,0);\n}\nbutton[data-v-78da06bf]:focus{\n    outline: none;\n}\n.bar-toggle[data-v-78da06bf]{\n    color: black;\n    font-size: 30px;\n}\n.bg-white-30[data-v-78da06bf]{\n    background-color: rgba(247,247,247,0.95);\n}\n.cursor-pointer[data-v-78da06bf]{\n    cursor:pointer;\n}\n.mobile-custom-menu[data-v-78da06bf]{\n    position: absolute;\n    top: 100%;\n    width: 100%;\n    z-index: 1000;\n    margin-bottom: 16px;\n}\n.overflow-hidden[data-v-78da06bf]{\n    overflow:hidden;\n}\n.little-negative-margin-top[data-v-78da06bf]{\n    margin-top:-2px !important;\n}\n.deroule-service-dropdown-enter[data-v-78da06bf]{\n}\n.deroule-service-dropdown-leave-to[data-v-78da06bf]{\n}\n.deroule-service-dropdown-enter-active[data-v-78da06bf]{\n    -webkit-animation : deroule-service-dropdown-in-data-v-78da06bf 500ms ease-out forwards;\n            animation : deroule-service-dropdown-in-data-v-78da06bf 500ms ease-out forwards;\n}\n.deroule-service-dropdown-leave-active[data-v-78da06bf]{\n    -webkit-animation : deroule-service-dropdown-out-data-v-78da06bf 500ms ease-out forwards;\n            animation : deroule-service-dropdown-out-data-v-78da06bf 500ms ease-out forwards;\n}\n.slide-move[data-v-78da06bf]{\n    transition : transform 500ms;\n}\n@-webkit-keyframes deroule-service-dropdown-in-data-v-78da06bf {\nfrom {\n        height:0;\n}\nto {\n        height:330px;\n}\n}\n@keyframes deroule-service-dropdown-in-data-v-78da06bf {\nfrom {\n        height:0;\n}\nto {\n        height:330px;\n}\n}\n@-webkit-keyframes deroule-service-dropdown-out-data-v-78da06bf {\nfrom {\n        height:330px;\n}\nto {\n        height:0;\n}\n}\n@keyframes deroule-service-dropdown-out-data-v-78da06bf {\nfrom {\n        height:330px;\n}\nto {\n        height:0;\n}\n}\n.deroule-langage-dropdown-enter[data-v-78da06bf]{\n}\n.deroule-langage-dropdown-leave-to[data-v-78da06bf]{\n}\n.deroule-langage-dropdown-enter-active[data-v-78da06bf]{\n    -webkit-animation : deroule-langage-dropdown-in-data-v-78da06bf 500ms ease-out forwards;\n            animation : deroule-langage-dropdown-in-data-v-78da06bf 500ms ease-out forwards;\n}\n.deroule-langage-dropdown-leave-active[data-v-78da06bf]{\n    -webkit-animation : deroule-langage-dropdown-out-data-v-78da06bf 500ms ease-out forwards;\n            animation : deroule-langage-dropdown-out-data-v-78da06bf 500ms ease-out forwards;\n}\n.slide-move[data-v-78da06bf]{\n    transition : transform 500ms;\n}\n@-webkit-keyframes deroule-langage-dropdown-in-data-v-78da06bf {\nfrom {\n        height:0;\n}\nto {\n        height:110px;\n}\n}\n@keyframes deroule-langage-dropdown-in-data-v-78da06bf {\nfrom {\n        height:0;\n}\nto {\n        height:110px;\n}\n}\n@-webkit-keyframes deroule-langage-dropdown-out-data-v-78da06bf {\nfrom {\n        height:110px;\n}\nto {\n        height:0;\n}\n}\n@keyframes deroule-langage-dropdown-out-data-v-78da06bf {\nfrom {\n        height:110px;\n}\nto {\n        height:0;\n}\n}\n", ""]);
 
 // exports
 
@@ -21034,334 +21190,658 @@ var render = function() {
         [_c("i", { staticClass: "fa fa-bars bar-toggle" })]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse navbar-collapse",
-          class: {
-            "show shadow bg-white-30 black-border": _vm.showCollapseNavBar,
-            "mt-n4": !_vm.showCollapseNavBar
-          },
-          attrs: { id: "navbarSupportedContent" }
-        },
-        [
-          _c("ul", { staticClass: "navbar-nav mr-auto" }),
-          _vm._v(" "),
-          _c("ul", { staticClass: "navbar-nav" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item", on: { click: _vm.closeCollapseMenu } },
-              [
+      _vm.device === "pc"
+        ? _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              class: {
+                "show shadow bg-white-30 black-border": _vm.showCollapseNavBar,
+                "mt-n4": !_vm.showCollapseNavBar
+              },
+              attrs: { id: "navbarSupportedContent" }
+            },
+            [
+              _c("ul", { staticClass: "navbar-nav mr-auto" }),
+              _vm._v(" "),
+              _c("ul", { staticClass: "navbar-nav" }, [
                 _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "nav-link p-3 custom-nav-link transparent-border red-background-item",
-                    class: {
-                      "black-border-hover": !_vm.showCollapseNavBar,
-                      "border-bottom-collapse-hover": _vm.showCollapseNavBar
-                    },
-                    attrs: { tag: "a", to: { name: "agence" } },
-                    on: { mouseenter: _vm.closeDropdowns }
-                  },
-                  [_vm._v("\n                Notre Agence\n                ")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            !_vm.showCollapseNavBar
-              ? _c(
                   "li",
                   {
-                    staticClass: "nav-item dropdown",
-                    class: { "show ": _vm.showNosServicesDropDown },
-                    on: {
-                      mouseleave: _vm.nosServicesDropDownMouseLeave,
-                      mouseenter: _vm.nosServicesDropDownMouseEnter,
-                      click: _vm.onServicesClicked
-                    }
+                    staticClass: "nav-item",
+                    on: { click: _vm.closeCollapseMenu }
                   },
                   [
                     _c(
                       "router-link",
                       {
                         staticClass:
-                          "nav-link p-3 custom-nav-link transparent-border dropdown-toggle",
+                          "nav-link p-3 custom-nav-link transparent-border red-background-item",
                         class: {
-                          "red-background-dropdown shadow":
-                            _vm.showNosServicesDropDown ||
-                            _vm.mouseStillOnServices,
-                          "border-left-collapse border-right-collapse border-top-collapse":
-                            !_vm.showCollapseNavBar &&
-                            _vm.showNosServicesDropDown,
-                          "border-left-collapse border-right-collapse border-top-collapse border-bottom-collapse":
-                            !_vm.showCollapseNavBar && _vm.mouseStillOnServices
+                          "black-border-hover": !_vm.showCollapseNavBar,
+                          "border-bottom-collapse-hover": _vm.showCollapseNavBar
                         },
-                        attrs: {
-                          tag: "a",
-                          to: { name: "services" },
-                          id: "nosServicesDropDown",
-                          role: "button",
-                          "data-toggle": "dropdown",
-                          "aria-haspopup": "true",
-                          "aria-expanded": _vm.showNosServicesDropDown
-                        }
+                        attrs: { tag: "a", to: { name: "agence" } },
+                        on: { mouseenter: _vm.closeDropdowns }
                       },
                       [
                         _vm._v(
-                          "\n                    Nos Services\n                "
+                          "\n                Notre Agence\n                "
                         )
                       ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0",
-                        class: {
-                          "show shadow": _vm.showNosServicesDropDown,
-                          "border-bottom-collapse": _vm.showCollapseNavBar,
-                          "black-border ": !_vm.showCollapseNavBar
-                        },
-                        attrs: { "aria-labelledby": "nosServicesDropDown" }
-                      },
-                      _vm._l(_vm.nosServices, function(service) {
-                        return _c(
-                          "router-link",
-                          {
-                            key: service.title,
-                            staticClass:
-                              "dropdown-item red-background-item text-center py-3 custom-nav-link",
-                            attrs: { tag: "a", to: { name: service.routeName } }
-                          },
-                          [
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(service.title) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      }),
-                      1
                     )
                   ],
                   1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.showCollapseNavBar
-              ? _c(
+                ),
+                _vm._v(" "),
+                !_vm.showCollapseNavBar
+                  ? _c(
+                      "li",
+                      {
+                        staticClass: "nav-item dropdown",
+                        class: { "show ": _vm.showNosServicesDropDown },
+                        on: {
+                          mouseleave: _vm.nosServicesDropDownMouseLeave,
+                          mouseenter: _vm.nosServicesDropDownMouseEnter,
+                          click: _vm.onServicesClicked
+                        }
+                      },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass:
+                              "nav-link p-3 custom-nav-link transparent-border dropdown-toggle",
+                            class: {
+                              "red-background-dropdown shadow":
+                                _vm.showNosServicesDropDown ||
+                                _vm.mouseStillOnServices,
+                              "border-top-collapse border-right-collapse border-left-collapse":
+                                !_vm.showCollapseNavBar &&
+                                _vm.showNosServicesDropDown,
+                              "black-border":
+                                !_vm.showCollapseNavBar &&
+                                _vm.mouseStillOnServices
+                            },
+                            attrs: {
+                              tag: "a",
+                              to: { name: "services" },
+                              id: "nosServicesDropDown",
+                              role: "button",
+                              "data-toggle": "dropdown",
+                              "aria-haspopup": "true",
+                              "aria-expanded": _vm.showNosServicesDropDown
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                    Nos Services\n                "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "transition",
+                          {
+                            attrs: {
+                              name: "deroule-service-dropdown",
+                              appear: ""
+                            }
+                          },
+                          [
+                            _vm.showNosServicesDropDown
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0",
+                                    class: {
+                                      "show shadow":
+                                        _vm.showNosServicesDropDown,
+                                      "border-bottom-collapse":
+                                        _vm.showCollapseNavBar,
+                                      "black-border ": !_vm.showCollapseNavBar
+                                    },
+                                    attrs: {
+                                      "aria-labelledby": "nosServicesDropDown"
+                                    }
+                                  },
+                                  _vm._l(_vm.nosServices, function(service) {
+                                    return _c(
+                                      "router-link",
+                                      {
+                                        key: service.title,
+                                        staticClass:
+                                          "dropdown-item red-background-item text-center py-3 custom-nav-link",
+                                        attrs: {
+                                          tag: "a",
+                                          to: { name: service.routeName }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                        " +
+                                            _vm._s(service.title) +
+                                            "\n                        "
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  1
+                                )
+                              : _vm._e()
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "nav-item",
+                    on: { click: _vm.closeCollapseMenu }
+                  },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "nav-link p-3 custom-nav-link transparent-border red-background-item",
+                        class: {
+                          "black-border-hover": !_vm.showCollapseNavBar,
+                          "border-top-collapse-hover border-bottom-collapse-hover":
+                            _vm.showCollapseNavBar
+                        },
+                        attrs: { tag: "a", to: { name: "blog" } },
+                        on: { mouseenter: _vm.closeDropdowns }
+                      },
+                      [_vm._v("\n                Blog\n                ")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "nav-item",
+                    on: { click: _vm.closeCollapseMenu }
+                  },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "nav-link p-3 custom-nav-link transparent-border red-background-item",
+                        class: {
+                          "black-border-hover": !_vm.showCollapseNavBar,
+                          "border-top-collapse-hover border-bottom-collapse-hover":
+                            _vm.showCollapseNavBar
+                        },
+                        attrs: { tag: "a", to: { name: "contact" } },
+                        on: { mouseenter: _vm.closeDropdowns }
+                      },
+                      [_vm._v("\n                Contact\n                ")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
                   "li",
                   {
                     staticClass: "nav-item dropdown",
-                    class: { "show ": _vm.showNosServicesDropDown },
-                    on: {
-                      mouseleave: _vm.nosServicesDropDownMouseLeave,
-                      mouseenter: _vm.nosServicesDropDownMouseEnter
-                    }
+                    class: { show: _vm.showLangagesDropDown },
+                    on: { mouseleave: _vm.langageDropDownMouseLeave }
                   },
                   [
                     _c(
                       "a",
                       {
                         staticClass:
-                          "cursor-pointer nav-link p-3 custom-nav-link transparent-border dropdown-toggle",
+                          "nav-link p-3 custom-nav-link transparent-border dropdown-toggle cursor-pointer",
                         class: {
                           "red-background-dropdown shadow":
-                            _vm.showNosServicesDropDown,
-                          "border-top-collapse border-bottom-collapse":
-                            _vm.showCollapseNavBar &&
-                            _vm.showNosServicesDropDown
+                            _vm.showLangagesDropDown,
+                          "black-border":
+                            !_vm.showCollapseNavBar && _vm.showLangagesDropDown,
+                          "border-top-collapse":
+                            _vm.showCollapseNavBar && _vm.showLangagesDropDown
                         },
                         attrs: {
-                          id: "nosServicesDropDown",
+                          id: "langagesDropDown",
                           role: "button",
                           "data-toggle": "dropdown",
                           "aria-haspopup": "true",
-                          "aria-expanded": _vm.showNosServicesDropDown
+                          "aria-expanded": _vm.showLangagesDropDown
                         },
-                        on: { click: _vm.toggleNosServicesDropDownResponsive }
+                        on: {
+                          mouseenter: _vm.langageDropDownMouseEnter,
+                          click: _vm.toggleLangagesDropDownResponsive
+                        }
                       },
                       [
                         _vm._v(
-                          "\n                    Nos Services\n                "
+                          "\n                    " +
+                            _vm._s(_vm.selectedLangage) +
+                            "\n                "
                         )
                       ]
                     ),
                     _vm._v(" "),
                     _c(
-                      "div",
+                      "transition",
                       {
-                        staticClass:
-                          "dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0",
-                        class: {
-                          "show shadow": _vm.showNosServicesDropDown,
-                          "border-bottom-collapse": _vm.showCollapseNavBar,
-                          "black-border ": !_vm.showCollapseNavBar
-                        },
-                        attrs: { "aria-labelledby": "nosServicesDropDown" },
-                        on: { click: _vm.closeCollapseMenu }
+                        attrs: { name: "deroule-langage-dropdown", appear: "" }
                       },
-                      _vm._l(_vm.nosServices, function(service) {
-                        return _c(
-                          "router-link",
+                      [
+                        _vm.showLangagesDropDown
+                          ? _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0",
+                                class: {
+                                  "show shadow": _vm.showLangagesDropDown,
+                                  "border-top-collapse": _vm.showCollapseNavBar,
+                                  "black-border": !_vm.showCollapseNavBar
+                                },
+                                attrs: { "aria-labelledby": "langagesDropDown" }
+                              },
+                              [
+                                _vm._l(_vm.langages, function(langage) {
+                                  return [
+                                    langage !== _vm.selectedLangage
+                                      ? _c(
+                                          "a",
+                                          {
+                                            key: langage,
+                                            staticClass:
+                                              "cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.selectLangage(
+                                                  langage
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                            " +
+                                                _vm._s(langage) +
+                                                "\n                            "
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                })
+                              ],
+                              2
+                            )
+                          : _vm._e()
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "transition",
+        {
+          attrs: {
+            appear: "",
+            "enter-active-class": "animated fadeInLeft",
+            "leave-active-class": "animated fadeOutLeft"
+          }
+        },
+        [
+          _vm.showCollapseNavBar && _vm.device == "mobile"
+            ? _c(
+                "div",
+                {
+                  staticClass: "collapse navbar-collapse mobile-custom-menu",
+                  class: {
+                    "show shadow bg-white-30 black-border":
+                      _vm.showCollapseNavBar,
+                    "mt-n4": !_vm.showCollapseNavBar
+                  },
+                  staticStyle: { transition: "all 1s" },
+                  attrs: { id: "navbarSupportedContent" }
+                },
+                [
+                  _c("ul", { staticClass: "navbar-nav mr-auto" }),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "navbar-nav" },
+                    [
+                      _c("transition-group", { attrs: { name: "slide" } }, [
+                        _c(
+                          "li",
                           {
-                            key: service.title,
-                            staticClass:
-                              "dropdown-item red-background-item text-center py-3 custom-nav-link",
-                            attrs: { tag: "a", to: { name: service.routeName } }
+                            key: "agence",
+                            staticClass: "nav-item",
+                            on: { click: _vm.closeCollapseMenu }
                           },
                           [
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(service.title) +
-                                "\n                    "
+                            _c(
+                              "router-link",
+                              {
+                                staticClass:
+                                  "nav-link p-3 custom-nav-link transparent-border red-background-item",
+                                class: {
+                                  "black-border-hover": !_vm.showCollapseNavBar,
+                                  "border-bottom-collapse-hover":
+                                    _vm.showCollapseNavBar
+                                },
+                                attrs: { tag: "a", to: { name: "agence" } },
+                                on: { mouseenter: _vm.closeDropdowns }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        Notre Agence\n                        "
+                                )
+                              ]
                             )
-                          ]
-                        )
-                      }),
-                      1
-                    )
-                  ]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item", on: { click: _vm.closeCollapseMenu } },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "nav-link p-3 custom-nav-link transparent-border red-background-item",
-                    class: {
-                      "black-border-hover": !_vm.showCollapseNavBar,
-                      "border-top-collapse-hover border-bottom-collapse-hover":
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _vm.showCollapseNavBar
-                    },
-                    attrs: { tag: "a", to: { name: "blog" } },
-                    on: { mouseenter: _vm.closeDropdowns }
-                  },
-                  [_vm._v("\n                Blog\n                ")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item", on: { click: _vm.closeCollapseMenu } },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "nav-link p-3 custom-nav-link transparent-border red-background-item",
-                    class: {
-                      "black-border-hover": !_vm.showCollapseNavBar,
-                      "border-top-collapse-hover border-bottom-collapse-hover":
-                        _vm.showCollapseNavBar
-                    },
-                    attrs: { tag: "a", to: { name: "contact" } },
-                    on: { mouseenter: _vm.closeDropdowns }
-                  },
-                  [_vm._v("\n                Contact\n                ")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                staticClass: "nav-item dropdown",
-                class: { show: _vm.showLangagesDropDown },
-                on: { mouseleave: _vm.toggleLangagesDropDown }
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass:
-                      "nav-link p-3 custom-nav-link transparent-border dropdown-toggle cursor-pointer",
-                    class: {
-                      "red-background-dropdown shadow":
-                        _vm.showLangagesDropDown,
-                      "border-left-collapse border-right-collapse border-top-collapse":
-                        !_vm.showCollapseNavBar && _vm.showLangagesDropDown,
-                      "border-top-collapse":
-                        _vm.showCollapseNavBar && _vm.showLangagesDropDown
-                    },
-                    attrs: {
-                      id: "langagesDropDown",
-                      role: "button",
-                      "data-toggle": "dropdown",
-                      "aria-haspopup": "true",
-                      "aria-expanded": _vm.showLangagesDropDown
-                    },
-                    on: {
-                      mouseenter: _vm.toggleLangagesDropDown,
-                      click: _vm.toggleLangagesDropDownResponsive
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.selectedLangage) +
-                        "\n                "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0",
-                    class: {
-                      "show shadow": _vm.showLangagesDropDown,
-                      "border-top-collapse": _vm.showCollapseNavBar,
-                      "black-border": !_vm.showCollapseNavBar
-                    },
-                    attrs: { "aria-labelledby": "langagesDropDown" }
-                  },
-                  [
-                    _vm._l(_vm.langages, function(langage) {
-                      return [
-                        langage !== _vm.selectedLangage
                           ? _c(
+                              "li",
+                              {
+                                key: "services",
+                                staticClass: "nav-item dropdown",
+                                class: { "show ": _vm.showNosServicesDropDown },
+                                on: {
+                                  mouseleave: _vm.nosServicesDropDownMouseLeave,
+                                  mouseenter: _vm.nosServicesDropDownMouseEnter
+                                }
+                              },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass:
+                                      "cursor-pointer nav-link p-3 custom-nav-link transparent-border dropdown-toggle",
+                                    class: {
+                                      "red-background-dropdown shadow":
+                                        _vm.showNosServicesDropDown,
+                                      "border-top-collapse":
+                                        _vm.showCollapseNavBar &&
+                                        _vm.showNosServicesDropDown
+                                    },
+                                    attrs: {
+                                      id: "nosServicesDropDown",
+                                      role: "button",
+                                      "data-toggle": "dropdown",
+                                      "aria-haspopup": "true",
+                                      "aria-expanded":
+                                        _vm.showNosServicesDropDown
+                                    },
+                                    on: {
+                                      click:
+                                        _vm.toggleNosServicesDropDownResponsive
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Nos Services\n                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "transition",
+                                  {
+                                    attrs: {
+                                      name: "deroule-service-dropdown",
+                                      appear: ""
+                                    }
+                                  },
+                                  [
+                                    _vm.showNosServicesDropDown
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "dropdown-menu overflow-hidden custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0",
+                                            class: {
+                                              "show shadow":
+                                                _vm.showNosServicesDropDown,
+                                              "border-bottom-collapse border-top-collapse":
+                                                _vm.showCollapseNavBar,
+                                              "black-border ": !_vm.showCollapseNavBar
+                                            },
+                                            attrs: {
+                                              "aria-labelledby":
+                                                "nosServicesDropDown"
+                                            },
+                                            on: { click: _vm.closeCollapseMenu }
+                                          },
+                                          _vm._l(_vm.nosServices, function(
+                                            service
+                                          ) {
+                                            return _c(
+                                              "router-link",
+                                              {
+                                                key: service.title,
+                                                staticClass:
+                                                  "dropdown-item red-background-item text-center py-3 custom-nav-link",
+                                                attrs: {
+                                                  tag: "a",
+                                                  to: {
+                                                    name: service.routeName
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                " +
+                                                    _vm._s(service.title) +
+                                                    "\n                                "
+                                                )
+                                              ]
+                                            )
+                                          }),
+                                          1
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            key: "blog",
+                            staticClass: "nav-item",
+                            on: { click: _vm.closeCollapseMenu }
+                          },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass:
+                                  "nav-link p-3 custom-nav-link transparent-border red-background-item",
+                                class: {
+                                  "black-border-hover": !_vm.showCollapseNavBar,
+                                  "border-top-collapse-hover border-bottom-collapse-hover":
+                                    _vm.showCollapseNavBar
+                                },
+                                attrs: { tag: "a", to: { name: "blog" } },
+                                on: { mouseenter: _vm.closeDropdowns }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        Blog\n                        "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            key: "contact",
+                            staticClass: "nav-item",
+                            on: { click: _vm.closeCollapseMenu }
+                          },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass:
+                                  "nav-link p-3 custom-nav-link transparent-border red-background-item",
+                                class: {
+                                  "black-border-hover": !_vm.showCollapseNavBar,
+                                  "border-top-collapse-hover border-bottom-collapse-hover":
+                                    _vm.showCollapseNavBar
+                                },
+                                attrs: { tag: "a", to: { name: "contact" } },
+                                on: { mouseenter: _vm.closeDropdowns }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        Contact\n                        "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            key: "langage",
+                            staticClass: "nav-item dropdown",
+                            class: { show: _vm.showLangagesDropDown },
+                            on: { mouseleave: _vm.langageDropDownMouseLeave }
+                          },
+                          [
+                            _c(
                               "a",
                               {
-                                key: langage,
                                 staticClass:
-                                  "cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link",
+                                  "nav-link p-3 custom-nav-link transparent-border dropdown-toggle cursor-pointer",
+                                class: {
+                                  "red-background-dropdown shadow":
+                                    _vm.showLangagesDropDown,
+                                  "border-left-collapse border-right-collapse border-top-collapse":
+                                    !_vm.showCollapseNavBar &&
+                                    _vm.showLangagesDropDown,
+                                  "border-top-collapse":
+                                    _vm.showCollapseNavBar &&
+                                    _vm.showLangagesDropDown
+                                },
+                                attrs: {
+                                  id: "langagesDropDown",
+                                  role: "button",
+                                  "data-toggle": "dropdown",
+                                  "aria-haspopup": "true",
+                                  "aria-expanded": _vm.showLangagesDropDown
+                                },
                                 on: {
-                                  click: function($event) {
-                                    return _vm.selectLangage(langage)
-                                  }
+                                  mouseenter: _vm.langageDropDownMouseEnter,
+                                  click: _vm.toggleLangagesDropDownResponsive
                                 }
                               },
                               [
                                 _vm._v(
-                                  "\n                    " +
-                                    _vm._s(langage) +
-                                    "\n                    "
+                                  "\n                            " +
+                                    _vm._s(_vm.selectedLangage) +
+                                    "\n                        "
                                 )
                               ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "transition",
+                              {
+                                attrs: {
+                                  name: "deroule-langage-dropdown",
+                                  appear: ""
+                                }
+                              },
+                              [
+                                _vm.showLangagesDropDown
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "dropdown-menu overflow-hidden custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0",
+                                        class: {
+                                          "show shadow":
+                                            _vm.showLangagesDropDown,
+                                          "border-top-collapse":
+                                            _vm.showCollapseNavBar,
+                                          "black-border": !_vm.showCollapseNavBar
+                                        },
+                                        attrs: {
+                                          "aria-labelledby": "langagesDropDown"
+                                        },
+                                        on: { click: _vm.closeCollapseMenu }
+                                      },
+                                      [
+                                        _vm._l(_vm.langages, function(langage) {
+                                          return [
+                                            langage !== _vm.selectedLangage
+                                              ? _c(
+                                                  "a",
+                                                  {
+                                                    key: langage,
+                                                    staticClass:
+                                                      "cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link",
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.selectLangage(
+                                                          langage
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                    " +
+                                                        _vm._s(langage) +
+                                                        "\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e()
+                                          ]
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  : _vm._e()
+                              ]
                             )
-                          : _vm._e()
-                      ]
-                    })
-                  ],
-                  2
-                )
-              ]
-            )
-          ])
+                          ],
+                          1
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                ]
+              )
+            : _vm._e()
         ]
       )
     ],

@@ -14,7 +14,6 @@
         >
             <i class="fa fa-bars bar-toggle"></i>
         </button>
-
         <div 
             class="collapse navbar-collapse" 
             :class="{
@@ -22,6 +21,7 @@
                 'mt-n4':!showCollapseNavBar
             }" 
             id="navbarSupportedContent"
+            v-if="device==='pc'"
         >
             <ul class="navbar-nav mr-auto">
             </ul>
@@ -57,8 +57,8 @@
                         class="nav-link p-3 custom-nav-link transparent-border dropdown-toggle" 
                         :class="{
                             'red-background-dropdown shadow': (showNosServicesDropDown || mouseStillOnServices),
-                            'border-left-collapse border-right-collapse border-top-collapse':(!showCollapseNavBar && showNosServicesDropDown),
-                            'border-left-collapse border-right-collapse border-top-collapse border-bottom-collapse':(!showCollapseNavBar && mouseStillOnServices)
+                            'border-top-collapse border-right-collapse border-left-collapse':(!showCollapseNavBar && showNosServicesDropDown),
+                            'black-border':(!showCollapseNavBar && mouseStillOnServices)
                         }"
                         id="nosServicesDropDown" 
                         role="button" 
@@ -68,68 +68,28 @@
                     >
                         Nos Services
                     </router-link>
-                    <div 
-                        class="dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
-                        :class="{
-                            'show shadow':showNosServicesDropDown,
-                            'border-bottom-collapse':showCollapseNavBar,
-                            'black-border ':!showCollapseNavBar
-                        }" 
-                        aria-labelledby="nosServicesDropDown"
-                    >
-                        <router-link
-                            tag="a"
-                            class="dropdown-item red-background-item text-center py-3 custom-nav-link" 
-                            v-for="service in nosServices"
-                            :key="service.title"
-                            :to="{ name : service.routeName }"
+                    <transition name="deroule-service-dropdown" appear>
+                        <div 
+                            class="little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
+                            :class="{
+                                'show shadow':showNosServicesDropDown,
+                                'border-bottom-collapse':showCollapseNavBar,
+                                'black-border ':!showCollapseNavBar
+                            }" 
+                            aria-labelledby="nosServicesDropDown"
+                            v-if="showNosServicesDropDown"
                         >
-                        {{service.title}}
-                        </router-link>
-                    </div>
-                </li>
-                <li 
-                    v-if="showCollapseNavBar"
-                    class="nav-item dropdown" 
-                    :class="{'show ':showNosServicesDropDown}"
-                    @mouseleave="nosServicesDropDownMouseLeave"
-                    @mouseenter="nosServicesDropDownMouseEnter"
-                >
-                    <a
-                        class="cursor-pointer nav-link p-3 custom-nav-link transparent-border dropdown-toggle" 
-                        :class="{
-                            'red-background-dropdown shadow':showNosServicesDropDown,
-                            'border-top-collapse border-bottom-collapse': (showCollapseNavBar && showNosServicesDropDown)
-                        }"
-                        id="nosServicesDropDown" 
-                        role="button" 
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" 
-                        :aria-expanded="showNosServicesDropDown"
-                        @click="toggleNosServicesDropDownResponsive"
-                    >
-                        Nos Services
-                    </a>
-                    <div 
-                        class="dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
-                        :class="{
-                            'show shadow':showNosServicesDropDown,
-                            'border-bottom-collapse':showCollapseNavBar,
-                            'black-border ':!showCollapseNavBar
-                        }" 
-                        aria-labelledby="nosServicesDropDown"
-                        @click="closeCollapseMenu"
-                    >
-                        <router-link
-                            tag="a"
-                            class="dropdown-item red-background-item text-center py-3 custom-nav-link" 
-                            v-for="service in nosServices"
-                            :key="service.title"
-                            :to="{ name : service.routeName }"
-                        >
-                        {{service.title}}
-                        </router-link>
-                    </div>
+                            <router-link
+                                tag="a"
+                                class="dropdown-item red-background-item text-center py-3 custom-nav-link" 
+                                v-for="service in nosServices"
+                                :key="service.title"
+                                :to="{ name : service.routeName }"
+                            >
+                            {{service.title}}
+                            </router-link>
+                        </div>
+                    </transition>
                 </li>
                 <li
                     class="nav-item"
@@ -168,13 +128,13 @@
                 <li 
                     class="nav-item dropdown"
                     :class="{'show':showLangagesDropDown}"
-                    @mouseleave="toggleLangagesDropDown"
+                    @mouseleave="langageDropDownMouseLeave"
                 >
                     <a 
                         class="nav-link p-3 custom-nav-link transparent-border dropdown-toggle cursor-pointer" 
                         :class="{
                             'red-background-dropdown shadow':showLangagesDropDown,
-                            'border-left-collapse border-right-collapse border-top-collapse': (!showCollapseNavBar && showLangagesDropDown),
+                            'black-border': (!showCollapseNavBar && showLangagesDropDown),
                             'border-top-collapse':(showCollapseNavBar && showLangagesDropDown)
                             }"
                         id="langagesDropDown" 
@@ -182,36 +142,219 @@
                         data-toggle="dropdown" 
                         aria-haspopup="true"
                         :aria-expanded="showLangagesDropDown"
-                        @mouseenter="toggleLangagesDropDown"
+                        @mouseenter="langageDropDownMouseEnter"
                         @click="toggleLangagesDropDownResponsive"
                     >
                         {{selectedLangage}}
                     </a>
-                    <div 
-                        class="dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
-                        :class="{
-                            'show shadow':showLangagesDropDown,
-                            'border-top-collapse':showCollapseNavBar,
-                            'black-border':!showCollapseNavBar
-                            }" 
-                        aria-labelledby="langagesDropDown"
-                    >
-                    <template
-                        v-for="langage in langages"
-                    >
-                        <a 
-                            class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link" 
-                            :key="langage"
-                            v-if="langage !== selectedLangage"
-                            @click="selectLangage(langage)"
+                    <transition name="deroule-langage-dropdown" appear>
+                        <div 
+                            class="little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
+                            :class="{
+                                'show shadow':showLangagesDropDown,
+                                'border-top-collapse':showCollapseNavBar,
+                                'black-border':!showCollapseNavBar
+                                }" 
+                            aria-labelledby="langagesDropDown"
+                            v-if="showLangagesDropDown"
                         >
-                        {{langage}}
-                        </a>
-                    </template>
-                    </div>
+                            <template
+                                v-for="langage in langages"
+                            >
+                                <a 
+                                    class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link" 
+                                    :key="langage"
+                                    v-if="langage !== selectedLangage"
+                                    @click="selectLangage(langage)"
+                                >
+                                {{langage}}
+                                </a>
+                            </template>
+                        </div>
+                    </transition>
                 </li>
             </ul>
         </div>
+        <transition 
+            appear
+            enter-active-class="animated fadeInLeft"
+            leave-active-class="animated fadeOutLeft"
+        >
+            <div 
+                class="collapse navbar-collapse mobile-custom-menu" 
+                :class="{
+                    'show shadow bg-white-30 black-border':showCollapseNavBar,
+                    'mt-n4':!showCollapseNavBar
+                }" 
+                id="navbarSupportedContent"
+                v-if="showCollapseNavBar && device=='mobile'"
+                style="transition: all 1s"
+            >
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <ul class="navbar-nav">
+                    <transition-group
+                        name="slide"
+                    >
+                        <li 
+                            class="nav-item"
+                            @click="closeCollapseMenu"
+                            key="agence"
+                        >
+                            <router-link
+                                tag="a"
+                                :to="{name:'agence'}" 
+                                class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
+                                :class="{
+                                    'black-border-hover':!showCollapseNavBar,
+                                    'border-bottom-collapse-hover':showCollapseNavBar
+                                    }" 
+                                @mouseenter="closeDropdowns"
+                            >
+                            Notre Agence
+                            </router-link>
+                        </li>
+                        <li 
+                            v-if="showCollapseNavBar"
+                            class="nav-item dropdown" 
+                            :class="{'show ':showNosServicesDropDown}"
+                            @mouseleave="nosServicesDropDownMouseLeave"
+                            @mouseenter="nosServicesDropDownMouseEnter"
+                            key="services"
+                        >
+                            <a
+                                class="cursor-pointer nav-link p-3 custom-nav-link transparent-border dropdown-toggle" 
+                                :class="{
+                                    'red-background-dropdown shadow':showNosServicesDropDown,
+                                    'border-top-collapse': (showCollapseNavBar && showNosServicesDropDown)
+                                }"
+                                id="nosServicesDropDown" 
+                                role="button" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true" 
+                                :aria-expanded="showNosServicesDropDown"
+                                @click="toggleNosServicesDropDownResponsive"
+                            >
+                                Nos Services
+                            </a>
+                            <transition 
+                                name="deroule-service-dropdown" 
+                                appear
+                            >
+                                <div 
+                                    v-if="showNosServicesDropDown"
+                                    class="dropdown-menu overflow-hidden custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
+                                    :class="{
+                                        'show shadow':showNosServicesDropDown,
+                                        'border-bottom-collapse border-top-collapse':showCollapseNavBar,
+                                        'black-border ':!showCollapseNavBar
+                                    }" 
+                                    aria-labelledby="nosServicesDropDown"
+                                    @click="closeCollapseMenu"
+                                >
+                                    <router-link
+                                        tag="a"
+                                        class="dropdown-item red-background-item text-center py-3 custom-nav-link" 
+                                        v-for="service in nosServices"
+                                        :key="service.title"
+                                        :to="{ name : service.routeName }"
+                                    >
+                                    {{service.title}}
+                                    </router-link>
+                                </div>
+                            </transition>
+                        </li>
+                        <li
+                            class="nav-item"
+                            @click="closeCollapseMenu"
+                            key="blog"
+                        >
+                            <router-link
+                                tag="a"
+                                :to="{ name : 'blog' }" 
+                                class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
+                                :class="{
+                                    'black-border-hover':!showCollapseNavBar,
+                                    'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar
+                                }" 
+                                @mouseenter="closeDropdowns"
+                            >
+                            Blog
+                            </router-link>
+                        </li>
+                        <li 
+                            class="nav-item"
+                            @click="closeCollapseMenu"
+                            key="contact"
+                        >
+                            <router-link 
+                                tag="a"
+                                :to="{ name : 'contact' }" 
+                                class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
+                                :class="{
+                                    'black-border-hover':!showCollapseNavBar,
+                                    'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar
+                                    }" 
+                                @mouseenter="closeDropdowns"
+                            >
+                            Contact
+                            </router-link>
+                        </li>
+                        <li 
+                            class="nav-item dropdown"
+                            :class="{'show':showLangagesDropDown}"
+                            @mouseleave="langageDropDownMouseLeave"
+                            key="langage"
+                        >
+                            <a 
+                                class="nav-link p-3 custom-nav-link transparent-border dropdown-toggle cursor-pointer" 
+                                :class="{
+                                    'red-background-dropdown shadow':showLangagesDropDown,
+                                    'border-left-collapse border-right-collapse border-top-collapse': (!showCollapseNavBar && showLangagesDropDown),
+                                    'border-top-collapse':(showCollapseNavBar && showLangagesDropDown)
+                                    }"
+                                id="langagesDropDown" 
+                                role="button" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true"
+                                :aria-expanded="showLangagesDropDown"
+                                @mouseenter="langageDropDownMouseEnter"
+                                @click="toggleLangagesDropDownResponsive"
+                            >
+                                {{selectedLangage}}
+                            </a>
+                            <transition name="deroule-langage-dropdown" appear>
+                                <div 
+                                    class="dropdown-menu overflow-hidden custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
+                                    :class="{
+                                        'show shadow':showLangagesDropDown,
+                                        'border-top-collapse':showCollapseNavBar,
+                                        'black-border':!showCollapseNavBar
+                                        }" 
+                                    aria-labelledby="langagesDropDown"
+                                    v-if="showLangagesDropDown"
+                                    @click="closeCollapseMenu"
+                                >
+                                    <template
+                                        v-for="langage in langages"
+                                    >
+                                        <a 
+                                            class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link" 
+                                            :key="langage"
+                                            v-if="langage !== selectedLangage"
+                                            @click="selectLangage(langage)"
+                                        >
+                                        {{langage}}
+                                        </a>
+                                    </template>
+                                </div>
+                            </transition>
+                        </li>
+                    </transition-group>
+                    
+                </ul>
+            </div>
+        </transition>
     </nav>
 </template>
 
@@ -222,7 +365,8 @@ export default{
             showNosServicesDropDown:false,
             showLangagesDropDown:false,
             showCollapseNavBar:false,
-            mouseStillOnServices:false,       
+            mouseStillOnServices:false, 
+            device:null,      
             nosServices:[
                 { title : 'Création de Site Web', routeName : 'website-creation' },
                 { title : 'Solution E-Commerce', routeName : 'solution-e-commerce' },
@@ -258,14 +402,21 @@ export default{
                 this.mouseStillOnServices=false; 
             }
         },
-        toggleLangagesDropDown(){
+        langageDropDownMouseEnter(){
             if(! this.showCollapseNavBar){
-                this.showLangagesDropDown=!this.showLangagesDropDown;
+                this.showLangagesDropDown=true;
+            }
+        },
+        langageDropDownMouseLeave(){
+            if(! this.showCollapseNavBar){
+                this.showLangagesDropDown=false;
             }
         },
         selectLangage(langage){
             this.selectedLangage = langage;
-            this.showLangagesDropDown = false;
+            if(this.device === 'pc'){
+                this.showLangagesDropDown = false;
+            }
         },
         toggleCollapseNavBar(){
             this.showCollapseNavBar=!this.showCollapseNavBar;
@@ -280,8 +431,6 @@ export default{
             if(this.showCollapseNavBar){
                 this.showNosServicesDropDown = false;
                 this.showLangagesDropDown=!this.showLangagesDropDown;
-            } else {
-
             }
         },
         onServicesClicked(){
@@ -297,6 +446,10 @@ export default{
                 }
             }
         });
+        window.addEventListener('resize',(event)=>{
+            this.device = window.innerWidth < 992 ? 'mobile' : 'pc';
+        })
+        this.device = window.innerWidth < 992 ? 'mobile' : 'pc';
     }
 }
 </script>
@@ -358,9 +511,80 @@ export default{
         font-size: 30px;
     }
     .bg-white-30{
-        background-color: rgba(247,247,247,0.9);
+        background-color: rgba(247,247,247,0.95);
     }
     .cursor-pointer{
         cursor:pointer;
+    }
+    .mobile-custom-menu{
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        z-index: 1000;
+        margin-bottom: 16px;
+    }
+    .overflow-hidden{
+        overflow:hidden;
+    }
+    .little-negative-margin-top{
+        margin-top:-2px !important;
+    }
+    .deroule-service-dropdown-enter{
+    }
+    .deroule-service-dropdown-leave-to{
+    }
+    .deroule-service-dropdown-enter-active{
+        animation : deroule-service-dropdown-in 500ms ease-out forwards;
+    }
+    .deroule-service-dropdown-leave-active{
+        animation : deroule-service-dropdown-out 500ms ease-out forwards;
+    }
+    .slide-move{
+        transition : transform 500ms;
+    }
+    @keyframes deroule-service-dropdown-in {
+        from {
+            height:0;
+        }
+        to {
+            height:330px;
+        }
+    }
+    @keyframes deroule-service-dropdown-out {
+        from {
+            height:330px;
+        }
+        to {
+            height:0;
+        }
+    }
+    .deroule-langage-dropdown-enter{
+    }
+    .deroule-langage-dropdown-leave-to{
+    }
+    .deroule-langage-dropdown-enter-active{
+        animation : deroule-langage-dropdown-in 500ms ease-out forwards;
+    }
+    .deroule-langage-dropdown-leave-active{
+        animation : deroule-langage-dropdown-out 500ms ease-out forwards;
+    }
+    .slide-move{
+        transition : transform 500ms;
+    }
+    @keyframes deroule-langage-dropdown-in {
+        from {
+            height:0;
+        }
+        to {
+            height:110px;
+        }
+    }
+    @keyframes deroule-langage-dropdown-out {
+        from {
+            height:110px;
+        }
+        to {
+            height:0;
+        }
     }
 </style>
