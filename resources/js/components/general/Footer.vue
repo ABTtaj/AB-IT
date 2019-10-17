@@ -1,16 +1,16 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <hr>
+            <hr class="divider">
         </div>
         <div class="col-md-4 d-flex justify-content-around">
-            <social-media-icon v-for="socialMedia in socialMedias" :type="socialMedia"></social-media-icon>
+            <social-media-icon v-for="socialMedia in socialMedias" :key="socialMedia" :type="socialMedia"></social-media-icon>
         </div>
     </div>
 </template>
 
 <script>
-import SocialMediaIcon from '../social-icons/SocialMediaIcon.vue';
+import SocialMediaIcon from '../helpers/SocialMediaIcon.vue';
 
 export default{
     components:{
@@ -31,5 +31,7 @@ export default{
 </script>
 
 <style scoped>
-
+.divider{
+    border-top: 2px solid rgba(0,0,0,0.6);
+}
 </style>

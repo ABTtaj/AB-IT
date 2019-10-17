@@ -43,7 +43,7 @@
                         data-toggle="dropdown" 
                         aria-haspopup="true" 
                         :aria-expanded="showNosServicesDropDown"
-                        @mouseover="toggleNosServicesDropDown"
+                        @mouseenter="toggleNosServicesDropDown"
                         @click="toggleNosServicesDropDownResponsive"
                     >
                         Nos Services
@@ -87,7 +87,7 @@
                         data-toggle="dropdown" 
                         aria-haspopup="true"
                         :aria-expanded="showLangagesDropDown"
-                        @mouseover="toggleLangagesDropDown"
+                        @mouseenter="toggleLangagesDropDown"
                         @click="toggleLangagesDropDownResponsive"
                     >
                         {{selectedLangage}}
