@@ -179,8 +179,8 @@
         </div>
         <transition 
             appear
-            enter-active-class="animated fadeInLeft"
-            leave-active-class="animated fadeOutLeft"
+            enter-active-class="animated fadeInDown"
+            leave-active-class="animated fadeOutDown"
         >
             <div 
                 class="collapse navbar-collapse mobile-custom-menu" 

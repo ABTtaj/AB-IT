@@ -1,7 +1,16 @@
 <template>
-    <div class="container">
-        <app-header></app-header>
-        <router-view></router-view>
+    <div>
+        <div class="container">
+            <app-header></app-header>
+            <transition 
+                appear
+                enter-active-class="animated slideInRight"
+                leave-active-class="animated slideOutLeft"
+                mode="out-in"
+            >
+                <router-view></router-view>
+            </transition>
+        </div>
         <app-footer></app-footer>
     </div>
 </template>

@@ -1,10 +1,12 @@
 <template>
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <hr class="divider">
-        </div>
-        <div class="col-md-4 d-flex justify-content-around">
-            <social-media-icon v-for="socialMedia in socialMedias" :key="socialMedia" :type="socialMedia"></social-media-icon>
+    <div class="container mb-4">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <hr class="divider">
+            </div>
+            <div class="col-md-4 d-flex justify-content-around">
+                <social-media-icon v-for="socialMedia in socialMedias" :key="socialMedia" :type="socialMedia"></social-media-icon>
+            </div>
         </div>
     </div>
 </template>
