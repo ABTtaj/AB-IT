@@ -1,14 +1,22 @@
 <template>
     <div class="justify-content-center mb-4 mt-5 row">
-        <div class="col-md-12 text-center" key="logo">
-            <img :src="'../../../images/logo/logo_colors/'+selectedLogo+'.png'" class="img-fluid cursor-pointer" alt="Logo AB.IT" @mouseenter="mouseEnterTheLogo" @mouseleave="mouseLeaveTheLogo" @click="changeColorOrder"> 
+        <div class="col-md-12 text-center">
+            <img :src="'../../../images/logo/logo_colors/'+selectedLogo+'.png'" class="img-fluid cursor-pointer" alt="Logo AB.IT" @mouseenter="onMouseEnterTheLogo" @mouseleave="onMouseLeaveTheLogo" @click="changeColorOrder"> 
         </div>
-        <div class="align-items-center col-md-8 d-flex mb-4 mt-5 px-4 text-center" key="quote" style="height:150px;" >
+        <div class="align-items-center col-md-8 d-flex mb-4 mt-5 px-4 text-center" style="height:150px;" >
             <transition name="fade" mode="out-in" appear>
-                <em :key="quote.id" class="text-black-50 cursor-pointer" v-for="(quote,index) in quotes" v-if="indexQuote === quote.id" @click="onQuoteClicked">{{quote.content}}</em>
+                <em 
+                :key="quote.id" 
+                class="text-black-50 cursor-pointer" 
+                v-for="(quote,index) in quotes" 
+                v-if="indexQuote === quote.id" 
+                @click="onQuoteClicked"
+                @mouseenter="onQuoteMouseEnter"
+                @mouseleave="onQuoteMouseLeave"
+                >{{quote.content}}</em>
             </transition>
         </div>
-        <div class="col-md-12 d-flex justify-content-center" key="action">
+        <div class="col-md-12 d-flex justify-content-center">
             <router-link 
                 tag="div" 
                 :to="{ name : 'services' }" 
@@ -93,40 +101,47 @@ export default{
         }
     },
     methods:{
-        mouseEnterTheLogo(){
-            clearInterval(this.intervalRefLogo);
-            this.intervalRefLogo = setInterval(()=>{
-                this.selectedLogo = this.images[this.indexImages % this.images.length];
-                this.indexImages ++;
-            },500);
+        onMouseEnterTheLogo(){
+            this.logoInterval(500);
         },
-        mouseLeaveTheLogo(){
-            clearInterval(this.intervalRefLogo);
-            this.intervalRefLogo = setInterval(()=>{
-                this.selectedLogo = this.images[this.indexImages % this.images.length];
-                this.indexImages ++;
-            },3000);
+        onMouseLeaveTheLogo(){
+            this.logoInterval(3000);
+        },
+        onQuoteMouseEnter(){
+            this.quoteInterval(6000);
+        },
+        onQuoteMouseLeave(){
+            this.quoteInterval(12000);
         },
         changeColorOrder(){
             this.images = this.wichOrder === 'black_color' ? this.colorBlack : this.blackColor;
             this.wichOrder = this.wichOrder === 'black_color' ? 'color_black' : 'black_color';
         },
         onQuoteClicked(){
-            clearInterval(this.intervalRefQuote);
             this.indexQuote < this.quotes.length ? this.indexQuote++ : this.indexQuote = 1;
+            this.quoteInterval(6000);
+        },
+        quoteInterval(time){
+            if(this.intervalRefQuote){
+                clearInterval(this.intervalRefQuote);
+            }
             this.intervalRefQuote = setInterval(()=>{
                 this.indexQuote < this.quotes.length ? this.indexQuote++ : this.indexQuote = 1;
-            },10000);
+            },time);
+        },
+        logoInterval(time){
+            if(this.intervalRefLogo){
+                clearInterval(this.intervalRefLogo);
+            }
+            this.intervalRefLogo = setInterval(()=>{
+                this.selectedLogo = this.images[this.indexImages % this.images.length];
+                this.indexImages ++;
+            },time);
         }
     },
     created(){
-        this.intervalRefLogo = setInterval(()=>{
-            this.selectedLogo = this.images[this.indexImages % this.images.length];
-            this.indexImages ++;
-        },3000);
-        this.intervalRefQuote = setInterval(()=>{
-            this.indexQuote < this.quotes.length ? this.indexQuote++ : this.indexQuote = 1;
-        },10000);
+        this.logoInterval(3000);
+        this.quoteInterval(12000);
     }
 }
 </script>

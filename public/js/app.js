@@ -2632,6 +2632,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2676,48 +2684,53 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    mouseEnterTheLogo: function mouseEnterTheLogo() {
-      var _this = this;
-
-      clearInterval(this.intervalRefLogo);
-      this.intervalRefLogo = setInterval(function () {
-        _this.selectedLogo = _this.images[_this.indexImages % _this.images.length];
-        _this.indexImages++;
-      }, 500);
+    onMouseEnterTheLogo: function onMouseEnterTheLogo() {
+      this.logoInterval(500);
     },
-    mouseLeaveTheLogo: function mouseLeaveTheLogo() {
-      var _this2 = this;
-
-      clearInterval(this.intervalRefLogo);
-      this.intervalRefLogo = setInterval(function () {
-        _this2.selectedLogo = _this2.images[_this2.indexImages % _this2.images.length];
-        _this2.indexImages++;
-      }, 3000);
+    onMouseLeaveTheLogo: function onMouseLeaveTheLogo() {
+      this.logoInterval(3000);
+    },
+    onQuoteMouseEnter: function onQuoteMouseEnter() {
+      this.quoteInterval(6000);
+    },
+    onQuoteMouseLeave: function onQuoteMouseLeave() {
+      this.quoteInterval(12000);
     },
     changeColorOrder: function changeColorOrder() {
       this.images = this.wichOrder === 'black_color' ? this.colorBlack : this.blackColor;
       this.wichOrder = this.wichOrder === 'black_color' ? 'color_black' : 'black_color';
     },
     onQuoteClicked: function onQuoteClicked() {
-      var _this3 = this;
-
-      clearInterval(this.intervalRefQuote);
       this.indexQuote < this.quotes.length ? this.indexQuote++ : this.indexQuote = 1;
+      this.quoteInterval(6000);
+    },
+    quoteInterval: function quoteInterval(time) {
+      var _this = this;
+
+      if (this.intervalRefQuote) {
+        clearInterval(this.intervalRefQuote);
+      }
+
       this.intervalRefQuote = setInterval(function () {
-        _this3.indexQuote < _this3.quotes.length ? _this3.indexQuote++ : _this3.indexQuote = 1;
-      }, 10000);
+        _this.indexQuote < _this.quotes.length ? _this.indexQuote++ : _this.indexQuote = 1;
+      }, time);
+    },
+    logoInterval: function logoInterval(time) {
+      var _this2 = this;
+
+      if (this.intervalRefLogo) {
+        clearInterval(this.intervalRefLogo);
+      }
+
+      this.intervalRefLogo = setInterval(function () {
+        _this2.selectedLogo = _this2.images[_this2.indexImages % _this2.images.length];
+        _this2.indexImages++;
+      }, time);
     }
   },
   created: function created() {
-    var _this4 = this;
-
-    this.intervalRefLogo = setInterval(function () {
-      _this4.selectedLogo = _this4.images[_this4.indexImages % _this4.images.length];
-      _this4.indexImages++;
-    }, 3000);
-    this.intervalRefQuote = setInterval(function () {
-      _this4.indexQuote < _this4.quotes.length ? _this4.indexQuote++ : _this4.indexQuote = 1;
-    }, 10000);
+    this.logoInterval(3000);
+    this.quoteInterval(12000);
   }
 });
 
@@ -22305,7 +22318,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "justify-content-center mb-4 mt-5 row" }, [
-    _c("div", { key: "logo", staticClass: "col-md-12 text-center" }, [
+    _c("div", { staticClass: "col-md-12 text-center" }, [
       _c("img", {
         staticClass: "img-fluid cursor-pointer",
         attrs: {
@@ -22313,8 +22326,8 @@ var render = function() {
           alt: "Logo AB.IT"
         },
         on: {
-          mouseenter: _vm.mouseEnterTheLogo,
-          mouseleave: _vm.mouseLeaveTheLogo,
+          mouseenter: _vm.onMouseEnterTheLogo,
+          mouseleave: _vm.onMouseLeaveTheLogo,
           click: _vm.changeColorOrder
         }
       })
@@ -22323,7 +22336,6 @@ var render = function() {
     _c(
       "div",
       {
-        key: "quote",
         staticClass:
           "align-items-center col-md-8 d-flex mb-4 mt-5 px-4 text-center",
         staticStyle: { height: "150px" }
@@ -22339,7 +22351,11 @@ var render = function() {
                   {
                     key: quote.id,
                     staticClass: "text-black-50 cursor-pointer",
-                    on: { click: _vm.onQuoteClicked }
+                    on: {
+                      click: _vm.onQuoteClicked,
+                      mouseenter: _vm.onQuoteMouseEnter,
+                      mouseleave: _vm.onQuoteMouseLeave
+                    }
                   },
                   [_vm._v(_vm._s(quote.content))]
                 )
@@ -22353,7 +22369,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { key: "action", staticClass: "col-md-12 d-flex justify-content-center" },
+      { staticClass: "col-md-12 d-flex justify-content-center" },
       [
         _c(
           "router-link",
