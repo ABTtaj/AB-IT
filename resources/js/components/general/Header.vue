@@ -57,6 +57,7 @@
                         class="nav-link p-3 custom-nav-link transparent-border dropdown-toggle" 
                         :class="{
                             'red-background-dropdown shadow': (showNosServicesDropDown || mouseStillOnServices),
+                            'dropdown-transition' : !(showNosServicesDropDown || mouseStillOnServices),
                             'border-top-collapse border-right-collapse border-left-collapse':(!showCollapseNavBar && showNosServicesDropDown),
                             'black-border':(!showCollapseNavBar && mouseStillOnServices)
                         }"
@@ -134,6 +135,7 @@
                         class="nav-link p-3 custom-nav-link transparent-border dropdown-toggle cursor-pointer" 
                         :class="{
                             'red-background-dropdown shadow':showLangagesDropDown,
+                            'dropdown-transition' : !showLangagesDropDown,
                             'black-border': (!showCollapseNavBar && showLangagesDropDown),
                             'border-top-collapse':(showCollapseNavBar && showLangagesDropDown)
                             }"
@@ -455,7 +457,14 @@ export default{
 </script>
 
 <style scoped>
+    .dropdown-transition{
+        transition: all 1s;
+    }
+    .red-background-item{
+        transition: all 1s;
+    }
     .red-background-item:hover{
+        transition: all 500ms;
         color: #fff !important;
         background-color:#e3342f;
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
@@ -464,6 +473,7 @@ export default{
         border : 2px solid rgba(0,0,0,1);
     }
     .red-background-dropdown{
+        transition: all 500ms;
         color: #fff !important;
         background-color:#e3342f;
     }
@@ -534,13 +544,13 @@ export default{
     .deroule-service-dropdown-leave-to{
     }
     .deroule-service-dropdown-enter-active{
-        animation : deroule-service-dropdown-in 500ms ease-out forwards;
+        animation : deroule-service-dropdown-in 700ms ease-out forwards;
     }
     .deroule-service-dropdown-leave-active{
-        animation : deroule-service-dropdown-out 500ms ease-out forwards;
+        animation : deroule-service-dropdown-out 700ms ease-out forwards;
     }
     .slide-move{
-        transition : transform 500ms;
+        transition : transform 700ms;
     }
     @keyframes deroule-service-dropdown-in {
         from {
@@ -563,13 +573,13 @@ export default{
     .deroule-langage-dropdown-leave-to{
     }
     .deroule-langage-dropdown-enter-active{
-        animation : deroule-langage-dropdown-in 500ms ease-out forwards;
+        animation : deroule-langage-dropdown-in 700ms ease-out forwards;
     }
     .deroule-langage-dropdown-leave-active{
-        animation : deroule-langage-dropdown-out 500ms ease-out forwards;
+        animation : deroule-langage-dropdown-out 700ms ease-out forwards;
     }
     .slide-move{
-        transition : transform 500ms;
+        transition : transform 700ms;
     }
     @keyframes deroule-langage-dropdown-in {
         from {
