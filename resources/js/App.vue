@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app-container">
         <div class="container">
             <app-header></app-header>
             <transition 

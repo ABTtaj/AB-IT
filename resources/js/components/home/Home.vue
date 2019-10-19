@@ -3,7 +3,7 @@
         <div class="col-md-12 text-center">
             <img :src="'../../../images/logo/logo_colors/'+selectedLogo+'.png'" class="img-fluid cursor-pointer" alt="Logo AB.IT" @mouseenter="onMouseEnterTheLogo" @mouseleave="onMouseLeaveTheLogo" @click="changeColorOrder"> 
         </div>
-        <div class="align-items-center col-md-8 d-flex mb-4 mt-5 px-4 text-center" style="height:150px;" >
+        <div class="align-items-center col-md-8 d-flex mb-4 mt-5 px-4 text-center">
             <transition name="fade" mode="out-in" appear>
                 <em 
                 :key="quote.id" 
@@ -33,25 +33,25 @@ export default{
     data(){
         return {
             blackColor:[
-                'logo_black_red',
-                'logo_black_gold',
-                'logo_black_green',
-                'logo_black_blue',
-                'logo_black_purple'
+                'red',
+                'gold',
+                'green',
+                'blue',
+                'purple'
             ],
             colorBlack:[
-                'logo_red_black',
-                'logo_gold_black',
-                'logo_green_black',
-                'logo_blue_black',
-                'logo_purple_black'
+                'red_inv',
+                'gold_inv',
+                'green_inv',
+                'blue_inv',
+                'purple_inv'
             ],
             images:[
-                'logo_black_red',
-                'logo_black_gold',
-                'logo_black_green',
-                'logo_black_blue',
-                'logo_black_purple'
+                'red',
+                'gold',
+                'green',
+                'blue',
+                'purple'
             ],
             quotes:[
                 {
@@ -92,7 +92,7 @@ export default{
                 }
             ],
             wichOrder:'black_color',
-            selectedLogo:'logo_black_red',
+            selectedLogo:'red',
             showQuote:true,
             indexImages:1,
             indexQuote:1    ,
@@ -163,6 +163,9 @@ export default{
 }
 .cursor-pointer{
     cursor:pointer;
+}
+.quote-container-style{
+    height:150px;
 }
 .fade-enter{
     opacity:0;

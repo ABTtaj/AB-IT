@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent d-flex align-items-center p-0 mt-2">
-        <router-link tag="a" :to="{name:'home'}" class="navbar-brand"><img src="../../../images/logo/logo_171x96.png" alt="AB.IT Logo"></router-link>
+        <router-link tag="a" :to="{name:'home'}" class="navbar-brand"><img src="../../../images/logo/logo_171x69.png" alt="AB.IT Logo"></router-link>
         <button 
             id="toggle-menu-button"
             class="navbar-toggler border-0 mt-n4" 
@@ -147,7 +147,7 @@
                         @mouseenter="langageDropDownMouseEnter"
                         @click="toggleLangagesDropDownResponsive"
                     >
-                        {{selectedLangage}}
+                        {{selectedLangage.name}}
                     </a>
                     <transition name="deroule-langage-dropdown" appear>
                         <div 
@@ -165,11 +165,11 @@
                             >
                                 <a 
                                     class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link" 
-                                    :key="langage"
-                                    v-if="langage !== selectedLangage"
+                                    :key="langage.value"
+                                    v-if="langage.value !== selectedLangage.value"
                                     @click="selectLangage(langage)"
                                 >
-                                {{langage}}
+                                {{langage.name}}
                                 </a>
                             </template>
                         </div>
@@ -323,7 +323,7 @@
                                 @mouseenter="langageDropDownMouseEnter"
                                 @click="toggleLangagesDropDownResponsive"
                             >
-                                {{selectedLangage}}
+                                {{selectedLangage.name}}
                             </a>
                             <transition name="deroule-langage-dropdown" appear>
                                 <div 
@@ -342,11 +342,11 @@
                                     >
                                         <a 
                                             class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link" 
-                                            :key="langage"
-                                            v-if="langage !== selectedLangage"
+                                            :key="langage.value"
+                                            v-if="langage.value !== selectedLangage.value"
                                             @click="selectLangage(langage)"
                                         >
-                                        {{langage}}
+                                        {{langage.name}}
                                         </a>
                                     </template>
                                 </div>
@@ -378,11 +378,20 @@ export default{
                 { title : 'Formation & Conseils', routeName : 'formations-advices' }
             ],
             langages:[
-                'Français',
-                'Anglais',
-                'Arabe' 
+                {
+                    name:'Français',
+                    value:'fr'
+                },
+                {
+                    name:'English',
+                    value:'en'
+                },
+                {
+                    name:'مغربي',
+                    value:'ma'
+                }
             ],
-            selectedLangage:'Français'
+            selectedLangage:window.langage
         }
     },
     methods:{
@@ -416,6 +425,7 @@ export default{
         },
         selectLangage(langage){
             this.selectedLangage = langage;
+            window.langage = langage;
             if(this.device === 'pc'){
                 this.showLangagesDropDown = false;
             }
