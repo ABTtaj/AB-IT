@@ -87,7 +87,7 @@
                                 :key="service.title"
                                 :to="{ name : service.routeName }"
                             >
-                            {{service.title}}
+                            {{service.title | test}}
                             </router-link>
                         </div>
                     </transition>
@@ -361,6 +361,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 export default{
     data(){
         return {
@@ -390,11 +392,19 @@ export default{
                     name:'مغربي',
                     value:'ma'
                 }
-            ],
-            selectedLangage:window.langage
+            ]
         }
     },
+    computed:{
+        ...mapGetters([
+            'selectedLangage'
+        ])
+    }
+    ,
     methods:{
+        ...mapActions([
+            'changeSelectedLangage'
+        ]),
         closeDropdowns(){
             this.showNosServicesDropDown = false;
             this.showLangagesDropDown = false
@@ -424,8 +434,7 @@ export default{
             }
         },
         selectLangage(langage){
-            this.selectedLangage = langage;
-            window.langage = langage;
+            this.changeSelectedLangage(langage);
             if(this.device === 'pc'){
                 this.showLangagesDropDown = false;
             }
@@ -532,9 +541,6 @@ export default{
     }
     .bg-white-30{
         background-color: rgba(247,247,247,0.95);
-    }
-    .cursor-pointer{
-        cursor:pointer;
     }
     .mobile-custom-menu{
         position: absolute;

@@ -1,5 +1,5 @@
 <template>
-    <div class="icon-container align-items-center d-flex justify-content-center">
+    <div class="icon-container align-items-center d-flex justify-content-center cursor-pointer">
         <svg 
             :style="{
                 'width':width+'px',

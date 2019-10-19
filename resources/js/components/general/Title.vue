@@ -1,8 +1,14 @@
 <template>
-    <img class="cursor-pointer img-fluid":src="'../../../images/titles/'+selectedLangage.value+'/'+category+isInverse+'.png'" :alt="category+'_title'" @click="switchInv">
+    <img 
+        class="cursor-pointer img-fluid" 
+        :src="'../../../images/titles/'+selectedLangage.value+'/'+category+isInverse+'.png'" 
+        :alt="category+'_title'" 
+        @click="switchInv"
+    >
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default{
     props:[
         'category'
@@ -13,20 +19,17 @@ export default{
         }
     },
     computed:{
-        selectedLangage(){
-            return window.langage;
-        }
+        ...mapGetters([
+            'selectedLangage'
+        ])
     },
     methods:{
         switchInv(){
-            this.isInverse = this.isInverse ? '' : '-inv';
+            this.isInverse = this.isInverse ? '' : '_inv';
         }
     }
 }
 </script>
 
 <style scoped>
-    .cursor-pointer{
-        cursor:pointer;
-    }
 </style>

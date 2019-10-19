@@ -4,11 +4,14 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { routes } from './routes.js';
+import storeData from './store/store'
 
 window.Vue = Vue;
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 
+const store = new Vuex.Store(storeData);
 
 const router = new VueRouter({
     mode:'history',
@@ -17,6 +20,7 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
+    store,
     router,
     render: h => h(App)
 });

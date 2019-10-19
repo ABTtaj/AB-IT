@@ -1,10 +1,17 @@
 <template>
-    <div>E-Commerce Component</div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <app-title category="e_commerce"></app-title>
+        </div>
+    </div>
 </template>
 
 <script>
+import AppTitle from '../../general/Title.vue';
 export default{
-
+    components:{
+        AppTitle
+    }
 }
 </script>
 
