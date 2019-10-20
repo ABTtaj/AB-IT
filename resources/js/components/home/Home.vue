@@ -20,9 +20,10 @@
             <router-link 
                 tag="div" 
                 :to="{ name : 'services' }" 
-                class="text-center router-link-style p-3"
+                class="custom-button-style"
+                :class="{'arabic-button-style' : isArabic}"
             >
-                Découvrez nos services
+                {{'BUTTON_DISCOVER_SERVICES_HOME' | translate}}
             </router-link>
         </div>
     </div>
@@ -147,20 +148,6 @@ export default{
 </script>
 
 <style scoped>
-.router-link-style{
-    transition: all 1s;
-    font-weight: 500;
-    width:fit-content;
-    border: 2px solid rgba(0,0,0,0);
-    cursor:pointer;
-}
-.router-link-style:hover{
-    transition: all 500ms;
-    background: #e3342f;
-    color: white;
-    border: 2px solid rgba(0,0,0,1);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); 
-}
 .cursor-pointer{
     cursor:pointer;
 }

@@ -7,7 +7,6 @@ import DigitalMarketing from './components/services/digital-marketing/DigitalMar
 import AutomationMarketing from './components/services/automation-marketing/AutomationMarketing.vue';
 import Seo from './components/services/seo/Seo.vue';
 import FormationAdvices from './components/services/formation-advices/FormationAdvices.vue';
-import Blog from './components/blog/Blog.vue';
 import Contact from './components/contact/Contact.vue';
 
 export const routes = [
@@ -21,5 +20,4 @@ export const routes = [
     { path : '/services/seo', component : Seo, name: 'seo'},
     { path : '/services/formation-advices', component : FormationAdvices, name: 'formations-advices'},
     { path : '/contact', component : Contact, name: 'contact'},
-    { path : '/blog', component : Blog, name: 'blog'}
 ]

@@ -34,6 +34,6 @@ export default{
 
 <style scoped>
 .divider{
-    border-top: 2px solid rgba(0,0,0,0.6);
+    border-top: 2px solid #343a40;
 }
 </style>

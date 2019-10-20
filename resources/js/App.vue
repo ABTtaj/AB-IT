@@ -12,16 +12,33 @@
             </transition>
         </div>
         <app-footer></app-footer>
+        <app-flash-message></app-flash-message>
     </div>
 </template>
-
+ 
 <script>
 import AppHeader from './components/general/Header.vue';
 import AppFooter from './components/general/Footer.vue';
+import AppFlashMessage from './components/general/FlashMessage.vue';
+import { mapGetters } from 'vuex';
 export default{
+    computed:{
+        ...mapGetters([
+            'dir'
+        ])
+    },
     components:{
         AppHeader,
-        AppFooter
+        AppFooter,
+        AppFlashMessage
+    },
+    watch: {
+        dir(val) {
+            document.body.dir=val;
+        }
+    },
+    created(){
+        document.body.dir=this.dir;
     }
 }
 </script>

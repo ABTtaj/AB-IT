@@ -3,10 +3,11 @@
         <div class="col-md-12 text-center">
             <app-title category="agence"></app-title>
         </div>
+        <div class="col-md-12" v-if="device ==='mobile'">
+            <image-bulb class="text-center"></image-bulb>
+        </div>
         <div class="col-md-12">
-            <div class="float-left">
-                <img src="../../../images/general_images/black_bulb.png" alt="Yellow Bulb" class="img-fluid">
-            </div>
+            <image-bulb class="float-left" v-if="device ==='pc'"></image-bulb>
             <p class="text-justify">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id dui non augue tempus interdum non quis felis. Ut facilisis tellus dui, in vulputate orci pulvinar vitae. Nam dictum, mi sed semper vulputate, risus ex egestas eros, dictum gravida nunc ipsum a orci. Nunc scelerisque velit ut odio pellentesque ornare. Quisque condimentum tincidunt condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit in augue nec malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis vitae tortor nec eros vehicula tempor sed sit amet quam. Phasellus orci tellus, sollicitudin a varius at, tincidunt eget nisi.
             </p>
@@ -27,10 +28,12 @@
 </template>
 
 <script>
-import AppTitle from '../general/Title.vue'
+import AppTitle from '../helpers/Title.vue';
+import ImageBulb from '../images/Bulb.vue';
 export default{
     components:{
-        AppTitle
+        AppTitle,
+        ImageBulb
     }
 }
 </script>

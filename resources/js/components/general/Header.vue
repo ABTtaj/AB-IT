@@ -17,7 +17,7 @@
         <div 
             class="collapse navbar-collapse" 
             :class="{
-                'show shadow bg-white-30 black-border':showCollapseNavBar,
+                'show shadow bg-white-95 black-border':showCollapseNavBar,
                 'mt-n4':!showCollapseNavBar
             }" 
             id="navbarSupportedContent"
@@ -33,14 +33,15 @@
                     <router-link
                         tag="a"
                         :to="{name:'agence'}" 
-                        class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
+                        class="nav-link p-3 custom-nav-link text-shadow transparent-border red-background-item" 
                         :class="{
                             'black-border-hover':!showCollapseNavBar,
-                            'border-bottom-collapse-hover':showCollapseNavBar
+                            'border-bottom-collapse-hover':showCollapseNavBar,
+                            'arabic-button-font':isArabic
                             }" 
                         @mouseenter="closeDropdowns"
                     >
-                    Notre Agence
+                    {{'MENU_AGENCE' | translate}}
                     </router-link>
                 </li>
                 <li 
@@ -54,12 +55,13 @@
                     <router-link
                         tag="a"
                         :to="{ name : 'services' }" 
-                        class="nav-link p-3 custom-nav-link transparent-border dropdown-toggle" 
+                        class="nav-link p-3 custom-nav-link text-shadow transparent-border dropdown-toggle" 
                         :class="{
                             'red-background-dropdown shadow': (showNosServicesDropDown || mouseStillOnServices),
                             'dropdown-transition' : !(showNosServicesDropDown || mouseStillOnServices),
                             'border-top-collapse border-right-collapse border-left-collapse':(!showCollapseNavBar && showNosServicesDropDown),
-                            'black-border':(!showCollapseNavBar && mouseStillOnServices)
+                            'black-border':(!showCollapseNavBar && mouseStillOnServices),
+                            'arabic-button-font':isArabic
                         }"
                         id="nosServicesDropDown" 
                         role="button" 
@@ -67,11 +69,11 @@
                         aria-haspopup="true" 
                         :aria-expanded="showNosServicesDropDown"
                     >
-                        Nos Services
+                        {{'MENU_SERVICES' | translate}}
                     </router-link>
                     <transition name="deroule-service-dropdown" appear>
                         <div 
-                            class="little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
+                            class="little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-95 m-0" 
                             :class="{
                                 'show shadow':showNosServicesDropDown,
                                 'border-bottom-collapse':showCollapseNavBar,
@@ -82,32 +84,16 @@
                         >
                             <router-link
                                 tag="a"
-                                class="dropdown-item red-background-item text-center py-3 custom-nav-link" 
+                                class="dropdown-item red-background-item text-center py-3 custom-nav-link text-shadow" 
+                                :class="{'arabic-button-font':isArabic}"
                                 v-for="service in nosServices"
                                 :key="service.title"
                                 :to="{ name : service.routeName }"
+                                v-html="translate(service.title)"
                             >
-                            {{service.title | test}}
                             </router-link>
                         </div>
                     </transition>
-                </li>
-                <li
-                    class="nav-item"
-                    @click="closeCollapseMenu"
-                >
-                    <router-link
-                        tag="a"
-                        :to="{ name : 'blog' }" 
-                        class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
-                        :class="{
-                            'black-border-hover':!showCollapseNavBar,
-                            'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar
-                        }" 
-                        @mouseenter="closeDropdowns"
-                    >
-                    Blog
-                    </router-link>
                 </li>
                 <li 
                     class="nav-item"
@@ -116,14 +102,15 @@
                     <router-link 
                         tag="a"
                         :to="{ name : 'contact' }" 
-                        class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
+                        class="nav-link p-3 custom-nav-link text-shadow transparent-border red-background-item" 
                         :class="{
                             'black-border-hover':!showCollapseNavBar,
-                            'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar
+                            'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar,
+                            'arabic-button-font':isArabic
                             }" 
                         @mouseenter="closeDropdowns"
                     >
-                    Contact
+                    {{'MENU_CONTACT' | translate}}
                     </router-link>
                 </li>
                 <li 
@@ -132,12 +119,15 @@
                     @mouseleave="langageDropDownMouseLeave"
                 >
                     <a 
-                        class="nav-link p-3 custom-nav-link transparent-border dropdown-toggle cursor-pointer" 
+                        v-for="langage in langages"
+                        v-if="langage.value === selectedLangage"
+                        class="nav-link p-3 custom-nav-link text-shadow transparent-border dropdown-toggle cursor-pointer" 
                         :class="{
                             'red-background-dropdown shadow':showLangagesDropDown,
                             'dropdown-transition' : !showLangagesDropDown,
                             'black-border': (!showCollapseNavBar && showLangagesDropDown),
-                            'border-top-collapse':(showCollapseNavBar && showLangagesDropDown)
+                            'border-top-collapse':(showCollapseNavBar && showLangagesDropDown),
+                            'arabic-button-font':isArabic
                             }"
                         id="langagesDropDown" 
                         role="button" 
@@ -147,11 +137,11 @@
                         @mouseenter="langageDropDownMouseEnter"
                         @click="toggleLangagesDropDownResponsive"
                     >
-                        {{selectedLangage.name}}
+                        {{langage.name}}
                     </a>
                     <transition name="deroule-langage-dropdown" appear>
                         <div 
-                            class="little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
+                            class="little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-95 m-0" 
                             :class="{
                                 'show shadow':showLangagesDropDown,
                                 'border-top-collapse':showCollapseNavBar,
@@ -164,10 +154,13 @@
                                 v-for="langage in langages"
                             >
                                 <a 
-                                    class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link" 
+                                    class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link text-shadow"
+                                    :class="{
+                                        'arabic-button-font':langage.value === 'ma'
+                                    }" 
                                     :key="langage.value"
-                                    v-if="langage.value !== selectedLangage.value"
-                                    @click="selectLangage(langage)"
+                                    v-if="langage.value !== selectedLangage"
+                                    @click="selectLangage(langage.value)"
                                 >
                                 {{langage.name}}
                                 </a>
@@ -185,7 +178,7 @@
             <div 
                 class="collapse navbar-collapse mobile-custom-menu" 
                 :class="{
-                    'show shadow bg-white-30 black-border':showCollapseNavBar,
+                    'show shadow bg-white-95 black-border':showCollapseNavBar,
                     'mt-n4':!showCollapseNavBar
                 }" 
                 id="navbarSupportedContent"
@@ -194,7 +187,7 @@
             >
                 <ul class="navbar-nav mr-auto">
                 </ul>
-                <ul class="navbar-nav">
+                <ul class="navbar-nav p-0">
                     <transition-group
                         name="slide"
                     >
@@ -206,14 +199,15 @@
                             <router-link
                                 tag="a"
                                 :to="{name:'agence'}" 
-                                class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
+                                class="nav-link p-3 custom-nav-link text-shadow transparent-border red-background-item" 
                                 :class="{
                                     'black-border-hover':!showCollapseNavBar,
-                                    'border-bottom-collapse-hover':showCollapseNavBar
+                                    'border-bottom-collapse-hover':showCollapseNavBar,
+                                    'arabic-button-font':isArabic
                                     }" 
                                 @mouseenter="closeDropdowns"
                             >
-                            Notre Agence
+                            {{'MENU_AGENCE' | translate}}
                             </router-link>
                         </li>
                         <li 
@@ -225,10 +219,11 @@
                             key="services"
                         >
                             <a
-                                class="cursor-pointer nav-link p-3 custom-nav-link transparent-border dropdown-toggle" 
+                                class="cursor-pointer nav-link p-3 custom-nav-link text-shadow transparent-border dropdown-toggle" 
                                 :class="{
                                     'red-background-dropdown shadow':showNosServicesDropDown,
-                                    'border-top-collapse': (showCollapseNavBar && showNosServicesDropDown)
+                                    'border-top-collapse': (showCollapseNavBar && showNosServicesDropDown),
+                                    'arabic-button-font':isArabic
                                 }"
                                 id="nosServicesDropDown" 
                                 role="button" 
@@ -237,7 +232,7 @@
                                 :aria-expanded="showNosServicesDropDown"
                                 @click="toggleNosServicesDropDownResponsive"
                             >
-                                Nos Services
+                                {{'MENU_SERVICES' | translate}}
                             </a>
                             <transition 
                                 name="deroule-service-dropdown" 
@@ -245,7 +240,7 @@
                             >
                                 <div 
                                     v-if="showNosServicesDropDown"
-                                    class="dropdown-menu overflow-hidden custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
+                                    class="dropdown-menu bg-0 overflow-hidden custom-dropdown-menu rounded-0 p-0 m-0" 
                                     :class="{
                                         'show shadow':showNosServicesDropDown,
                                         'border-bottom-collapse border-top-collapse':showCollapseNavBar,
@@ -256,33 +251,16 @@
                                 >
                                     <router-link
                                         tag="a"
-                                        class="dropdown-item red-background-item text-center py-3 custom-nav-link" 
+                                        class="dropdown-item red-background-item text-center py-3 custom-nav-link text-shadow" 
+                                        :class="{'arabic-button-font':isArabic}"
                                         v-for="service in nosServices"
                                         :key="service.title"
                                         :to="{ name : service.routeName }"
+                                        v-html="translate(service.title)"
                                     >
-                                    {{service.title}}
                                     </router-link>
                                 </div>
                             </transition>
-                        </li>
-                        <li
-                            class="nav-item"
-                            @click="closeCollapseMenu"
-                            key="blog"
-                        >
-                            <router-link
-                                tag="a"
-                                :to="{ name : 'blog' }" 
-                                class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
-                                :class="{
-                                    'black-border-hover':!showCollapseNavBar,
-                                    'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar
-                                }" 
-                                @mouseenter="closeDropdowns"
-                            >
-                            Blog
-                            </router-link>
                         </li>
                         <li 
                             class="nav-item"
@@ -292,14 +270,15 @@
                             <router-link 
                                 tag="a"
                                 :to="{ name : 'contact' }" 
-                                class="nav-link p-3 custom-nav-link transparent-border red-background-item" 
+                                class="nav-link p-3 custom-nav-link text-shadow transparent-border red-background-item" 
                                 :class="{
                                     'black-border-hover':!showCollapseNavBar,
-                                    'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar
+                                    'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar,
+                                    'arabic-button-font':isArabic
                                     }" 
                                 @mouseenter="closeDropdowns"
                             >
-                            Contact
+                            {{'MENU_CONTACT' | translate}}
                             </router-link>
                         </li>
                         <li 
@@ -309,11 +288,14 @@
                             key="langage"
                         >
                             <a 
-                                class="nav-link p-3 custom-nav-link transparent-border dropdown-toggle cursor-pointer" 
+                                v-for="langage in langages"
+                                v-if="langage.value === selectedLangage"
+                                class="nav-link p-3 custom-nav-link text-shadow transparent-border dropdown-toggle cursor-pointer" 
                                 :class="{
                                     'red-background-dropdown shadow':showLangagesDropDown,
                                     'border-left-collapse border-right-collapse border-top-collapse': (!showCollapseNavBar && showLangagesDropDown),
-                                    'border-top-collapse':(showCollapseNavBar && showLangagesDropDown)
+                                    'border-top-collapse':(showCollapseNavBar && showLangagesDropDown),
+                                    'arabic-button-font':isArabic
                                     }"
                                 id="langagesDropDown" 
                                 role="button" 
@@ -323,11 +305,11 @@
                                 @mouseenter="langageDropDownMouseEnter"
                                 @click="toggleLangagesDropDownResponsive"
                             >
-                                {{selectedLangage.name}}
+                                {{langage.name}}
                             </a>
                             <transition name="deroule-langage-dropdown" appear>
                                 <div 
-                                    class="dropdown-menu overflow-hidden custom-dropdown-menu rounded-0 p-0 bg-white-30 m-0" 
+                                    class="dropdown-menu bg-0 overflow-hidden custom-dropdown-menu rounded-0 p-0 m-0" 
                                     :class="{
                                         'show shadow':showLangagesDropDown,
                                         'border-top-collapse':showCollapseNavBar,
@@ -341,10 +323,13 @@
                                         v-for="langage in langages"
                                     >
                                         <a 
-                                            class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link" 
+                                            class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link text-shadow"
+                                            :class="{
+                                                'arabic-button-font':langage.value === 'ma'
+                                            }" 
                                             :key="langage.value"
-                                            v-if="langage.value !== selectedLangage.value"
-                                            @click="selectLangage(langage)"
+                                            v-if="langage.value !== selectedLangage"
+                                            @click="selectLangage(langage.value)"
                                         >
                                         {{langage.name}}
                                         </a>
@@ -370,14 +355,13 @@ export default{
             showLangagesDropDown:false,
             showCollapseNavBar:false,
             mouseStillOnServices:false, 
-            device:null,      
             nosServices:[
-                { title : 'Création de Site Web', routeName : 'website-creation' },
-                { title : 'Solution E-Commerce', routeName : 'solution-e-commerce' },
-                { title : 'Marketing Digitale', routeName : 'digital-marketing' },
-                { title : 'Marketing Automation', routeName : 'automation-marketing' },
-                { title : 'Réferencement et Visibilité', routeName : 'seo' },
-                { title : 'Formation & Conseils', routeName : 'formations-advices' }
+                { title : 'MENU_WEBSITE', routeName : 'website-creation' },
+                { title : 'MENU_E_COMMERCE', routeName : 'solution-e-commerce' },
+                { title : 'MENU_MARKETING_DIGITAL', routeName : 'digital-marketing' },
+                { title : 'MENU_MARKETING_AUTOMATION', routeName : 'automation-marketing' },
+                { title : 'MENU_SEO', routeName : 'seo' },
+                { title : 'MENU_TRAININGS', routeName : 'formations-advices' }
             ],
             langages:[
                 {
@@ -394,11 +378,6 @@ export default{
                 }
             ]
         }
-    },
-    computed:{
-        ...mapGetters([
-            'selectedLangage'
-        ])
     }
     ,
     methods:{
@@ -467,10 +446,6 @@ export default{
                 }
             }
         });
-        window.addEventListener('resize',(event)=>{
-            this.device = window.innerWidth < 992 ? 'mobile' : 'pc';
-        })
-        this.device = window.innerWidth < 992 ? 'mobile' : 'pc';
     }
 }
 </script>
@@ -496,8 +471,12 @@ export default{
         color: #fff !important;
         background-color:#e3342f;
     }
+    #toggle-menu-button i{
+        color:#343a40 !important;
+    }
     .custom-nav-link{
         font-weight: 500;
+        color:#343a40;
     }
     .transparent-border{
         border : 2px solid rgba(0,0,0,0);
@@ -539,8 +518,11 @@ export default{
         color: black;
         font-size: 30px;
     }
-    .bg-white-30{
+    .bg-white-95{
         background-color: rgba(247,247,247,0.95);
+    }
+    .bg-0{
+        background-color: transparent;
     }
     .mobile-custom-menu{
         position: absolute;
@@ -593,9 +575,6 @@ export default{
     }
     .deroule-langage-dropdown-leave-active{
         animation : deroule-langage-dropdown-out 700ms ease-out forwards;
-    }
-    .slide-move{
-        transition : transform 700ms;
     }
     @keyframes deroule-langage-dropdown-in {
         from {
