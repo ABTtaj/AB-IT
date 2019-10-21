@@ -26,6 +26,8 @@
     },
     "dependencies": {
         "animate.css": "^3.7.2",
+        "in-viewport": "^3.6.0",
+        "scroll-into-view": "^1.11.0",
         "vue-router": "^3.1.3",
         "vuex": "^3.1.1"
     }

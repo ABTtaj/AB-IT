@@ -1,5 +1,5 @@
 <template>
-    <div class="container mb-4">
+    <div class="container mb-4" id="footer">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <hr class="divider">
