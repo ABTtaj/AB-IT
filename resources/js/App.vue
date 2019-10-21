@@ -4,8 +4,8 @@
             <app-header></app-header>
             <transition 
                 appear
-                enter-active-class="animated slideInRight"
-                leave-active-class="animated slideOutLeft"
+                :enter-active-class="isArabic ? 'animated zoomIn' : 'animated slideInRight'"
+                :leave-active-class="isArabic ? 'animated zoomOut' : 'animated slideOutLeft'"
                 mode="out-in"
             >
                 <router-view></router-view>

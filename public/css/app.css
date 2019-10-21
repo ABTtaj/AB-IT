@@ -3153,6 +3153,13 @@
 }
 @charset "UTF-8";
 
+@font-face {
+  font-family: "Gabriola";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Gabriola"), url(/fonts/gabriola.woff?a55c76a8ae74842245aa50892df46239) format("woff");
+}
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -13804,5 +13811,127 @@ a.text-dark:focus {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.font-size-titles {
+  font-size: 96px;
+}
+
+.font-size-titles {
+  font-size: 48px;
+}
+
+@media (min-width: 576px) {
+  .font-size-titles {
+    font-size: 72px;
+  }
+}
+
+@media (min-width: 768px) {
+  .font-size-titles {
+    font-size: 96px;
+  }
+}
+
+.arabic-error-message-size {
+  font-size: 18px;
+}
+
+.arabic-error-message-size {
+  font-size: 14px;
+}
+
+@media (min-width: 576px) {
+  .arabic-error-message-size {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .arabic-error-message-size {
+    font-size: 18px;
+  }
+}
+
+.arabic-button-font {
+  font-family: "Al Bayan";
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.text-shadow {
+  text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.25);
+}
+
+.custom-button-style {
+  transition: all 1s;
+  font-weight: 500;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 2px solid rgba(0, 0, 0, 0);
+  text-shadow: 0.5px 0.5px 3px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  padding: 16px;
+  text-align: center;
+}
+
+.arabic-button-style {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Al Bayan";
+  padding: 8px 24px;
+}
+
+.custom-button-style:hover {
+  transition: all 500ms;
+  background: #e3342f;
+  color: white;
+  border: 2px solid black;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.slide-move {
+  transition: transform 700ms;
+}
+
+.gabriola {
+  font-family: "Gabriola";
+}
+
+.roboto {
+  font-family: "Roboto";
+}
+
+.al-bayan {
+  font-family: "Al Bayan";
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+.f-16 {
+  font-size: 16px;
+}
+
+.f-18 {
+  font-size: 18px;
+}
+
+.f-20 {
+  font-size: 20px;
+}
+
+.f-24 {
+  font-size: 24px;
+}
+
+.f-30 {
+  font-size: 30px;
+}
+
+.f-36 {
+  font-size: 36px;
 }
 

@@ -55,10 +55,10 @@
                     <router-link
                         tag="a"
                         :to="{ name : 'services' }" 
-                        class="nav-link p-3 custom-nav-link text-shadow transparent-border dropdown-toggle" 
+                        class="nav-link p-3 text-shadow transparent-border dropdown-toggle" 
                         :class="{
                             'red-background-dropdown shadow': (showNosServicesDropDown || mouseStillOnServices),
-                            'dropdown-transition' : !(showNosServicesDropDown || mouseStillOnServices),
+                            'dropdown-transition custom-nav-link' : !(showNosServicesDropDown || mouseStillOnServices),
                             'border-top-collapse border-right-collapse border-left-collapse':(!showCollapseNavBar && showNosServicesDropDown),
                             'black-border':(!showCollapseNavBar && mouseStillOnServices),
                             'arabic-button-font':isArabic
@@ -121,10 +121,10 @@
                     <a 
                         v-for="langage in langages"
                         v-if="langage.value === selectedLangage"
-                        class="nav-link p-3 custom-nav-link text-shadow transparent-border dropdown-toggle cursor-pointer" 
+                        class="nav-link p-3 text-shadow transparent-border dropdown-toggle cursor-pointer" 
                         :class="{
                             'red-background-dropdown shadow':showLangagesDropDown,
-                            'dropdown-transition' : !showLangagesDropDown,
+                            'dropdown-transition custom-nav-link' : !showLangagesDropDown,
                             'black-border': (!showCollapseNavBar && showLangagesDropDown),
                             'border-top-collapse':(showCollapseNavBar && showLangagesDropDown),
                             'arabic-button-font':isArabic
@@ -219,9 +219,10 @@
                             key="services"
                         >
                             <a
-                                class="cursor-pointer nav-link p-3 custom-nav-link text-shadow transparent-border dropdown-toggle" 
+                                class="cursor-pointer nav-link p-3 text-shadow transparent-border dropdown-toggle" 
                                 :class="{
                                     'red-background-dropdown shadow':showNosServicesDropDown,
+                                    'custom-nav-link':!showNosServicesDropDown,
                                     'border-top-collapse': (showCollapseNavBar && showNosServicesDropDown),
                                     'arabic-button-font':isArabic
                                 }"
@@ -290,10 +291,10 @@
                             <a 
                                 v-for="langage in langages"
                                 v-if="langage.value === selectedLangage"
-                                class="nav-link p-3 custom-nav-link text-shadow transparent-border dropdown-toggle cursor-pointer" 
+                                class="nav-link p-3 text-shadow transparent-border dropdown-toggle cursor-pointer" 
                                 :class="{
                                     'red-background-dropdown shadow':showLangagesDropDown,
-                                    'border-left-collapse border-right-collapse border-top-collapse': (!showCollapseNavBar && showLangagesDropDown),
+                                    'custom-nav-link': !showLangagesDropDown,
                                     'border-top-collapse':(showCollapseNavBar && showLangagesDropDown),
                                     'arabic-button-font':isArabic
                                     }"
@@ -469,6 +470,7 @@ export default{
     .red-background-dropdown{
         transition: all 500ms;
         color: #fff !important;
+        font-weight: 500;
         background-color:#e3342f;
     }
     #toggle-menu-button i{
@@ -476,7 +478,7 @@ export default{
     }
     .custom-nav-link{
         font-weight: 500;
-        color:#343a40;
+        color:#343a40 !important;
     }
     .transparent-border{
         border : 2px solid rgba(0,0,0,0);
