@@ -9,23 +9,50 @@
             </p>
         </div>
         <div class="col-md-12">
-            <div class="py-5 service-upper-container">
+            <div class="py-3 service-upper-container">
                 <div 
-                    class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
+                    class="service-container bg-danger my-5 px-3" 
                     :class="{
                         'service-container':!isArabic,
                         'service-container-arabic':isArabic
                     }" 
                     id="website"
-                >
-                    <transition enter-active-class="animated zoomIn">
-                        <div class="text-white f-30" v-if="services.website">Slide 1</div>
-                    </transition>
+                >   
+                    <div class="row h-100" v-if="widthGreater">
+                        <div 
+                            class="col-5 d-flex justify-content-center align-items-center"
+                        >
+                            <div class="text-center">
+                            <img src="https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png" alt="Idea" class="img-fluid">
+                            </div>
+                        </div>
+                        <div 
+                            class="text-center text-white d-flex col-7 align-items-center"
+                        >
+                            <div class="row">
+                                <div class="col-12 gabriola text-shadow">
+                                    <div class="font-size-services-hor">Création de Site Web</div>
+                                </div>
+                                <div class="col-12 text-shadow font-size-services-quote-hor gabriola my-2">
+                                    <div>Du site vitrine pour présenter votre activité, a l'idee qui revolutionnera le monde !</div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center my-2">
+                                    <div class="custom-white-button-style font-size-services-button my-xl-3">Découvrez nos offres</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="align-items-center flex-column h-100 justify-content-around px-3 row text-center text-white" v-if="!widthGreater">
+                        <div class="font-size-services-ver gabriola">Création de Site Web</div>
+                        <img src="https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png" alt="Idea" class="img-fluid w-75 img-vertical">
+                        <div class="my-2 text-shadow font-size-services-quote-ver gabriola">Du site vitrine pour présenter votre activité, a l'idee qui revolutionnera le monde !</div>
+                        <div class="custom-white-button-style font-size-services-button">Découvrez nos offres</div>
+                    </div>
                 </div> 
             </div>
         </div>
         <div class="col-md-12">
-            <div class="py-5 service-upper-container">
+            <div class="py-3 service-upper-container">
                 <div 
                     class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
                     :class="{
@@ -41,7 +68,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="py-5 service-upper-container">
+            <div class="py-3 service-upper-container">
                 <div 
                     class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
                     :class="{
@@ -50,14 +77,12 @@
                     }" 
                     id="marketingDigital"
                 >
-                    <transition enter-active-class="animated zoomIn">
-                        <div class="text-white f-30" v-if="services.marketingDigital">Slide 1</div>
-                    </transition>
+
                 </div> 
             </div>
         </div>
         <div class="col-md-12">
-            <div class="py-5 service-upper-container">
+            <div class="py-3 service-upper-container">
                 <div 
                     class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
                     :class="{
@@ -73,7 +98,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="py-5 service-upper-container">
+            <div class="py-3 service-upper-container">
                 <div 
                     class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
                     :class="{
@@ -89,7 +114,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <div class="py-5 service-upper-container">
+            <div class="py-3 service-upper-container">
                 <div 
                     class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
                     :class="{
@@ -98,22 +123,25 @@
                     }" 
                     id="trainings"
                 >
-                    <transition enter-active-class="animated zoomIn">
-                        <div class="text-white f-30" v-if="services.trainings">Slide 1</div>
-                    </transition>
                 </div> 
             </div>
         </div>
-        <div class="slide-buttons-container d-flex flex-column justify-content-center align-items-center">
-            <div 
-                v-for="(value,index) in servicesSlideButtons" 
-                :key="index" 
-                :class="{
-                'slide-button-active':value,
-                'slide-button':device=='pc',
-                'slide-button-mobile':device=='mobile'
-                }" @click="buttonSlideAction(index)"></div>
-        </div>
+        <transition
+            enter-active-class="animated fadeIn" 
+            leave-active-class="animated fadeOut" 
+            appear
+        >
+            <div class="slide-buttons-container d-flex flex-column justify-content-center align-items-center" v-if="showSlideButtons">
+                <div 
+                    v-for="(value,index) in servicesSlideButtons" 
+                    :key="index" 
+                    :class="{
+                    'slide-button-active':value,
+                    'slide-button':device=='pc',
+                    'slide-button-mobile':device=='mobile'
+                    }" @click="buttonSlideAction(index)"></div>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -121,6 +149,7 @@
 import AppTitle from '../helpers/Title.vue';
 import inViewport from 'in-viewport';
 import scrollIntoView from 'scroll-into-view';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 export default{
     data(){
         return {
@@ -151,7 +180,18 @@ export default{
             currentIndex:-1,
             haveScrolled:false,
             lastScrollY:0,
-            isScrolling:false
+            isScrolling:false,
+            widthGreater:null
+        }
+    },
+    computed:{
+        showSlideButtons(){
+            for(let key in this.servicesSlideButtons){
+                if(this.servicesSlideButtons[key]){
+                    return true;
+                }
+            }
+            return false;
         }
     },
     methods:{
@@ -167,7 +207,9 @@ export default{
         goIntoView(id){
             const element = document.getElementById(id);
             this.isScrolling=true;
-            document.body.style.overflow='hidden';
+            disableBodyScroll(document.body,{
+                reserveScrollBarGap: true
+            });
             scrollIntoView(element,{cancellable:false},this.endOfScrolling);
         },
         isScrollingBottom(){
@@ -182,7 +224,7 @@ export default{
         endOfScrolling(type){
             if(type === "complete"){
                 this.isScrolling = false;
-                document.body.style.overflow='visible';
+                enableBodyScroll(document.body);
             }
         },
         manageSlideButtons(){
@@ -201,6 +243,10 @@ export default{
         AppTitle
     },
     mounted(){
+        this.widthGreater = window.innerWidth > window.innerHeight ? true : false;
+        window.addEventListener('resize',()=>{
+            this.widthGreater = window.innerWidth > window.innerHeight ? true : false;
+        });
         window.addEventListener('scroll',()=>{
             if(!this.isScrolling){
                 if(this.isScrollingBottom()){
@@ -279,5 +325,8 @@ export default{
     width: 20px;
     height: 20px;
     margin:5px 0;
+}
+.img-vertical{
+    margin-top : -5%;
 }
 </style>

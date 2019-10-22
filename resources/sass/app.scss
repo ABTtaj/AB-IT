@@ -16,6 +16,10 @@
 // Animate.css
 @import '~animate.css/animate.css';
 
+body{
+    overflow-x:hidden;
+}
+
 .navbar-laravel {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -24,6 +28,10 @@
 .cursor-pointer{
     cursor:pointer;
 }
+
+//Font Size
+
+// Font Titles
 
 .font-size-titles {
     font-size:96px;
@@ -45,6 +53,137 @@
         font-size: 96px;
     }
 }
+
+// Font Services Horizontal
+
+.font-size-services-hor {
+    font-size:120px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-hor {
+        font-size: 40px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-hor {
+        font-size: 52px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-hor {
+        font-size: 62px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-hor {
+        font-size: 82px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .font-size-services-hor {
+        font-size: 100px;
+    }
+}
+
+// Font Services Vertical
+
+.font-size-services-ver {
+    font-size:136px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-ver {
+        font-size: 44px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-ver {
+        font-size: 78px;
+    }
+}
+@include media-breakpoint-up(md) {
+    .font-size-services-ver {
+        font-size: 96px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-ver {
+        font-size: 136px;
+    }
+}
+
+//Font Services Quote Horizontal
+
+.font-size-services-quote-hor {
+    font-size:24px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-quote-hor {
+        font-size: 18px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-quote-hor {
+        font-size: 22px;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .font-size-services-quote-hor{
+        font-size: 24px;
+    }
+}
+
+//Font Services Quote Vertical
+
+.font-size-services-quote-ver {
+    font-size:44px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-quote-ver {
+        font-size: 20px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-quote-ver {
+        font-size: 36px;
+    }
+}
+@include media-breakpoint-up(md) {
+    .font-size-services-quote-ver {
+        font-size: 44px;
+    }
+}
+
+//Font Services Button
+
+.font-size-services-button {
+    font-size:14px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-button {
+        font-size: 12px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-button {
+        font-size: 14px;
+    }
+}
+
+// Arabic Error Message
 
 .arabic-error-message-size {
     font-size:18px;
@@ -97,6 +236,26 @@
     border: 2px solid rgba(0,0,0,1);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); 
 }
+.custom-white-button-style{
+    transition: all 1s;
+    font-weight: 500;
+    width:fit-content;
+    border: 2px solid rgba(0,0,0,0);
+    text-shadow: 0.5px 0.5px 3px rgba(0,0,0,.25);
+    cursor:pointer;
+    padding:16px;
+    text-align: center;
+}
+.custom-white-button-style:hover{
+    transition: all 500ms;
+    background: white;
+    color: #e3342f;
+    border: 2px solid rgba(255,255,255,1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); 
+}
+.text-shadow{
+    text-shadow: 0.5px 0.5px 3px rgba(0,0,0,.25);
+}
 .slide-move{
     transition : transform 700ms;
 }
@@ -129,4 +288,49 @@
 }
 .f-36{
     font-size:36px;
+}
+.w-95{
+    width:95%;
+}
+.w-90{
+    width:90%;
+}
+.w-85{
+    width:85%;
+}
+.w-80{
+    width:80%;
+}
+.w-65{
+    width:65%;
+}
+.w-60{
+    width:60%;
+}
+.w-55{
+    width:55%;
+}
+.w-45{
+    width:45%;
+}
+.w-40{
+    width:40%;
+}
+.w-35{
+    width:35%;
+}
+.w-30{
+    width:30%;
+}
+.w-20{
+    width:20%;
+}
+.w-15{
+    width:15%;
+}
+.w-10{
+    width:10%;
+}
+.w-5{
+    width:5%;
 }
