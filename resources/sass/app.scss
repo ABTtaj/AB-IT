@@ -54,10 +54,46 @@ body{
     }
 }
 
+// Font Services Vertical
+
+.font-size-services-ver {
+    font-size:100px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-ver {
+        font-size: 40px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-ver {
+        font-size: 52px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-ver {
+        font-size: 62px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-ver {
+        font-size: 82px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .font-size-services-ver {
+        font-size: 100px;
+    }
+}
+
 // Font Services Horizontal
 
 .font-size-services-hor {
-    font-size:120px;
+    font-size:100px;
 }
 
 @include media-breakpoint-up(xs) {
@@ -90,31 +126,67 @@ body{
     }
 }
 
-// Font Services Vertical
+// Font Services Horizontal Arabic
 
-.font-size-services-ver {
-    font-size:136px;
+.font-size-services-hor-ar {
+    font-size:100px;
 }
 
 @include media-breakpoint-up(xs) {
-    .font-size-services-ver {
-        font-size: 44px;
+    .font-size-services-hor-ar {
+        font-size: 40px;
     }
 }
 
 @include media-breakpoint-up(sm) {
-    .font-size-services-ver {
+    .font-size-services-hor-ar {
+        font-size: 44px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-hor-ar {
+        font-size: 62px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-hor-ar {
+        font-size: 82px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .font-size-services-hor-ar {
+        font-size: 100px;
+    }
+}
+
+// Font Services Vertical Arabic
+
+.font-size-services-ver-ar {
+    font-size:136px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-ver-ar {
+        font-size: 40px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-ver-ar {
         font-size: 78px;
     }
 }
 @include media-breakpoint-up(md) {
-    .font-size-services-ver {
+    .font-size-services-ver-ar {
         font-size: 96px;
     }
 }
 
 @include media-breakpoint-up(lg) {
-    .font-size-services-ver {
+    .font-size-services-ver-ar {
         font-size: 136px;
     }
 }
@@ -133,7 +205,7 @@ body{
 
 @include media-breakpoint-up(sm) {
     .font-size-services-quote-hor {
-        font-size: 22px;
+        font-size: 20px;
     }
 }
 @include media-breakpoint-up(lg) {
@@ -145,23 +217,83 @@ body{
 //Font Services Quote Vertical
 
 .font-size-services-quote-ver {
-    font-size:44px;
+    font-size:24px;
 }
 
 @include media-breakpoint-up(xs) {
     .font-size-services-quote-ver {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 
 @include media-breakpoint-up(sm) {
     .font-size-services-quote-ver {
-        font-size: 36px;
+        font-size: 22px;
     }
 }
+@include media-breakpoint-up(lg) {
+    .font-size-services-quote-ver{
+        font-size: 24px;
+    }
+}
+
+//Font Services Quote Horizontal Arabic
+
+.font-size-services-quote-hor-ar {
+    font-size:22px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-quote-hor-ar {
+        font-size: 16px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-quote-hor-ar {
+        font-size: 18px;
+    }
+}
+
 @include media-breakpoint-up(md) {
-    .font-size-services-quote-ver {
-        font-size: 44px;
+    .font-size-services-quote-hor-ar {
+        font-size: 20px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-quote-hor-ar{
+        font-size: 22px;
+    }
+}
+
+//Font Services Quote Vertical Arabic
+
+.font-size-services-quote-ver-ar {
+    font-size:22px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-quote-ver-ar {
+        font-size: 16px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-quote-ver-ar {
+        font-size: 18px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-quote-ver-ar {
+        font-size: 20px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-quote-ver-ar{
+        font-size: 22px;
     }
 }
 

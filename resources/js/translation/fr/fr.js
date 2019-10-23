@@ -8,6 +8,7 @@ export default {
     'MENU_MARKETING_DIGITAL':'Marketing Digital',
     'MENU_MARKETING_AUTOMATION':'Marketing Automation',
     'MENU_SEO':'Référencement Naturel',
+    'MENU_SEO_LONG':'Référencement Naturel',
     'MENU_TRAININGS':'Formations & Conseils',
     'CONTACT_ERROR_NAME_REQUIRED':'Ce champ est obligatoire',
     'CONTACT_ERROR_NAME_MIN_LENGTH':'Le nom entré est trop court',

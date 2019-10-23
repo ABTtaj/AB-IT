@@ -8,6 +8,7 @@ export default {
     'MENU_MARKETING_DIGITAL':'Digital Marketing',
     'MENU_MARKETING_AUTOMATION':'Marketing Automation',
     'MENU_SEO':'SEO',
+    'MENU_SEO_LONG':'Search Engine Optimization',
     'MENU_TRAININGS':'Trainings & Advices',
     'CONTACT_ERROR_NAME_REQUIRED':'This field is required',
     'CONTACT_ERROR_NAME_MIN_LENGTH':'The name is too short',

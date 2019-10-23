@@ -7,7 +7,8 @@ export default {
             message:'',
             type:'',
             show:false
-        }
+        },
+        collapseMenuOpen:false
     },
     getters:{
         selectedLangage(state){
@@ -18,6 +19,9 @@ export default {
         },
         flashContent(state){
             return state.flash;
+        },
+        collapseMenuOpen(state){
+            return state.collapseMenuOpen;
         }
     },
     mutations:{
@@ -34,6 +38,9 @@ export default {
         },
         toggleFlash(state){
             state.flash.show = !state.flash.show;
+        },
+        toggleCollapseMenu(state,payload){
+            state.collapseMenuOpen = payload;
         }
     },
     actions:{
@@ -52,6 +59,9 @@ export default {
             setTimeout(()=>{
                 commit('toggleFlash');
             },6000);
+        },
+        toggleCollapseMenu({ commit },payload){
+            commit('toggleCollapseMenu',payload);
         }
     }
 }

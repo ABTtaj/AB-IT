@@ -42,6 +42,7 @@ import Service from './Service/Service.vue';
 import AppTitle from '../helpers/Title.vue';
 import inViewport from 'in-viewport';
 import scrollIntoView from 'scroll-into-view';
+import { mapGetters } from 'vuex';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 export default{
     data(){
@@ -100,7 +101,7 @@ export default{
                     title:"MENU_SEO",
                     quote:"SERVICES_SEO_QUOTE",
                     action:"BUTTON_DISCOVER_SERVICES_OFFERS",
-                    route:"website-creation",
+                    route:"seo",
                     image:{
                         url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
                         alt:"ALT_SERVICES_SEO"
@@ -141,10 +142,14 @@ export default{
             lastScrollY:0,
             isScrolling:false,
             shownBar:true,
-            whereToScroll:'header'
+            whereToScroll:'header',
+            slideInViewPort:null
         }
     },
     computed:{
+        ...mapGetters([
+            'collapseMenuOpen'
+        ]),
         showSlideButtons(){
             for(let key in this.servicesSlideButtons){
                 if(this.servicesSlideButtons[key]){
@@ -154,11 +159,20 @@ export default{
             return false;
         }
     },
+    watch:{
+        collapseMenuOpen(val){
+            if(!val){
+                this.haveScrolled=false;
+                this.manageScrollParams(10);
+            }
+        }
+    },
     methods:{
         isSlideInViewport(){
             let result = false;
             this.ids.forEach((id)=>{
                 if(this.isInViewport(id)){
+                    this.slideInViewPort = id;
                     result = true;
                 }
             });
@@ -230,21 +244,35 @@ export default{
                 }
             }
         },
-        intiateScrollParams(){
-            if(!this.isSlideInViewport()){
-                this.whereToScroll = "service-title";
-            }
+        manageScrollParams(delay){
+            setTimeout(()=>{
+                if(window.scrollY){
+                    if(!this.isSlideInViewport()){
+                        this.whereToScroll = "service-title";
+                    }else if(! this.haveScrolled){
+                        this.currentIndex = this.ids.indexOf(this.slideInViewPort);
+                        this.goIntoView(this.slideInViewPort);
+                        this.manageSlideButtons();
+                    }
+                    this.haveScrolled=true;
+                } else {
+                    if(!this.isSlideInViewport()){
+                        this.whereToScroll = "service-title";
+                    }
+                    this.haveScrolled=true;
+                }
+            },delay);
         }
-        
     },
     components:{
         AppTitle,
         Service
     },
     mounted(){
-        this.intiateScrollParams();
+        this.manageScrollParams(1000);
         window.addEventListener('scroll',()=>{
-            if(this.isSlideInViewport()){
+            this.manageScrollParams(1000);
+            if(this.isSlideInViewport() && !this.collapseMenuOpen){
                 this.divToDivScroll();
             }
             this.manageSlideButtons();

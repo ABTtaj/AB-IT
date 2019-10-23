@@ -385,7 +385,8 @@ export default{
     ,
     methods:{
         ...mapActions([
-            'changeSelectedLangage'
+            'changeSelectedLangage',
+            'toggleCollapseMenu'
         ]),
         closeDropdowns(){
             this.showNosServicesDropDown = false;
@@ -423,6 +424,7 @@ export default{
         },
         toggleCollapseNavBar(){
             this.showCollapseNavBar=!this.showCollapseNavBar;
+            this.toggleCollapseMenu(this.showCollapseNavBar);
             this.showLangagesDropDown = false;
             this.showNosServicesDropDown = false;
         },
@@ -446,6 +448,7 @@ export default{
             if(this.showCollapseNavBar){
                 if(!document.getElementById('navbarSupportedContent').contains(event.target) && !document.getElementById('toggle-menu-button').contains(event.target)){
                     this.showCollapseNavBar = false;
+                    this.toggleCollapseMenu(this.showCollapseNavBar);
                 }
             }
         });

@@ -50,7 +50,7 @@
         <template v-if="selectedLangage ==='en'">
             <template v-if="category ==='agence'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'red':isInverse,'black':!sInverse}">The </span><span :class="{'red':!isInverse,'black':isInverse}">Agency</span>
+                    <span :class="{'red':isInverse,'black':!isInverse}">The </span><span :class="{'red':!isInverse,'black':isInverse}">Agency</span>
                 </span>
             </template>
             <template v-if="category ==='services'">
