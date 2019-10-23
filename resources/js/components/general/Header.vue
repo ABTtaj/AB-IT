@@ -121,6 +121,7 @@
                     <a 
                         v-for="langage in langages"
                         v-if="langage.value === selectedLangage"
+                        :key="langage.value"
                         class="nav-link p-3 text-shadow transparent-border dropdown-toggle cursor-pointer" 
                         :class="{
                             'red-background-dropdown shadow':showLangagesDropDown,
@@ -291,6 +292,7 @@
                             <a 
                                 v-for="langage in langages"
                                 v-if="langage.value === selectedLangage"
+                                :key="langage.value"
                                 class="nav-link p-3 text-shadow transparent-border dropdown-toggle cursor-pointer" 
                                 :class="{
                                     'red-background-dropdown shadow':showLangagesDropDown,

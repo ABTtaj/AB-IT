@@ -4,6 +4,7 @@ export default {
     'MENU_CONTACT':'Contact',
     'MENU_WEBSITE':'Création de Site Web',
     'MENU_E_COMMERCE':'Solutions E-Commerce',
+    'MENU_E_COMMERCE_RES':'Solutions E-Commerce',
     'MENU_MARKETING_DIGITAL':'Marketing Digital',
     'MENU_MARKETING_AUTOMATION':'Marketing Automation',
     'MENU_SEO':'Référencement Naturel',
@@ -22,9 +23,23 @@ export default {
     'CONTACT_ERROR_MESSAGE_MIN_LENGTH':'Le message entré est trop court',
     'CONTACT_ERROR_MESSAGE_MAX_LENGTH':'Le message entré est trop long',
     'CONTACT_ERROR_MESSAGE_STRING':'Ce champ est obligatoire',
+    'SERVICES_WEBSITE_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
+    'SERVICES_E_COMMERCE_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
+    'SERVICES_MARKETING_DIGITAL_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
+    'SERVICES_MARKETING_AUTOMATION_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
+    'SERVICES_SEO_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
+    'SERVICES_TRAININGS_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
     'BUTTON_DISCOVER_SERVICES_HOME':'Découvrez nos services',
+    'BUTTON_DISCOVER_SERVICES_OFFERS':'Découvrez nos offres',
     'BUTTON_CONTACT_SUBMIT':'Envoyez',
     'FLASH_CONTACT_SUBMIT_FAIL':'Veuillez vérifier les informations saisies',
     'FLASH_CONTACT_SUBMIT_SUCCESS':'<strong>Merci !</strong><br>Votre message a été envoyé avec succès, nous vous recontacteront le plus rapidement possible',
-    'FLASH_CONTACT_UNKOWN_ERROR':'<strong>Nous nous excusons !</strong><br>Une erreur est survenue lors de l\'envoi de votre message, veuillez réessayer plus tard'
+    'FLASH_CONTACT_UNKOWN_ERROR':'<strong>Nous nous excusons !</strong><br>Une erreur est survenue lors de l\'envoi de votre message, veuillez réessayer plus tard',
+    'ALT_SERVICES_WEBSITE':'Site Web Image',
+    'ALT_SERVICES_E_COMMERCE':'Site Web Image',
+    'ALT_SERVICES_MARKETING_DIGITAL':'Site Web Image',
+    'ALT_SERVICES_MARKETING_AUTOMATION':'Site Web Image',
+    'ALT_SERVICES_SEO':'Site Web Image',
+    'ALT_SERVICES_TRAININGS':'Site Web Image'
+
 }

@@ -1,151 +1,44 @@
 <template>
     <div class="row d-flex justify-content-center mb-5">
-        <div class="col-md-12 text-center my-3">
+        <div class="col-md-12 text-center my-3" id="service-title">
             <app-title category="services"></app-title>
         </div>
-        <div class="col-md-6 mt-5">
+        <div class="col-md-6">
             <p class="text-center">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin laoreet quam quis lacus cursus, id lobortis est viverra. Morbi sollicitudin, nisl non placerat malesuada, orci est sagittis nulla, quis egestas enim sem quis ex.             
             </p>
         </div>
-        <div class="col-md-12">
-            <div class="py-3 service-upper-container">
-                <div 
-                    class="service-container bg-danger my-5 px-3" 
-                    :class="{
-                        'service-container':!isArabic,
-                        'service-container-arabic':isArabic
-                    }" 
-                    id="website"
-                >   
-                    <div class="row h-100" v-if="widthGreater">
-                        <div 
-                            class="col-5 d-flex justify-content-center align-items-center"
-                        >
-                            <div class="text-center">
-                            <img src="https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png" alt="Idea" class="img-fluid">
-                            </div>
-                        </div>
-                        <div 
-                            class="text-center text-white d-flex col-7 align-items-center"
-                        >
-                            <div class="row">
-                                <div class="col-12 gabriola text-shadow">
-                                    <div class="font-size-services-hor">Création de Site Web</div>
-                                </div>
-                                <div class="col-12 text-shadow font-size-services-quote-hor gabriola my-2">
-                                    <div>Du site vitrine pour présenter votre activité, a l'idee qui revolutionnera le monde !</div>
-                                </div>
-                                <div class="col-12 d-flex justify-content-center my-2">
-                                    <div class="custom-white-button-style font-size-services-button my-xl-3">Découvrez nos offres</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="align-items-center flex-column h-100 justify-content-around px-3 row text-center text-white" v-if="!widthGreater">
-                        <div class="font-size-services-ver gabriola">Création de Site Web</div>
-                        <img src="https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png" alt="Idea" class="img-fluid w-75 img-vertical">
-                        <div class="my-2 text-shadow font-size-services-quote-ver gabriola">Du site vitrine pour présenter votre activité, a l'idee qui revolutionnera le monde !</div>
-                        <div class="custom-white-button-style font-size-services-button">Découvrez nos offres</div>
-                    </div>
-                </div> 
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="py-3 service-upper-container">
-                <div 
-                    class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
-                    :class="{
-                        'service-container':!isArabic,
-                        'service-container-arabic':isArabic
-                    }" 
-                    id="eCommerce"
-                >
-                    <transition enter-active-class="animated zoomIn">
-                        <div class="text-white f-30" v-if="services.eCommerce">Slide 1</div>
-                    </transition>
-                </div> 
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="py-3 service-upper-container">
-                <div 
-                    class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
-                    :class="{
-                        'service-container':!isArabic,
-                        'service-container-arabic':isArabic
-                    }" 
-                    id="marketingDigital"
-                >
-
-                </div> 
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="py-3 service-upper-container">
-                <div 
-                    class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
-                    :class="{
-                        'service-container':!isArabic,
-                        'service-container-arabic':isArabic
-                    }" 
-                    id="marketingAutomation"
-                >
-                    <transition enter-active-class="animated zoomIn">
-                        <div class="text-white f-30" v-if="services.marketingAutomation">Slide 1</div>
-                    </transition>
-                </div> 
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="py-3 service-upper-container">
-                <div 
-                    class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
-                    :class="{
-                        'service-container':!isArabic,
-                        'service-container-arabic':isArabic
-                    }" 
-                    id="seo"
-                >
-                    <transition enter-active-class="animated zoomIn">
-                        <div class="text-white f-30" v-if="services.seo">Slide 1</div>
-                    </transition>
-                </div> 
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="py-3 service-upper-container">
-                <div 
-                    class="service-container bg-danger d-flex justify-content-center align-items-center my-5" 
-                    :class="{
-                        'service-container':!isArabic,
-                        'service-container-arabic':isArabic
-                    }" 
-                    id="trainings"
-                >
-                </div> 
-            </div>
+        <div class="col-md-12" v-for="service in services" :key="service.id">
+            <service :data="service"></service>
         </div>
         <transition
             enter-active-class="animated fadeIn" 
             leave-active-class="animated fadeOut" 
             appear
         >
-            <div class="slide-buttons-container d-flex flex-column justify-content-center align-items-center" v-if="showSlideButtons">
+            <div 
+                class="slide-buttons-container d-flex flex-column justify-content-center align-items-center"
+                :class="{
+                    'slide-buttons-container-opacity': !isScrolling
+                }" 
+                v-if="showSlideButtons"
+            >
                 <div 
                     v-for="(value,index) in servicesSlideButtons" 
                     :key="index" 
                     :class="{
-                    'slide-button-active':value,
-                    'slide-button':device=='pc',
-                    'slide-button-mobile':device=='mobile'
-                    }" @click="buttonSlideAction(index)"></div>
+                        'slide-button-active':value,
+                        'slide-button':device=='pc',
+                        'slide-button-mobile':device=='mobile'
+                    }" 
+                    @click="buttonSlideAction(index)"></div>
             </div>
         </transition>
     </div>
 </template>
 
 <script>
+import Service from './Service/Service.vue';
 import AppTitle from '../helpers/Title.vue';
 import inViewport from 'in-viewport';
 import scrollIntoView from 'scroll-into-view';
@@ -153,27 +46,93 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 export default{
     data(){
         return {
-            services:{
-                website:false,
-                eCommerce:false,
-                marketingDigital:false,
-                marketingAutomation:false,
-                seo:false,
-                trainings:false
-            },
+            services:[
+                {   
+                    id:"website",
+                    title:"MENU_WEBSITE",
+                    quote:"SERVICES_WEBSITE_QUOTE",
+                    action:"BUTTON_DISCOVER_SERVICES_OFFERS",
+                    route:"website-creation",
+                    image:{
+                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        alt:"ALT_SERVICES_WEBSITE"
+                    },
+                    show:false
+                },
+                {
+                    id:"e-commerce",
+                    title:"MENU_E_COMMERCE_RES",
+                    quote:"SERVICES_E_COMMERCE_QUOTE",
+                    action:"BUTTON_DISCOVER_SERVICES_OFFERS",
+                    route:"solution-e-commerce",
+                    image:{
+                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        alt:"ALT_SERVICES_E_COMMERCE"
+                    },
+                    show:false
+                },
+                {
+                    id:"marketing-digital",
+                    title:"MENU_MARKETING_DIGITAL",
+                    quote:"SERVICES_MARKETING_DIGITAL_QUOTE",
+                    action:"BUTTON_DISCOVER_SERVICES_OFFERS",
+                    route:"digital-marketing",
+                    image:{
+                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        alt:"ALT_SERVICES_MARKETING_DIGITAL"
+                    },
+                    show:false
+                },
+                {
+                    id:"marketing-automation",
+                    title:"MENU_MARKETING_AUTOMATION",
+                    quote:"SERVICES_MARKETING_AUTOMATION_QUOTE",
+                    action:"BUTTON_DISCOVER_SERVICES_OFFERS",
+                    route:"automation-marketing",
+                    image:{
+                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        alt:"ALT_SERVICES_MARKETING_AUTOMATION"
+                    },
+                    show:false
+                },
+                {
+                    id:"seo",
+                    title:"MENU_SEO",
+                    quote:"SERVICES_SEO_QUOTE",
+                    action:"BUTTON_DISCOVER_SERVICES_OFFERS",
+                    route:"website-creation",
+                    image:{
+                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        alt:"ALT_SERVICES_SEO"
+                    },
+                    show:false
+                },
+                {
+                    id:"trainings",
+                    title:"MENU_TRAININGS",
+                    quote:"SERVICES_TRAININGS_QUOTE",
+                    action:"BUTTON_DISCOVER_SERVICES_OFFERS",
+                    route:"formations-advices",
+                    image:{
+                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        alt:"ALT_SERVICES_TRAININGS"
+                    },
+                    show:false
+                }
+            ],
             servicesSlideButtons:{
                 website:false,
-                eCommerce:false,
-                marketingDigital:false,
-                marketingAutomation:false,
+                'e-commerce':false,
+                'marketing-digital':false,
+                'marketing-automation':false,
                 seo:false,
                 trainings:false
             },
             ids:[
                 'website',
-                'eCommerce',
-                'marketingDigital',
-                'marketingAutomation',
+                'e-commerce',
+                'marketing-digital',
+                'marketing-automation',
                 'seo',
                 'trainings'
             ],
@@ -181,7 +140,8 @@ export default{
             haveScrolled:false,
             lastScrollY:0,
             isScrolling:false,
-            widthGreater:null
+            shownBar:true,
+            whereToScroll:'header'
         }
     },
     computed:{
@@ -195,6 +155,15 @@ export default{
         }
     },
     methods:{
+        isSlideInViewport(){
+            let result = false;
+            this.ids.forEach((id)=>{
+                if(this.isInViewport(id)){
+                    result = true;
+                }
+            });
+            return result;
+        },
         isInViewport(id){
             const element = document.getElementById(id);
             return inViewport(element);
@@ -206,10 +175,7 @@ export default{
         },
         goIntoView(id){
             const element = document.getElementById(id);
-            this.isScrolling=true;
-            disableBodyScroll(document.body,{
-                reserveScrollBarGap: true
-            });
+            this.disableScolling();
             scrollIntoView(element,{cancellable:false},this.endOfScrolling);
         },
         isScrollingBottom(){
@@ -228,7 +194,9 @@ export default{
             }
         },
         manageSlideButtons(){
-            this.services[this.ids[this.currentIndex]] = true;
+            if(this.services[this.currentIndex]){
+                this.services[this.currentIndex].show = true;
+            }
             for (let key in this.servicesSlideButtons) {
                 if(key == this.ids[this.currentIndex]){
                     this.servicesSlideButtons[key] = true;
@@ -236,18 +204,14 @@ export default{
                     this.servicesSlideButtons[key] = false;
                 }
             }
-        }
-        
-    },
-    components:{
-        AppTitle
-    },
-    mounted(){
-        this.widthGreater = window.innerWidth > window.innerHeight ? true : false;
-        window.addEventListener('resize',()=>{
-            this.widthGreater = window.innerWidth > window.innerHeight ? true : false;
-        });
-        window.addEventListener('scroll',()=>{
+        },
+        disableScolling(){
+            this.isScrolling=true;
+            disableBodyScroll(document.body,{
+                reserveScrollBarGap: true
+            });
+        },
+        divToDivScroll(){
             if(!this.isScrolling){
                 if(this.isScrollingBottom()){
                     this.currentIndex++;
@@ -261,33 +225,38 @@ export default{
                     if(this.ids[this.currentIndex]){
                         this.goIntoView(this.ids[this.currentIndex]);
                     } else {
-                        this.goIntoView('header');
+                        this.goIntoView(this.whereToScroll);
                     }
                 }
             }
+        },
+        intiateScrollParams(){
+            if(!this.isSlideInViewport()){
+                this.whereToScroll = "service-title";
+            }
+        }
+        
+    },
+    components:{
+        AppTitle,
+        Service
+    },
+    mounted(){
+        this.intiateScrollParams();
+        window.addEventListener('scroll',()=>{
+            if(this.isSlideInViewport()){
+                this.divToDivScroll();
+            }
             this.manageSlideButtons();
             this.updateLastScrollY();
-        })
+        },{
+            passive: true
+        });
     }
 }
 </script>
 
 <style scoped>
-.service-upper-container{
-    height:100vh;
-}
-.service-container{
-    height: 100%;
-    margin-left: calc(-50vw + 50%);
-    width: 100vw;
-    box-shadow: inset 0 25px 25px -20px rgba(0,0,0,0.8), inset 0 -25px 30px -25px rgba(0,0,0,0.8);
-}
-.service-container-arabic{
-    height: 100%;
-    margin-right: calc(-50vw + 50%);
-    width: 100vw;
-    box-shadow: inset 0 25px 25px -20px rgba(0,0,0,0.8), inset 0 -25px 30px -25px rgba(0,0,0,0.8);
-}
 .slide-buttons-container{
     height:100%;
     position: fixed;
@@ -316,6 +285,14 @@ export default{
     width:30px;
     height:30px;
 }
+.slide-buttons-container-opacity{
+    transition:all 500ms;
+    opacity:0.4;
+}
+.slide-buttons-container-opacity:hover{
+    transition:all 500ms;
+    opacity:1;
+}
 .slide-button-mobile{
     background-color: #343a40;
     cursor:pointer;
@@ -325,8 +302,5 @@ export default{
     width: 20px;
     height: 20px;
     margin:5px 0;
-}
-.img-vertical{
-    margin-top : -5%;
 }
 </style>
