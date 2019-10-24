@@ -1,46 +1,19 @@
+import alt from './modules/alt.js'
+import buttons from './modules/buttons.js'
+import errors from './modules/errors.js'
+import flash from './modules/flash.js'
+import menu from './modules/menu.js'
+import packs from './modules/packs.js'
+import routes from './modules/routes.js'
+import services from './modules/services.js'
 
 export default {
-    'MENU_AGENCE':'وكالتنا',
-    'MENU_SERVICES':'خدماتنا',
-    'MENU_CONTACT':'اتصلوا بنا',
-    'MENU_WEBSITE':'تطوير مواقع الإنترنت',
-    'MENU_E_COMMERCE':'حلولنا للـ <span class="roboto f-14">E-Commerce</span>',
-    'MENU_E_COMMERCE_RES':'حلولنا للـ  <span class="gabriola e-commerce-inside-title mr-2">E-Commerce</span>',
-    'MENU_MARKETING_DIGITAL':'التسويق الرقمي',
-    'MENU_MARKETING_AUTOMATION':'إدارة تسويق المشروعات',
-    'MENU_SEO':'تحسين محركات البحث',
-    'MENU_SEO_LONG':'تحسين محركات البحث',
-    'MENU_TRAININGS':'دورات تعليمية و نصائح',
-    'CONTACT_ERROR_NAME_REQUIRED':'هذا الحقل إجباري',
-    'CONTACT_ERROR_NAME_MIN_LENGTH':'الإسم الي ادخلتوا قصير بزاف',
-    'CONTACT_ERROR_NAME_MAX_LENGTH':'الإسم الي ادخلتوا قطويل بزاف',
-    'CONTACT_ERROR_EMAIL_REQUIRED':'هذا الحقل إجباري',
-    'CONTACT_ERROR_EMAIL_NOT_VALID':'المرجو ادخال بريد إلكتروني صالح',
-    'CONTACT_ERROR_PHONE_MIN_LENGTH':'المرجو ادخال رقم هاتف صالح',
-    'CONTACT_ERROR_PHONE_MAX_LENGTH':'المرجو ادخال رقم هاتف صالح',
-    'CONTACT_ERROR_PHONE_REGEX':'المرجو ادخال رقم هاتف صالح',
-    'CONTACT_ERROR_OBJECT_MIN_LENGTH':'موضوع الرسالة الي ادخلتوا قصير بزاف',
-    'CONTACT_ERROR_OBJECT_MAX_LENGTH':'موضوع الرسالة الي ادخلتوا طويل بزاف',
-    'CONTACT_ERROR_MESSAGE_REQUIRED':'هذا الحقل إجباري',
-    'CONTACT_ERROR_MESSAGE_MIN_LENGTH':'الرسالة الي ادخلتوا قصيرة بزاف',
-    'CONTACT_ERROR_MESSAGE_MAX_LENGTH':'الرسالة الي ادخلتوا طويلة بزاف',
-    'CONTACT_ERROR_MESSAGE_STRING':'هذا الحقل إجباري',
-    'BUTTON_DISCOVER_SERVICES_HOME':'اكتشفوا خدماتنا',
-    'BUTTON_DISCOVER_SERVICES_OFFERS':'اكتشفوا عروضنا',
-    'SERVICES_WEBSITE_QUOTE':'من موقع الواجهة لعرض نشاطك ، إلى موقع الويب المعقد الذي يعطي الحياة لأفكارك الأكثر غرابة!',
-    'SERVICES_E_COMMERCE_QUOTE':'من موقع الواجهة لعرض نشاطك ، إلى موقع الويب المعقد الذي يعطي الحياة لأفكارك الأكثر غرابة!',
-    'SERVICES_MARKETING_DIGITAL_QUOTE':'من موقع الواجهة لعرض نشاطك ، إلى موقع الويب المعقد الذي يعطي الحياة لأفكارك الأكثر غرابة!',
-    'SERVICES_MARKETING_AUTOMATION_QUOTE':'من موقع الواجهة لعرض نشاطك ، إلى موقع الويب المعقد الذي يعطي الحياة لأفكارك الأكثر غرابة!',
-    'SERVICES_SEO_QUOTE':'من موقع الواجهة لعرض نشاطك ، إلى موقع الويب المعقد الذي يعطي الحياة لأفكارك الأكثر غرابة!',
-    'SERVICES_TRAININGS_QUOTE':'من موقع الواجهة لعرض نشاطك ، إلى موقع الويب المعقد الذي يعطي الحياة لأفكارك الأكثر غرابة!',
-    'BUTTON_CONTACT_SUBMIT':'ارسل',
-    'FLASH_CONTACT_SUBMIT_FAIL':'المرجو مراجعة المعلومات لي ادخلتو',
-    'FLASH_CONTACT_SUBMIT_SUCCESS':'<strong> شكرا !</strong><br> تم الإرسال بنجاح، غادي نرجعوا ليكم في أقرب وقت ممكن ',
-    'FLASH_CONTACT_UNKOWN_ERROR':'<strong>نعتذر !</strong><br>وقع مشكل أتناء الإرسال، يرجى إعادة المحاولة لاحقا',
-    'ALT_SERVICES_WEBSITE':'Site Web Image',
-    'ALT_SERVICES_E_COMMERCE':'Site Web Image',
-    'ALT_SERVICES_MARKETING_DIGITAL':'Site Web Image',
-    'ALT_SERVICES_MARKETING_AUTOMATION':'Site Web Image',
-    'ALT_SERVICES_SEO':'Site Web Image',
-    'ALT_SERVICES_TRAININGS':'Site Web Image'
+    ...alt,
+    ...buttons,
+    ...errors,
+    ...flash,
+    ...menu,
+    ...packs,
+    ...routes,
+    ...services,
 }

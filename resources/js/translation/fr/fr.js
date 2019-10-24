@@ -1,46 +1,19 @@
-export default {
-    'MENU_AGENCE':'Notre Agence',
-    'MENU_SERVICES':'Nos Services',
-    'MENU_CONTACT':'Contact',
-    'MENU_WEBSITE':'Création de Site Web',
-    'MENU_E_COMMERCE':'Solutions E-Commerce',
-    'MENU_E_COMMERCE_RES':'Solutions E-Commerce',
-    'MENU_MARKETING_DIGITAL':'Marketing Digital',
-    'MENU_MARKETING_AUTOMATION':'Marketing Automation',
-    'MENU_SEO':'Référencement Naturel',
-    'MENU_SEO_LONG':'Référencement Naturel',
-    'MENU_TRAININGS':'Formations & Conseils',
-    'CONTACT_ERROR_NAME_REQUIRED':'Ce champ est obligatoire',
-    'CONTACT_ERROR_NAME_MIN_LENGTH':'Le nom entré est trop court',
-    'CONTACT_ERROR_NAME_MAX_LENGTH':'Le nom entré est trop long',
-    'CONTACT_ERROR_EMAIL_REQUIRED':'Ce champ est obligatoire',
-    'CONTACT_ERROR_EMAIL_NOT_VALID':'Veuillez entrer une adresse e-mail valide',
-    'CONTACT_ERROR_PHONE_MIN_LENGTH':'Veuillez entrer un numéro de téléphone valide',
-    'CONTACT_ERROR_PHONE_MAX_LENGTH':'Veuillez entrer un numéro de téléphone valide',
-    'CONTACT_ERROR_PHONE_REGEX':'Veuillez entrer un numéro de téléphone valide',
-    'CONTACT_ERROR_OBJECT_MIN_LENGTH':'L\'objet entré est trop court',
-    'CONTACT_ERROR_OBJECT_MAX_LENGTH':'L\'objet entré est trop long',
-    'CONTACT_ERROR_MESSAGE_REQUIRED':'Ce champ est obligatoire',
-    'CONTACT_ERROR_MESSAGE_MIN_LENGTH':'Le message entré est trop court',
-    'CONTACT_ERROR_MESSAGE_MAX_LENGTH':'Le message entré est trop long',
-    'CONTACT_ERROR_MESSAGE_STRING':'Ce champ est obligatoire',
-    'SERVICES_WEBSITE_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_E_COMMERCE_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_MARKETING_DIGITAL_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_MARKETING_AUTOMATION_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_SEO_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_TRAININGS_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'BUTTON_DISCOVER_SERVICES_HOME':'Découvrez nos services',
-    'BUTTON_DISCOVER_SERVICES_OFFERS':'Découvrez nos offres',
-    'BUTTON_CONTACT_SUBMIT':'Envoyez',
-    'FLASH_CONTACT_SUBMIT_FAIL':'Veuillez vérifier les informations saisies',
-    'FLASH_CONTACT_SUBMIT_SUCCESS':'<strong>Merci !</strong><br>Votre message a été envoyé avec succès, nous vous recontacteront le plus rapidement possible',
-    'FLASH_CONTACT_UNKOWN_ERROR':'<strong>Nous nous excusons !</strong><br>Une erreur est survenue lors de l\'envoi de votre message, veuillez réessayer plus tard',
-    'ALT_SERVICES_WEBSITE':'Site Web Image',
-    'ALT_SERVICES_E_COMMERCE':'Site Web Image',
-    'ALT_SERVICES_MARKETING_DIGITAL':'Site Web Image',
-    'ALT_SERVICES_MARKETING_AUTOMATION':'Site Web Image',
-    'ALT_SERVICES_SEO':'Site Web Image',
-    'ALT_SERVICES_TRAININGS':'Site Web Image'
+import alt from './modules/alt.js'
+import buttons from './modules/buttons.js'
+import errors from './modules/errors.js'
+import flash from './modules/flash.js'
+import menu from './modules/menu.js'
+import packs from './modules/packs.js'
+import routes from './modules/routes.js'
+import services from './modules/services.js'
 
+export default {
+    ...alt,
+    ...buttons,
+    ...errors,
+    ...flash,
+    ...menu,
+    ...packs,
+    ...routes,
+    ...services,
 }

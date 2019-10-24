@@ -1,6 +1,6 @@
 <template>
     <div class="row d-flex justify-content-center mb-5">
-        <div class="col-md-12 text-center my-3" id="service-title">
+        <div class="col-12 text-center my-3" id="service-title">
             <app-title category="services"></app-title>
         </div>
         <div class="col-md-6">
@@ -8,7 +8,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin laoreet quam quis lacus cursus, id lobortis est viverra. Morbi sollicitudin, nisl non placerat malesuada, orci est sagittis nulla, quis egestas enim sem quis ex.             
             </p>
         </div>
-        <div class="col-md-12" v-for="service in services" :key="service.id">
+        <div class="col-12" v-for="service in services" :key="service.id">
             <service :data="service"></service>
         </div>
         <transition
@@ -28,8 +28,8 @@
                     :key="index" 
                     :class="{
                         'slide-button-active':value,
-                        'slide-button':device=='pc',
-                        'slide-button-mobile':device=='mobile'
+                        'slide-button bg-dark':device=='pc',
+                        'slide-button-mobile bg-dark':device=='mobile'
                     }" 
                     @click="buttonSlideAction(index)"></div>
             </div>
@@ -53,21 +53,21 @@ export default{
                     title:"MENU_WEBSITE",
                     quote:"SERVICES_WEBSITE_QUOTE",
                     action:"BUTTON_DISCOVER_SERVICES_OFFERS",
-                    route:"website-creation",
+                    route:"ROUTE_WEBSITE",
                     image:{
-                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        url:"../../../images/general_images/website.png",
                         alt:"ALT_SERVICES_WEBSITE"
                     },
                     show:false
                 },
                 {
                     id:"e-commerce",
-                    title:"MENU_E_COMMERCE_RES",
+                    title:"MENU_E_COMMERCE",
                     quote:"SERVICES_E_COMMERCE_QUOTE",
                     action:"BUTTON_DISCOVER_SERVICES_OFFERS",
-                    route:"solution-e-commerce",
+                    route:"ROUTE_E_COMMERCE",
                     image:{
-                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        url:"../../../images/general_images/e_commerce.png",
                         alt:"ALT_SERVICES_E_COMMERCE"
                     },
                     show:false
@@ -77,22 +77,10 @@ export default{
                     title:"MENU_MARKETING_DIGITAL",
                     quote:"SERVICES_MARKETING_DIGITAL_QUOTE",
                     action:"BUTTON_DISCOVER_SERVICES_OFFERS",
-                    route:"digital-marketing",
+                    route:"ROUTE_MARKETING_DIGITAL",
                     image:{
-                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        url:"../../../images/general_images/marketing_digital.png",
                         alt:"ALT_SERVICES_MARKETING_DIGITAL"
-                    },
-                    show:false
-                },
-                {
-                    id:"marketing-automation",
-                    title:"MENU_MARKETING_AUTOMATION",
-                    quote:"SERVICES_MARKETING_AUTOMATION_QUOTE",
-                    action:"BUTTON_DISCOVER_SERVICES_OFFERS",
-                    route:"automation-marketing",
-                    image:{
-                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
-                        alt:"ALT_SERVICES_MARKETING_AUTOMATION"
                     },
                     show:false
                 },
@@ -101,9 +89,9 @@ export default{
                     title:"MENU_SEO",
                     quote:"SERVICES_SEO_QUOTE",
                     action:"BUTTON_DISCOVER_SERVICES_OFFERS",
-                    route:"seo",
+                    route:"ROUTE_SEO",
                     image:{
-                        url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
+                        url:"../../../images/general_images/seo.png",
                         alt:"ALT_SERVICES_SEO"
                     },
                     show:false
@@ -113,7 +101,7 @@ export default{
                     title:"MENU_TRAININGS",
                     quote:"SERVICES_TRAININGS_QUOTE",
                     action:"BUTTON_DISCOVER_SERVICES_OFFERS",
-                    route:"formations-advices",
+                    route:"ROUTE_TRAININGS",
                     image:{
                         url:"https://cdn.pixabay.com/photo/2017/12/13/16/01/brain-3017071_960_720.png",
                         alt:"ALT_SERVICES_TRAININGS"
@@ -125,7 +113,6 @@ export default{
                 website:false,
                 'e-commerce':false,
                 'marketing-digital':false,
-                'marketing-automation':false,
                 seo:false,
                 trainings:false
             },
@@ -133,7 +120,6 @@ export default{
                 'website',
                 'e-commerce',
                 'marketing-digital',
-                'marketing-automation',
                 'seo',
                 'trainings'
             ],
@@ -229,11 +215,10 @@ export default{
             if(!this.isScrolling){
                 if(this.isScrollingBottom()){
                     this.currentIndex++;
-                    if(this.ids[this.currentIndex]){
-                        this.goIntoView(this.ids[this.currentIndex]);
-                    } else {
-                        this.goIntoView('footer');
-                    }
+                    if(!this.ids[this.currentIndex]){
+                        this.currentIndex--;
+                    } 
+                    this.goIntoView(this.ids[this.currentIndex]);
                 } else if(this.isScrollingTop()){
                     this.currentIndex--;
                     if(this.ids[this.currentIndex]){
@@ -292,7 +277,6 @@ export default{
     left: 10px;
 }
 .slide-button{
-    background-color: #343a40;
     cursor:pointer;
     border-radius: 50%;
     transition:all 500ms;
@@ -322,7 +306,6 @@ export default{
     opacity:1;
 }
 .slide-button-mobile{
-    background-color: #343a40;
     cursor:pointer;
     border-radius: 50%;
     transition:all 500ms;

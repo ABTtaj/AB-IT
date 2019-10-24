@@ -4,7 +4,7 @@
         class="row justify-content-center"
         name="slide"
     >
-        <div key="title" class="col-md-12 text-center">
+        <div key="title" class="col-12 text-center">
             <app-title category="contact"></app-title>
         </div>
         <div key="description" class="col-md-5 mb-4 mt-3">
@@ -32,7 +32,7 @@
                         :id="field.name" 
                         v-model="newMessage[field.name]" 
                         class="input-form-style py-1 px-2 my-2" 
-                        :class="{'input-form-style-error':errors[field.name] && errors[field.name].length}" 
+                        :class="{'input-form-style-error border-danger-2px':errors[field.name] && errors[field.name].length}" 
                         @input="deleteErrors(field.name)"
                     >
                     <textarea 
@@ -42,18 +42,18 @@
                         v-model="newMessage[field.name]" 
                         rows="6" 
                         class="input-form-style py-1 px-2 my-2" 
-                        :class="{'input-form-style-error':errors[field.name] && errors[field.name].length}" 
+                        :class="{'input-form-style-error border-danger-2px':errors[field.name] && errors[field.name].length}" 
                         @input="deleteErrors(field.name)"
                     ></textarea>
                 </template>
             </transition-group>
         </div>
-        <div key="spinner" class="col-md-12 mt-4 text-center" v-if="sending">
+        <div key="spinner" class="col-12 mt-4 text-center" v-if="sending">
             <div class="spinner-grow text-danger" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <div key="submit_button" class="col-md-12 d-flex justify-content-center my-3">
+        <div key="submit_button" class="col-12 d-flex justify-content-center my-3">
             <div
                 class="custom-button-style"
                 :class="{'arabic-button-style' : isArabic}"
@@ -133,7 +133,7 @@ export default{
             axios.post('/api/messages',this.newMessage).then(response => {
                 this.sending = false;
                 this.flash('FLASH_CONTACT_SUBMIT_SUCCESS','success','bottom');
-                this.$router.push({name : 'services'});
+                this.$router.push({name : translate('ROUTE_SERVICES')});
             })
             .catch(({response})=>{
                 this.sending = false;
@@ -170,9 +170,8 @@ export default{
     box-shadow : 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
     resize: none;
 }
-.input-form-style-error{
+.input-form-style-error border-danger-2px{
     transition: all 200ms;
-    border: 2px solid #e3342f;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
     transform: scaleX(1.05);
 }

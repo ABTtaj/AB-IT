@@ -1,6 +1,20 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent d-flex align-items-center p-0 mt-2" id="header">
-        <router-link tag="a" :to="{name:'home'}" class="navbar-brand"><img src="../../../images/logo/logo_171x69.png" alt="AB.IT Logo"></router-link>
+    <nav 
+        class="navbar navbar-expand-lg navbar-light bg-transparent d-flex align-items-center p-0 mt-2" 
+        id="header"
+    >
+        <router-link 
+            tag="a" 
+            :to="{
+                name:'home'
+            }" 
+            class="navbar-brand"
+        >
+        <img 
+            src="../../../images/logo/logo_171x69.png" 
+            :alt="translate('ALT_HEADER_LOGO')"
+        >
+        </router-link>
         <button 
             id="toggle-menu-button"
             class="navbar-toggler border-0 mt-n4" 
@@ -12,7 +26,7 @@
             aria-label="Toggle navigation"
             @click="toggleCollapseNavBar"
         >
-            <i class="fa fa-bars bar-toggle"></i>
+            <i class="fa fa-bars bar-toggle text-dark"></i>
         </button>
         <div 
             class="collapse navbar-collapse" 
@@ -32,8 +46,8 @@
                 >
                     <router-link
                         tag="a"
-                        :to="{name:'agence'}" 
-                        class="nav-link p-3 custom-nav-link text-shadow transparent-border red-background-item" 
+                        :to="{name:translate('ROUTE_AGENCE')}" 
+                        class="nav-link p-3 custom-nav-link text-dark text-shadow transparent-border red-background-item" 
                         :class="{
                             'black-border-hover':!showCollapseNavBar,
                             'border-bottom-collapse-hover':showCollapseNavBar,
@@ -54,11 +68,11 @@
                 >
                     <router-link
                         tag="a"
-                        :to="{ name : 'services' }" 
+                        :to="{ name : translate('ROUTE_SERVICES') }" 
                         class="nav-link p-3 text-shadow transparent-border dropdown-toggle" 
                         :class="{
                             'red-background-dropdown shadow': (showNosServicesDropDown || mouseStillOnServices),
-                            'dropdown-transition custom-nav-link' : !(showNosServicesDropDown || mouseStillOnServices),
+                            'dropdown-transition custom-nav-link text-dark' : !(showNosServicesDropDown || mouseStillOnServices),
                             'border-top-collapse border-right-collapse border-left-collapse':(!showCollapseNavBar && showNosServicesDropDown),
                             'black-border':(!showCollapseNavBar && mouseStillOnServices),
                             'arabic-button-font':isArabic
@@ -84,11 +98,13 @@
                         >
                             <router-link
                                 tag="a"
-                                class="dropdown-item red-background-item text-center py-3 custom-nav-link text-shadow" 
-                                :class="{'arabic-button-font':isArabic}"
+                                class="dropdown-item red-background-item text-center py-3 custom-nav-link text-dark text-shadow" 
+                                :class="{
+                                    'arabic-button-font':isArabic
+                                }"
                                 v-for="service in nosServices"
                                 :key="service.title"
-                                :to="{ name : service.routeName }"
+                                :to="{ name : translate(service.routeName) }"
                                 v-html="translate(service.title)"
                             >
                             </router-link>
@@ -101,8 +117,8 @@
                 >
                     <router-link 
                         tag="a"
-                        :to="{ name : 'contact' }" 
-                        class="nav-link p-3 custom-nav-link text-shadow transparent-border red-background-item" 
+                        :to="{ name : translate('ROUTE_CONTACT') }" 
+                        class="nav-link p-3 custom-nav-link text-dark text-shadow transparent-border red-background-item" 
                         :class="{
                             'black-border-hover':!showCollapseNavBar,
                             'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar,
@@ -125,7 +141,7 @@
                         class="nav-link p-3 text-shadow transparent-border dropdown-toggle cursor-pointer" 
                         :class="{
                             'red-background-dropdown shadow':showLangagesDropDown,
-                            'dropdown-transition custom-nav-link' : !showLangagesDropDown,
+                            'dropdown-transition custom-nav-link text-dark' : !showLangagesDropDown,
                             'black-border': (!showCollapseNavBar && showLangagesDropDown),
                             'border-top-collapse':(showCollapseNavBar && showLangagesDropDown),
                             'arabic-button-font':isArabic
@@ -155,7 +171,7 @@
                                 v-for="langage in langages"
                             >
                                 <a 
-                                    class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link text-shadow"
+                                    class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link text-dark text-shadow"
                                     :class="{
                                         'arabic-button-font':langage.value === 'ma'
                                     }" 
@@ -199,8 +215,8 @@
                         >
                             <router-link
                                 tag="a"
-                                :to="{name:'agence'}" 
-                                class="nav-link p-3 custom-nav-link text-shadow transparent-border red-background-item" 
+                                :to="{name:translate('ROUTE_AGENCE')}" 
+                                class="nav-link p-3 custom-nav-link text-dark text-shadow transparent-border red-background-item" 
                                 :class="{
                                     'black-border-hover':!showCollapseNavBar,
                                     'border-bottom-collapse-hover':showCollapseNavBar,
@@ -223,7 +239,7 @@
                                 class="cursor-pointer nav-link p-3 text-shadow transparent-border dropdown-toggle" 
                                 :class="{
                                     'red-background-dropdown shadow':showNosServicesDropDown,
-                                    'custom-nav-link':!showNosServicesDropDown,
+                                    'custom-nav-link text-dark':!showNosServicesDropDown,
                                     'border-top-collapse': (showCollapseNavBar && showNosServicesDropDown),
                                     'arabic-button-font':isArabic
                                 }"
@@ -253,11 +269,11 @@
                                 >
                                     <router-link
                                         tag="a"
-                                        class="dropdown-item red-background-item text-center py-3 custom-nav-link text-shadow" 
+                                        class="dropdown-item red-background-item text-center py-3 custom-nav-link text-dark text-shadow" 
                                         :class="{'arabic-button-font':isArabic}"
                                         v-for="service in nosServices"
                                         :key="service.title"
-                                        :to="{ name : service.routeName }"
+                                        :to="{ name : translate(service.routeName) }"
                                         v-html="translate(service.title)"
                                     >
                                     </router-link>
@@ -271,8 +287,8 @@
                         >
                             <router-link 
                                 tag="a"
-                                :to="{ name : 'contact' }" 
-                                class="nav-link p-3 custom-nav-link text-shadow transparent-border red-background-item" 
+                                :to="{ name : translate('ROUTE_CONTACT') }" 
+                                class="nav-link p-3 custom-nav-link text-dark text-shadow transparent-border red-background-item" 
                                 :class="{
                                     'black-border-hover':!showCollapseNavBar,
                                     'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar,
@@ -296,7 +312,7 @@
                                 class="nav-link p-3 text-shadow transparent-border dropdown-toggle cursor-pointer" 
                                 :class="{
                                     'red-background-dropdown shadow':showLangagesDropDown,
-                                    'custom-nav-link': !showLangagesDropDown,
+                                    'custom-nav-link text-dark': !showLangagesDropDown,
                                     'border-top-collapse':(showCollapseNavBar && showLangagesDropDown),
                                     'arabic-button-font':isArabic
                                     }"
@@ -326,7 +342,7 @@
                                         v-for="langage in langages"
                                     >
                                         <a 
-                                            class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link text-shadow"
+                                            class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link text-dark text-shadow"
                                             :class="{
                                                 'arabic-button-font':langage.value === 'ma'
                                             }" 
@@ -359,12 +375,11 @@ export default{
             showCollapseNavBar:false,
             mouseStillOnServices:false, 
             nosServices:[
-                { title : 'MENU_WEBSITE', routeName : 'website-creation' },
-                { title : 'MENU_E_COMMERCE', routeName : 'solution-e-commerce' },
-                { title : 'MENU_MARKETING_DIGITAL', routeName : 'digital-marketing' },
-                { title : 'MENU_MARKETING_AUTOMATION', routeName : 'automation-marketing' },
-                { title : 'MENU_SEO', routeName : 'seo' },
-                { title : 'MENU_TRAININGS', routeName : 'formations-advices' }
+                { title : 'MENU_WEBSITE', routeName : 'ROUTE_WEBSITE' },
+                { title : 'MENU_E_COMMERCE', routeName : 'ROUTE_E_COMMERCE' },
+                { title : 'MENU_MARKETING_DIGITAL', routeName : 'ROUTE_MARKETING_DIGITAL' },
+                { title : 'MENU_SEO', routeName : 'ROUTE_SEO' },
+                { title : 'MENU_TRAININGS', routeName : 'ROUTE_TRAININGS' }
             ],
             langages:[
                 {
@@ -456,34 +471,25 @@ export default{
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import '../../../sass/variables.scss';
     .dropdown-transition{
         transition: all 1s;
+    }
+    .black-border-hover:hover{
+        border : 2px solid rgba(0,0,0,1);
     }
     .red-background-item{
         transition: all 1s;
     }
     .red-background-item:hover{
         transition: all 500ms;
-        color: #fff !important;
-        background-color:#e3342f;
+        color: #ffffff !important;
+        background-color:$red;
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-    }
-    .black-border-hover:hover{
-        border : 2px solid rgba(0,0,0,1);
-    }
-    .red-background-dropdown{
-        transition: all 500ms;
-        color: #fff !important;
-        font-weight: 500;
-        background-color:#e3342f;
-    }
-    #toggle-menu-button i{
-        color:#343a40 !important;
     }
     .custom-nav-link{
         font-weight: 500;
-        color:#343a40 !important;
     }
     .transparent-border{
         border : 2px solid rgba(0,0,0,0);
@@ -562,12 +568,12 @@ export default{
             height:0;
         }
         to {
-            height:330px;
+            height:275px;
         }
     }
     @keyframes deroule-service-dropdown-out {
         from {
-            height:330px;
+            height:275px;
         }
         to {
             height:0;

@@ -1,25 +1,38 @@
 <template>
     <div class="justify-content-center mb-4 mt-5 row">
-        <div class="col-md-12 text-center">
-            <img :src="'../../../images/logo/logo_colors/'+selectedLogo+'.png'" class="img-fluid cursor-pointer" alt="Logo AB.IT" @mouseenter="onMouseEnterTheLogo" @mouseleave="onMouseLeaveTheLogo" @click="changeColorOrder"> 
+        <div class="col-12 text-center">
+            <img 
+                :src="'../../../images/logo/logo_colors/'+selectedLogo+'.png'" 
+                class="img-fluid cursor-pointer" 
+                :alt="translate('ALT_HEADER_LOGO')" 
+                @mouseenter="onMouseEnterTheLogo" 
+                @mouseleave="onMouseLeaveTheLogo" 
+                @click="changeColorOrder"
+            > 
         </div>
         <div class="align-items-center col-md-8 d-flex mb-4 mt-5 px-4 text-center">
-            <transition name="fade" mode="out-in" appear>
+            <transition 
+                name="fade" 
+                mode="out-in" 
+                appear
+            >
                 <em 
-                :key="quote.id" 
-                class="text-black-50 cursor-pointer" 
-                v-for="(quote,index) in quotes" 
-                v-if="indexQuote === quote.id" 
-                @click="onQuoteClicked"
-                @mouseenter="onQuoteMouseEnter"
-                @mouseleave="onQuoteMouseLeave"
-                >{{quote.content}}</em>
+                    :key="quote.id" 
+                    class="text-black-50 cursor-pointer" 
+                    v-for="quote in quotes" 
+                    v-if="indexQuote === quote.id" 
+                    @click="onQuoteClicked"
+                    @mouseenter="onQuoteMouseEnter"
+                    @mouseleave="onQuoteMouseLeave"
+                >
+                    {{quote.content}}
+                </em>
             </transition>
         </div>
-        <div class="col-md-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center">
             <router-link 
                 tag="div" 
-                :to="{ name : 'services' }" 
+                :to="{ name : translate('ROUTE_SERVICES') }" 
                 class="custom-button-style"
                 :class="{'arabic-button-style' : isArabic}"
             >

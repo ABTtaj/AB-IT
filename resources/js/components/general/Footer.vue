@@ -1,7 +1,7 @@
 <template>
     <div class="container mb-4" id="footer">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-12">
                 <hr class="divider">
             </div>
             <div class="col-md-4 d-flex justify-content-around">
@@ -33,7 +33,5 @@ export default{
 </script>
 
 <style scoped>
-.divider{
-    border-top: 2px solid #343a40;
-}
+
 </style>

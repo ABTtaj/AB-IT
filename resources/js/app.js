@@ -2,8 +2,9 @@ import './bootstrap';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+import VueAnimateOnScroll from 'vue-animate-onscroll'
 import App from './App.vue';
-import { routes } from './routes.js';
+import { routes } from './routes/routes.js';
 import storeData from './store/store';
 import translation from './translation/translation';
 import { mapGetters, mapActions } from 'vuex';
@@ -11,6 +12,7 @@ import { mapGetters, mapActions } from 'vuex';
 
 window.Vue = Vue;
 Vue.use(VueRouter);
+Vue.use(VueAnimateOnScroll);
 Vue.use(Vuex);
 
 // Mixins 
@@ -60,7 +62,10 @@ const store = new Vuex.Store(storeData);
 
 const router = new VueRouter({
     mode:'history',
-    routes
+    routes,
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }
 })
 
 const app = new Vue({

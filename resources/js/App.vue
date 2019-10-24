@@ -11,7 +11,6 @@
                 <router-view></router-view>
             </transition>
         </div>
-        <app-footer></app-footer>
         <app-flash-message></app-flash-message>
     </div>
 </template>

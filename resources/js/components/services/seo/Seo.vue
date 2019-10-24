@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-12 text-center">
             <app-title category="seo"></app-title>
         </div>
     </div>

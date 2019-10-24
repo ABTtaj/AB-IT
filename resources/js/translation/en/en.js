@@ -1,45 +1,19 @@
+import alt from './modules/alt.js'
+import buttons from './modules/buttons.js'
+import errors from './modules/errors.js'
+import flash from './modules/flash.js'
+import menu from './modules/menu.js'
+import packs from './modules/packs.js'
+import routes from './modules/routes.js'
+import services from './modules/services.js'
+
 export default {
-    'MENU_AGENCE':'The Agency',
-    'MENU_SERVICES':'Our Services',
-    'MENU_CONTACT':'Contact',
-    'MENU_WEBSITE':'Web Development',
-    'MENU_E_COMMERCE':'E-Commerce Solutions',
-    'MENU_E_COMMERCE_RES':'E-Commerce Solutions',
-    'MENU_MARKETING_DIGITAL':'Digital Marketing',
-    'MENU_MARKETING_AUTOMATION':'Marketing Automation',
-    'MENU_SEO':'SEO',
-    'MENU_SEO_LONG':'Search Engine Optimization',
-    'MENU_TRAININGS':'Trainings & Advices',
-    'CONTACT_ERROR_NAME_REQUIRED':'This field is required',
-    'CONTACT_ERROR_NAME_MIN_LENGTH':'The name is too short',
-    'CONTACT_ERROR_NAME_MAX_LENGTH':'The name is too long',
-    'CONTACT_ERROR_EMAIL_REQUIRED':'This field is required',
-    'CONTACT_ERROR_EMAIL_NOT_VALID':'Please enter a valid email',
-    'CONTACT_ERROR_PHONE_MIN_LENGTH':'Please enter a valid phone number',
-    'CONTACT_ERROR_PHONE_MAX_LENGTH':'Please enter a valid phone number',
-    'CONTACT_ERROR_PHONE_REGEX':'Please enter a valid phone number',
-    'CONTACT_ERROR_OBJECT_MIN_LENGTH':'The object is too short',
-    'CONTACT_ERROR_OBJECT_MAX_LENGTH':'The object is too long',
-    'CONTACT_ERROR_MESSAGE_REQUIRED':'This field is required',
-    'CONTACT_ERROR_MESSAGE_MIN_LENGTH':'The message is too short',
-    'CONTACT_ERROR_MESSAGE_MAX_LENGTH':'The message is too long',
-    'CONTACT_ERROR_MESSAGE_STRING':'This field is required',
-    'SERVICES_WEBSITE_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_E_COMMERCE_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_MARKETING_DIGITAL_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_MARKETING_AUTOMATION_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_SEO_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'SERVICES_TRAININGS_QUOTE':'Du site web vitrine pour présenter votre activité, au site web complexe qui donnera la vie à vos idées les plus insolites !',
-    'BUTTON_DISCOVER_SERVICES_HOME':'Discover our services',
-    'BUTTON_DISCOVER_SERVICES_OFFERS':'Discover our offers',
-    'BUTTON_CONTACT_SUBMIT':'Send',
-    'FLASH_CONTACT_SUBMIT_FAIL':'Please check the information you entered and try again',
-    'FLASH_CONTACT_SUBMIT_SUCCESS':'<strong>Thank You !</strong><br> Your message has been sent successfully, we will get back to you as soon as possible',
-    'FLASH_CONTACT_UNKOWN_ERROR':'<strong>We apologize for any inconvenience !</strong><br>An error occured while sending your message, please try again later',
-    'ALT_SERVICES_WEBSITE':'Site Web Image',
-    'ALT_SERVICES_E_COMMERCE':'Site Web Image',
-    'ALT_SERVICES_MARKETING_DIGITAL':'Site Web Image',
-    'ALT_SERVICES_MARKETING_AUTOMATION':'Site Web Image',
-    'ALT_SERVICES_SEO':'Site Web Image',
-    'ALT_SERVICES_TRAININGS':'Site Web Image'
+    ...alt,
+    ...buttons,
+    ...errors,
+    ...flash,
+    ...menu,
+    ...packs,
+    ...routes,
+    ...services,
 }

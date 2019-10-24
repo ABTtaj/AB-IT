@@ -25,8 +25,22 @@ body{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.red-background-dropdown{
+    transition: all 500ms;
+    background-color:$red;
+    color: #fff !important;
+    font-weight: 500;
+}
+
 .cursor-pointer{
     cursor:pointer;
+}
+
+.divider{
+    border-top: 2px solid $dark;
+}
+.border-danger-2px{
+    border: 2px solid $red;
 }
 
 //Font Size
@@ -363,7 +377,7 @@ body{
 }
 .custom-button-style:hover{
     transition: all 500ms;
-    background: #e3342f;
+    background: $red;
     color: white;
     border: 2px solid rgba(0,0,0,1);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); 
@@ -373,7 +387,6 @@ body{
     font-weight: 500;
     width:fit-content;
     border: 2px solid rgba(0,0,0,0);
-    text-shadow: 0.5px 0.5px 3px rgba(0,0,0,.25);
     cursor:pointer;
     padding:16px;
     text-align: center;
@@ -381,25 +394,38 @@ body{
 .custom-white-button-style:hover{
     transition: all 500ms;
     background: white;
-    color: #e3342f;
+    color: $red;
     border: 2px solid rgba(255,255,255,1);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); 
 }
 .text-shadow{
     text-shadow: 0.5px 0.5px 3px rgba(0,0,0,.25);
 }
+.text-shadow-xl{
+    text-shadow: 1px 1px 5px #000000;
+}
 .slide-move{
     transition : transform 700ms;
 }
+
+// Fonts 
+
+
 .gabriola{
     font-family:'Gabriola';
 }
 .roboto{
     font-family:'Roboto';
 }
+.raleway{
+    font-family:'Raleway';
+}
 .al-bayan{
     font-family:'Al Bayan';
 }
+
+//Fonts Size
+
 .f-14{
     font-size:14px;
 }
@@ -412,15 +438,69 @@ body{
 .f-20{
     font-size:20px;
 }
+.f-22{
+    font-size:22px;
+}
 .f-24{
     font-size:24px;
+}
+.f-26{
+    font-size:26px;
+}
+.f-28{
+    font-size:28px;
 }
 .f-30{
     font-size:30px;
 }
+.f-32{
+    font-size:32px;
+}
+.f-34{
+    font-size:34px;
+}
 .f-36{
     font-size:36px;
 }
+.f-38{
+    font-size:38px;
+}
+.f-40{
+    font-size:40px;
+}
+.f-42{
+    font-size:42px;
+}
+.f-44{
+    font-size:44px;
+}
+.f-46{
+    font-size:46px;
+}
+.f-48{
+    font-size:48px;
+}
+.f-50{
+    font-size:50px;
+}
+.f-52{
+    font-size:52px;
+}
+.f-54{
+    font-size:54px;
+}
+.f-56{
+    font-size:56px;
+}
+.f-58{
+    font-size:58px;
+}
+.f-60{
+    font-size:60px;
+}
+
+//Width
+
 .w-95{
     width:95%;
 }
@@ -465,4 +545,10 @@ body{
 }
 .w-5{
     width:5%;
+}
+
+//Backgrounds 
+
+.bg-body{
+    background-color:#f8fafc;
 }
