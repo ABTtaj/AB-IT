@@ -6,7 +6,7 @@
             'body-bg':!darkMode
         }"
     >
-        <div>
+        <div class="container-fluid">
             <app-header></app-header>
             <transition 
                 appear

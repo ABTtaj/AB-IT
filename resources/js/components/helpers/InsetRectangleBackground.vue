@@ -8,7 +8,7 @@
                 'app-bg-danger':background == 'danger',
                 'bg-success':background == 'success',
                 'bg-primary':background == 'primary',
-                'app-bg-dark':background == 'dark',
+                'app-bg-black':background == 'dark',
                 'bg-secondary':background == 'secondary',
                 'bg-light':background == 'light',
                 'bg-warning':background == 'warning',

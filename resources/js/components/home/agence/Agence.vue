@@ -1,146 +1,157 @@
 <template>
     <div class="agence-container">
         <div class="row agence-inner-container">
-            <div class="col-md-6 text-center">
-                <scroll-transition-manager 
-                    scroll-animation-class="slide"
-                    direction="y"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="mission-image" 
-                >
-                    <img src="/images/general_images/mission.png" alt="" class="img-fluid drop-shadow mb-2">
-                </scroll-transition-manager>
-            </div>
+            <scroll-transition-manager 
+                class="col-md-6 text-center"
+                scroll-animation-class="slide"
+                direction="y"
+                appear-animation-class="zoomIn"
+                speed="slow"
+                id="mission-image" 
+            >
+                <img src="/images/general_images/mission.png" alt="" class="img-fluid drop-shadow mb-2">
+            </scroll-transition-manager>
             <div class="col-md-6">
                 <scroll-transition-manager 
+                    class="row"
+                    scroll-animation-class="zoomIn"
+                    appear-animation-class="zoomIn"
+                    speed="slow"
+                    id="mission-title" 
+                >
+                    <div 
+                        class="col-12 title-container"
+                        :class="{
+                            'f-80 gabriola':!isArabic,
+                            'f-76 al-bayan':isArabic
+                        }"
+                    >
+                        {{'TITLE_HOME_AGENCE_MISSION' | translate }}
+                    </div>
+                </scroll-transition-manager>
+                <scroll-transition-manager 
+                    class="row"
                     scroll-animation-class="zoomIn"
                     appear-animation-class="zoomIn"
                     speed="slow"
                     id="mission-text" 
                 >
-                    <div class="row">
-                        <div 
-                            class="col-12 title-container"
-                            :class="{
-                                'f-80 gabriola':!isArabic,
-                                'f-76 al-bayan':isArabic
-                            }"
-                        >
-                            {{'TITLE_HOME_AGENCE_MISSION' | translate }}
-                        </div>
-                        <div 
-                            class="col-12 text-container"
-                            :class="{
-                                'f-22 gabriola':!isArabic,
-                                'f-20 al-bayan':isArabic
-                            }"
-                        >
-                            {{'TEXT_HOME_AGENCE_MISSION' | translate }}
-                        </div>
+                    <div 
+                        class="col-12 text-container"
+                        :class="{
+                            'f-22 gabriola':!isArabic,
+                            'f-20 al-bayan':isArabic
+                        }"
+                    >
+                        {{'TEXT_HOME_AGENCE_MISSION' | translate }}
                     </div>
                 </scroll-transition-manager>
             </div>
         </div>
         <div class="row agence-inner-container">
-            <div 
+            <scroll-transition-manager 
                 class="col-md-6 text-center" 
                 v-if="widthLessThanMd"
+                scroll-animation-class="slide"
+                direction="y"
+                appear-animation-class="zoomIn"
+                speed="slow"
+                id="vision-image" 
             >
-                <scroll-transition-manager 
-                    scroll-animation-class="slide"
-                    direction="y"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="vision-image" 
-                >
-                    <img src="/images/general_images/vision.png" alt="" class="img-fluid drop-shadow mb-2">
-                </scroll-transition-manager>
-            </div>
+                <img src="/images/general_images/vision.png" alt="" class="img-fluid drop-shadow mb-2">
+            </scroll-transition-manager>
             <div class="col-md-6">
                 <scroll-transition-manager 
+                    class="row"
+                    scroll-animation-class="zoomIn"
+                    appear-animation-class="zoomIn"
+                    speed="slow"
+                    id="vision-title" 
+                >
+                    <div 
+                        class="col-12 title-container"
+                        :class="{
+                            'f-80 gabriola':!isArabic,
+                            'f-76 al-bayan':isArabic
+                        }"
+                    >
+                        {{'TITLE_HOME_AGENCE_VISION' | translate }}
+                    </div>
+                </scroll-transition-manager>
+                <scroll-transition-manager 
+                    class="row"
                     scroll-animation-class="zoomIn"
                     appear-animation-class="zoomIn"
                     speed="slow"
                     id="vision-text" 
                 >
-                    <div class="row">
-                        <div 
-                            class="col-12 title-container"
-                            :class="{
-                                'f-80 gabriola':!isArabic,
-                                'f-76 al-bayan':isArabic
-                            }"
-                        >
-                            {{'TITLE_HOME_AGENCE_VISION' | translate }}
-                        </div>
-                        <div 
-                            class="col-12 text-container"
-                            :class="{
-                                'f-22 gabriola':!isArabic,
-                                'f-20 al-bayan':isArabic
-                            }"
-                        >
-                            {{'TEXT_HOME_AGENCE_VISION' | translate }}
-                        </div>
+                    <div 
+                        class="col-12 text-container"
+                        :class="{
+                            'f-22 gabriola':!isArabic,
+                            'f-20 al-bayan':isArabic
+                        }"
+                    >
+                        {{'TEXT_HOME_AGENCE_VISION' | translate }}
                     </div>
                 </scroll-transition-manager>
             </div>
-            <div 
+            <scroll-transition-manager 
                 class="col-md-6 text-center" 
                 v-if="!widthLessThanMd"
+                scroll-animation-class="slide"
+                direction="y"
+                appear-animation-class="zoomIn"
+                speed="slow"
+                id="vision-image" 
             >
-                <scroll-transition-manager 
-                    scroll-animation-class="slide"
-                    direction="y"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="vision-image" 
-                >
-                    <img src="/images/general_images/vision.png" alt="" class="img-fluid drop-shadow mb-2">
-                </scroll-transition-manager>
-            </div>
+                <img src="/images/general_images/vision.png" alt="" class="img-fluid drop-shadow mb-2">
+            </scroll-transition-manager>
         </div>
         <div class="row agence-inner-container">
-            <div 
+            <scroll-transition-manager 
                 class="col-md-6 text-center" 
+                scroll-animation-class="slide"
+                direction="y"
+                appear-animation-class="zoomIn"
+                speed="slow"
+                id="promise-image" 
             >
-                <scroll-transition-manager 
-                    scroll-animation-class="slide"
-                    direction="y"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="promise-image" 
-                >
-                    <img src="/images/general_images/promise.png" alt="" class="img-fluid drop-shadow mb-2">
-                </scroll-transition-manager>
-            </div>
+                <img src="/images/general_images/promise.png" alt="" class="img-fluid drop-shadow mb-2">
+            </scroll-transition-manager>
             <div class="col-md-6">
                 <scroll-transition-manager 
                     scroll-animation-class="zoomIn"
                     appear-animation-class="zoomIn"
                     speed="slow"
-                    id="promise-text" 
+                    id="promise-title" 
+                    class="row"
                 >
-                    <div class="row">
-                        <div 
-                            class="col-12 title-container"
-                            :class="{
-                                'f-80 gabriola':!isArabic,
-                                'f-76 al-bayan':isArabic
-                            }"
-                        >
-                            {{'TITLE_HOME_AGENCE_PROMISE' | translate }}
-                        </div>
-                        <div 
-                            class="col-12 text-container"
-                            :class="{
-                                'f-22 gabriola':!isArabic,
-                                'f-20 al-bayan':isArabic
-                            }"
-                        >
-                            {{'TEXT_HOME_AGENCE_PROMISE' | translate }}
-                        </div>
+                    <div 
+                        class="col-12 title-container"
+                        :class="{
+                            'f-80 gabriola':!isArabic,
+                            'f-76 al-bayan':isArabic
+                        }"
+                    >
+                        {{'TITLE_HOME_AGENCE_PROMISE' | translate }}
+                    </div>
+                </scroll-transition-manager>
+                <scroll-transition-manager 
+                    scroll-animation-class="zoomIn"
+                    appear-animation-class="zoomIn"
+                    speed="slow"
+                    id="promise-text" 
+                    class="row"
+                >
+                    <div 
+                        class="col-12 text-container"
+                        :class="{
+                            'f-22 gabriola':!isArabic,
+                            'f-20 al-bayan':isArabic
+                        }"
+                    >
+                        {{'TEXT_HOME_AGENCE_PROMISE' | translate }}
                     </div>
                 </scroll-transition-manager>
             </div>

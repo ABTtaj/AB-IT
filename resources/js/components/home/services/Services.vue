@@ -94,7 +94,7 @@ export default {
 @import '../../../../sass/app'; 
 
 .services-container{
-    @extend .app-text-white, .px-3;
+    @extend .app-text-white;
 }
 .services-inner-container{
     @extend .pb-4;

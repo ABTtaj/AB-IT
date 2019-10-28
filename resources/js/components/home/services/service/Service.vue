@@ -33,7 +33,9 @@
                     speed="slow"
                     id="service-title" 
                 >
-                    {{ data.title | translate }}
+                    <div>
+                        {{ data.title | translate }}
+                    </div>
                 </scroll-transition-manager>
                 <scroll-transition-manager 
                     class="service-image-container" 
@@ -62,7 +64,9 @@
                         'f-20 al-bayan' : isArabic
                     }"
                 >
-                    {{ data.text | translate }}
+                    <div>
+                        {{ data.text | translate }}
+                    </div>
                 </scroll-transition-manager>
                 <scroll-transition-manager 
                     scroll-animation-class="slide"
@@ -134,7 +138,7 @@ export default {
 @import '../../../../../sass/app'; 
 
 .service-container{
-    @extend .px-4, .mb-5;
+    @extend .mb-5;
 }
 .service-image-container{
     @extend .text-center, .d-flex, .flex-column, .justify-content-center, .align-items-center, .mb-md-0, .mb-5;

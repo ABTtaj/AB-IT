@@ -10,7 +10,7 @@
                 'al-bayan f-20':isArabic,
                 'gabriola f-24':!isArabic,
                 'bg-white': flashContent.type === 'white',
-                'app-bg-dark': flashContent.type === 'dark',
+                'app-bg-black': flashContent.type === 'dark',
                 'app-bg-danger': flashContent.type === 'danger',
                 'bg-success': flashContent.type === 'success',
                 'bg-warning': flashContent.type === 'warning',

@@ -1,18 +1,16 @@
 <template>
-    <div :ref="id">
-        <template v-if="show">
-            <transition 
-                :enter-active-class="returnAppearAnimationClass()" 
-                appear
-            >
+    <div 
+        :id="id" 
+        :ref="id" 
+        class="animated" 
+        :class="[show ? '' : 'opacity-0']"
+    >
+        <transition 
+            :enter-active-class="returnAppearAnimationClass()" 
+            appear
+        >
                 <slot></slot>
-            </transition>
-        </template>
-        <template v-if="!show">
-            <div v-animate-onscroll="animation">
-                <slot></slot>
-            </div>
-        </template>
+        </transition>
     </div>
 </template>
 <script>
@@ -28,9 +26,9 @@ export default {
     data(){
         return {
             show:true,
-            animation:'animated '
+            animation:''
         }
-    }, 
+    },
     methods:{
         returnAppearAnimationClass(){
             return 'animated ' + this.appearAnimationClass  + ' ' + ( this.speed ? this.speed : '');
@@ -57,19 +55,22 @@ export default {
                     this.isTheElementInTheRightOrLeft(element);
                 }
             } else {
-                this.animation += this.scrollAnimationClass;
+                this.animation = this.scrollAnimationClass;
             }
         },
-        addSpeed(){
-            this.animation += ' ' + (this.speed ? this.speed : '');
+        onElementInViewport(element){
+            element.style.opacity = 1;
+            element.classList.add(this.animation);
         },
         isAppearOrScrollAnimation(delay){
             setTimeout(()=>{
                 const element = this.$refs[this.id];
-                this.show = inViewport(element);
-                if(!this.show){
-                    this.manageFadeAndSlideAnimation(element);
-                    this.addSpeed()
+                if(element){
+                    this.show = inViewport(element);
+                    if(!this.show){
+                        this.manageFadeAndSlideAnimation(element);
+                        inViewport(element,this.onElementInViewport);
+                    }
                 }
             },delay);
         }
@@ -79,3 +80,8 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+.opacity-0{
+    opacity : 0;
+}
+</style>

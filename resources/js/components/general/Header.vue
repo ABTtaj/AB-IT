@@ -416,7 +416,7 @@ export default{
     transition : all 500ms;
     @extend .app-dropdown-item, .text-center,.border-transparent-2, .app-text-dark, .cursor-pointer, .px-3, .py-2, .w-100;
     &:hover{
-        @extend .app-bg-dark, .app-text-white, .shadow-xxl;
+        @extend .app-bg-black, .app-text-white, .shadow-xxl;
     }
 }
 #other-langages{
