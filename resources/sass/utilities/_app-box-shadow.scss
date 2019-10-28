@@ -1,0 +1,29 @@
+.shadow-xxl{
+    -webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.75);
+}
+.inset-shadow-lg{
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+.inset-shadow-xl{
+    -webkit-box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75) !important;
+    -moz-box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75) !important;
+    box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75) !important;
+}
+.inset-top-shadow-xxl{
+    -webkit-box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 20px 25px -25px rgba(0,0,0,0.75);
+}
+.inset-bottom-shadow-xxl{
+    -webkit-box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.75);
+    box-shadow: inset 0px -20px 25px -25px rgba(0,0,0,0.75);
+}
+.drop-shadow{
+    -webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,.5));
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,.5));
+}

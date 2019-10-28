@@ -1,0 +1,332 @@
+@import 'variables';
+
+body{
+    overflow-x:hidden;
+}
+.red-background-dropdown{
+    @extend .fw-700;
+    transition: all 500ms;
+    background-color:$red;
+    color: $body-bg !important;
+}
+
+.divider{
+    border-top: 2px solid $dark;
+}
+
+.animated.delay-500ms {
+    -webkit-animation-delay: 500ms;
+    animation-delay: 500ms;
+  }
+
+//Font Size
+
+// Font Titles
+
+.font-size-titles {
+    font-size:96px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-titles {
+        font-size: 48px;
+    }
+}
+@include media-breakpoint-up(sm) {
+    .font-size-titles {
+        font-size: 72px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-titles {
+        font-size: 96px;
+    }
+}
+
+// Font Services Vertical
+
+.font-size-services-ver {
+    font-size:100px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-ver {
+        font-size: 40px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-ver {
+        font-size: 52px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-ver {
+        font-size: 62px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-ver {
+        font-size: 82px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .font-size-services-ver {
+        font-size: 100px;
+    }
+}
+
+// Font Services Horizontal
+
+.font-size-services-hor {
+    font-size:100px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-hor {
+        font-size: 40px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-hor {
+        font-size: 52px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-hor {
+        font-size: 62px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-hor {
+        font-size: 82px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .font-size-services-hor {
+        font-size: 100px;
+    }
+}
+
+// Font Services Horizontal Arabic
+
+.font-size-services-hor-ar {
+    font-size:100px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-hor-ar {
+        font-size: 40px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-hor-ar {
+        font-size: 44px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-hor-ar {
+        font-size: 62px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-hor-ar {
+        font-size: 82px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .font-size-services-hor-ar {
+        font-size: 100px;
+    }
+}
+
+// Font Services Vertical Arabic
+
+.font-size-services-ver-ar {
+    font-size:136px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-ver-ar {
+        font-size: 40px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-ver-ar {
+        font-size: 78px;
+    }
+}
+@include media-breakpoint-up(md) {
+    .font-size-services-ver-ar {
+        font-size: 96px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-ver-ar {
+        font-size: 136px;
+    }
+}
+
+//Font Services Quote Horizontal
+
+.font-size-services-quote-hor {
+    font-size:24px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-quote-hor {
+        font-size: 18px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-quote-hor {
+        font-size: 20px;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .font-size-services-quote-hor{
+        font-size: 24px;
+    }
+}
+
+//Font Services Quote Vertical
+
+.font-size-services-quote-ver {
+    font-size:24px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-quote-ver {
+        font-size: 18px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-quote-ver {
+        font-size: 22px;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .font-size-services-quote-ver{
+        font-size: 24px;
+    }
+}
+
+//Font Services Quote Horizontal Arabic
+
+.font-size-services-quote-hor-ar {
+    font-size:22px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-quote-hor-ar {
+        font-size: 16px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-quote-hor-ar {
+        font-size: 18px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-quote-hor-ar {
+        font-size: 20px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-quote-hor-ar{
+        font-size: 22px;
+    }
+}
+
+//Font Services Quote Vertical Arabic
+
+.font-size-services-quote-ver-ar {
+    font-size:22px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-quote-ver-ar {
+        font-size: 16px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .font-size-services-quote-ver-ar {
+        font-size: 18px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-quote-ver-ar {
+        font-size: 20px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .font-size-services-quote-ver-ar{
+        font-size: 22px;
+    }
+}
+
+//Font Services Button
+
+.font-size-services-button {
+    font-size:22px;
+}
+
+@include media-breakpoint-up(xs) {
+    .font-size-services-button {
+        font-size: 16px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .font-size-services-button {
+        font-size: 22px;
+    }
+}
+
+// Arabic Error Message
+
+.arabic-error-message-size {
+    font-size:18px;
+}
+
+@include media-breakpoint-up(xs) {
+    .arabic-error-message-size {
+        font-size: 14px;
+    }
+}
+@include media-breakpoint-up(sm) {
+    .arabic-error-message-size {
+        font-size: 16px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .arabic-error-message-size {
+        font-size: 18px;
+    }
+}
+button:focus{
+    outline: none;
+}

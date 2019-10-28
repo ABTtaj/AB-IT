@@ -1,608 +1,426 @@
 <template>
-    <nav 
-        class="navbar navbar-expand-lg navbar-light bg-transparent d-flex align-items-center p-0 mt-2" 
-        id="header"
+    <div 
+        id="upper-header-container" 
+        class="upper-header-container" 
+        :class="{
+            'app-bg-black app-text-white':darkMode
+        }"
     >
-        <router-link 
-            tag="a" 
-            :to="{
-                name:'home'
-            }" 
-            class="navbar-brand"
-        >
-        <img 
-            src="../../../images/logo/logo_171x69.png" 
-            :alt="translate('ALT_HEADER_LOGO')"
-        >
-        </router-link>
-        <button 
-            id="toggle-menu-button"
-            class="navbar-toggler border-0 mt-n4" 
-            type="button" 
-            data-toggle="collapse" 
-            data-target="#navbarSupportedContent" 
-            aria-controls="navbarSupportedContent" 
-            :aria-expanded="showCollapseNavBar" 
-            aria-label="Toggle navigation"
-            @click="toggleCollapseNavBar"
-        >
-            <i class="fa fa-bars bar-toggle text-dark"></i>
-        </button>
         <div 
-            class="collapse navbar-collapse" 
+            class="header-container"
             :class="{
-                'show shadow bg-white-95 black-border':showCollapseNavBar,
-                'mt-n4':!showCollapseNavBar
+                'gabriola f-24':!isArabic,
+                'al-bayan f-26':isArabic
             }" 
-            id="navbarSupportedContent"
-            v-if="device==='pc'"
-        >
-            <ul class="navbar-nav mr-auto">
-            </ul>
-            <ul class="navbar-nav">
-                <li 
-                    class="nav-item"
-                    @click="closeCollapseMenu"
-                >
-                    <router-link
-                        tag="a"
-                        :to="{name:translate('ROUTE_AGENCE')}" 
-                        class="nav-link p-3 custom-nav-link text-dark text-shadow transparent-border red-background-item" 
-                        :class="{
-                            'black-border-hover':!showCollapseNavBar,
-                            'border-bottom-collapse-hover':showCollapseNavBar,
-                            'arabic-button-font':isArabic
-                            }" 
-                        @mouseenter="closeDropdowns"
-                    >
-                    {{'MENU_AGENCE' | translate}}
-                    </router-link>
-                </li>
-                <li 
-                    v-if="!showCollapseNavBar"
-                    class="nav-item dropdown" 
-                    :class="{'show ':showNosServicesDropDown}"
-                    @mouseleave="nosServicesDropDownMouseLeave"
-                    @mouseenter="nosServicesDropDownMouseEnter"
-                    @click="onServicesClicked"
-                >
-                    <router-link
-                        tag="a"
-                        :to="{ name : translate('ROUTE_SERVICES') }" 
-                        class="nav-link p-3 text-shadow transparent-border dropdown-toggle" 
-                        :class="{
-                            'red-background-dropdown shadow': (showNosServicesDropDown || mouseStillOnServices),
-                            'dropdown-transition custom-nav-link text-dark' : !(showNosServicesDropDown || mouseStillOnServices),
-                            'border-top-collapse border-right-collapse border-left-collapse':(!showCollapseNavBar && showNosServicesDropDown),
-                            'black-border':(!showCollapseNavBar && mouseStillOnServices),
-                            'arabic-button-font':isArabic
-                        }"
-                        id="nosServicesDropDown" 
-                        role="button" 
-                        data-toggle="dropdown" 
-                        aria-haspopup="true" 
-                        :aria-expanded="showNosServicesDropDown"
-                    >
-                        {{'MENU_SERVICES' | translate}}
-                    </router-link>
-                    <transition name="deroule-service-dropdown" appear>
-                        <div 
-                            class="little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-95 m-0" 
-                            :class="{
-                                'show shadow':showNosServicesDropDown,
-                                'border-bottom-collapse':showCollapseNavBar,
-                                'black-border ':!showCollapseNavBar
-                            }" 
-                            aria-labelledby="nosServicesDropDown"
-                            v-if="showNosServicesDropDown"
-                        >
-                            <router-link
-                                tag="a"
-                                class="dropdown-item red-background-item text-center py-3 custom-nav-link text-dark text-shadow" 
-                                :class="{
-                                    'arabic-button-font':isArabic
-                                }"
-                                v-for="service in nosServices"
-                                :key="service.title"
-                                :to="{ name : translate(service.routeName) }"
-                                v-html="translate(service.title)"
-                            >
-                            </router-link>
-                        </div>
-                    </transition>
-                </li>
-                <li 
-                    class="nav-item"
-                    @click="closeCollapseMenu"
-                >
-                    <router-link 
-                        tag="a"
-                        :to="{ name : translate('ROUTE_CONTACT') }" 
-                        class="nav-link p-3 custom-nav-link text-dark text-shadow transparent-border red-background-item" 
-                        :class="{
-                            'black-border-hover':!showCollapseNavBar,
-                            'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar,
-                            'arabic-button-font':isArabic
-                            }" 
-                        @mouseenter="closeDropdowns"
-                    >
-                    {{'MENU_CONTACT' | translate}}
-                    </router-link>
-                </li>
-                <li 
-                    class="nav-item dropdown"
-                    :class="{'show':showLangagesDropDown}"
-                    @mouseleave="langageDropDownMouseLeave"
-                >
-                    <a 
-                        v-for="langage in langages"
-                        v-if="langage.value === selectedLangage"
-                        :key="langage.value"
-                        class="nav-link p-3 text-shadow transparent-border dropdown-toggle cursor-pointer" 
-                        :class="{
-                            'red-background-dropdown shadow':showLangagesDropDown,
-                            'dropdown-transition custom-nav-link text-dark' : !showLangagesDropDown,
-                            'black-border': (!showCollapseNavBar && showLangagesDropDown),
-                            'border-top-collapse':(showCollapseNavBar && showLangagesDropDown),
-                            'arabic-button-font':isArabic
-                            }"
-                        id="langagesDropDown" 
-                        role="button" 
-                        data-toggle="dropdown" 
-                        aria-haspopup="true"
-                        :aria-expanded="showLangagesDropDown"
-                        @mouseenter="langageDropDownMouseEnter"
-                        @click="toggleLangagesDropDownResponsive"
-                    >
-                        {{langage.name}}
-                    </a>
-                    <transition name="deroule-langage-dropdown" appear>
-                        <div 
-                            class="little-negative-margin-top overflow-hidden dropdown-menu custom-dropdown-menu rounded-0 p-0 bg-white-95 m-0" 
-                            :class="{
-                                'show shadow':showLangagesDropDown,
-                                'border-top-collapse':showCollapseNavBar,
-                                'black-border':!showCollapseNavBar
-                                }" 
-                            aria-labelledby="langagesDropDown"
-                            v-if="showLangagesDropDown"
-                        >
-                            <template
-                                v-for="langage in langages"
-                            >
-                                <a 
-                                    class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link text-dark text-shadow"
-                                    :class="{
-                                        'arabic-button-font':langage.value === 'ma'
-                                    }" 
-                                    :key="langage.value"
-                                    v-if="langage.value !== selectedLangage"
-                                    @click="selectLangage(langage.value)"
-                                >
-                                {{langage.name}}
-                                </a>
-                            </template>
-                        </div>
-                    </transition>
-                </li>
-            </ul>
-        </div>
-        <transition 
-            appear
-            enter-active-class="animated fadeInDown"
-            leave-active-class="animated fadeOutDown"
+            id="header"
+            ref="container"
         >
             <div 
-                class="collapse navbar-collapse mobile-custom-menu" 
-                :class="{
-                    'show shadow bg-white-95 black-border':showCollapseNavBar,
-                    'mt-n4':!showCollapseNavBar
-                }" 
-                id="navbarSupportedContent"
-                v-if="showCollapseNavBar && device=='mobile'"
-                style="transition: all 1s"
+                class="links-container" 
+                key="links-container"
             >
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <ul class="navbar-nav p-0">
-                    <transition-group
-                        name="slide"
+                <router-link
+                    :to="{ 
+                        name : 'home'
+                    }"
+                    class="logo-container"
+                    tag="div"
+                >
+                    <img 
+                        v-if="!darkMode"
+                        src="../../../images/logo/logo_171x69.png" 
+                        :alt="translate('ALT_HEADER_LOGO')"
+                        class="img-fluid"
                     >
-                        <li 
-                            class="nav-item"
-                            @click="closeCollapseMenu"
-                            key="agence"
+                    <img 
+                        v-else
+                        src="../../../images/logo/logo_171x69_dark_mode.png" 
+                        :alt="translate('ALT_HEADER_LOGO')"
+                        class="img-fluid"
+                    >
+                </router-link>
+                <div 
+                    id="primary-links"
+                    class="links-list"
+                    tag="div" 
+                    name="slide"
+                    v-if="!isMdOrLess"   
+                >
+                    <div 
+                        id="services-link"
+                        :class="{
+                            'links-item':!darkMode,
+                            'links-item-dark-mode':darkMode,
+                            'links-item-active': showServicesMenu && !darkMode,
+                            'links-item-active-dark-mode': showServicesMenu && darkMode
+                        }"
+                        key="services"
+                        @click="onServicesClicked"
+                    >
+                        <div>
+                            {{'MENU_SERVICES' | translate }}
+                        </div>
+                    </div>
+                    <router-link 
+                        :class="{
+                            'links-item':!darkMode,
+                            'links-item-dark-mode':darkMode
+                        }"
+                        :to="{ name : translate(links.contact.route) }"
+                        tag="div"
+                        key="contact"
+                    >
+                        <div>
+                            {{links.contact.title | translate}}
+                        </div>
+                    </router-link>
+                    <div 
+                        id="selected-langage"
+                        :class="{
+                            'links-item':!darkMode,
+                            'links-item-dark-mode':darkMode
+                        }"
+                        @click="onOldLangageClicked"
+                        :key="selectedLangage"
+                    >
+                        <div>
+                            {{links.langages[selectedLangage]}}
+                        </div>
+                    </div>
+                    <div 
+                        id="other-langages"
+                    >
+                        <div 
+                            :class="{
+                                'links-item':!darkMode,
+                                'links-item-dark-mode':darkMode,
+                                'gabriola f-24' : index !== 'ma',
+                                'al-bayan f-26': index === 'ma'
+                            }"
+                            v-for="(value,index) in links.langages"
+                            :id="value"
+                            @click="changeSelectedLangage(index)"
+                            v-if="index != selectedLangage"
                         >
-                            <router-link
-                                tag="a"
-                                :to="{name:translate('ROUTE_AGENCE')}" 
-                                class="nav-link p-3 custom-nav-link text-dark text-shadow transparent-border red-background-item" 
-                                :class="{
-                                    'black-border-hover':!showCollapseNavBar,
-                                    'border-bottom-collapse-hover':showCollapseNavBar,
-                                    'arabic-button-font':isArabic
-                                    }" 
-                                @mouseenter="closeDropdowns"
-                            >
-                            {{'MENU_AGENCE' | translate}}
-                            </router-link>
-                        </li>
-                        <li 
-                            v-if="showCollapseNavBar"
-                            class="nav-item dropdown" 
-                            :class="{'show ':showNosServicesDropDown}"
-                            @mouseleave="nosServicesDropDownMouseLeave"
-                            @mouseenter="nosServicesDropDownMouseEnter"
-                            key="services"
-                        >
-                            <a
-                                class="cursor-pointer nav-link p-3 text-shadow transparent-border dropdown-toggle" 
-                                :class="{
-                                    'red-background-dropdown shadow':showNosServicesDropDown,
-                                    'custom-nav-link text-dark':!showNosServicesDropDown,
-                                    'border-top-collapse': (showCollapseNavBar && showNosServicesDropDown),
-                                    'arabic-button-font':isArabic
-                                }"
-                                id="nosServicesDropDown" 
-                                role="button" 
-                                data-toggle="dropdown" 
-                                aria-haspopup="true" 
-                                :aria-expanded="showNosServicesDropDown"
-                                @click="toggleNosServicesDropDownResponsive"
-                            >
-                                {{'MENU_SERVICES' | translate}}
-                            </a>
-                            <transition 
-                                name="deroule-service-dropdown" 
-                                appear
-                            >
-                                <div 
-                                    v-if="showNosServicesDropDown"
-                                    class="dropdown-menu bg-0 overflow-hidden custom-dropdown-menu rounded-0 p-0 m-0" 
-                                    :class="{
-                                        'show shadow':showNosServicesDropDown,
-                                        'border-bottom-collapse border-top-collapse':showCollapseNavBar,
-                                        'black-border ':!showCollapseNavBar
-                                    }" 
-                                    aria-labelledby="nosServicesDropDown"
-                                    @click="closeCollapseMenu"
-                                >
-                                    <router-link
-                                        tag="a"
-                                        class="dropdown-item red-background-item text-center py-3 custom-nav-link text-dark text-shadow" 
-                                        :class="{'arabic-button-font':isArabic}"
-                                        v-for="service in nosServices"
-                                        :key="service.title"
-                                        :to="{ name : translate(service.routeName) }"
-                                        v-html="translate(service.title)"
-                                    >
-                                    </router-link>
-                                </div>
-                            </transition>
-                        </li>
-                        <li 
-                            class="nav-item"
-                            @click="closeCollapseMenu"
-                            key="contact"
-                        >
-                            <router-link 
-                                tag="a"
-                                :to="{ name : translate('ROUTE_CONTACT') }" 
-                                class="nav-link p-3 custom-nav-link text-dark text-shadow transparent-border red-background-item" 
-                                :class="{
-                                    'black-border-hover':!showCollapseNavBar,
-                                    'border-top-collapse-hover border-bottom-collapse-hover':showCollapseNavBar,
-                                    'arabic-button-font':isArabic
-                                    }" 
-                                @mouseenter="closeDropdowns"
-                            >
-                            {{'MENU_CONTACT' | translate}}
-                            </router-link>
-                        </li>
-                        <li 
-                            class="nav-item dropdown"
-                            :class="{'show':showLangagesDropDown}"
-                            @mouseleave="langageDropDownMouseLeave"
-                            key="langage"
-                        >
-                            <a 
-                                v-for="langage in langages"
-                                v-if="langage.value === selectedLangage"
-                                :key="langage.value"
-                                class="nav-link p-3 text-shadow transparent-border dropdown-toggle cursor-pointer" 
-                                :class="{
-                                    'red-background-dropdown shadow':showLangagesDropDown,
-                                    'custom-nav-link text-dark': !showLangagesDropDown,
-                                    'border-top-collapse':(showCollapseNavBar && showLangagesDropDown),
-                                    'arabic-button-font':isArabic
-                                    }"
-                                id="langagesDropDown" 
-                                role="button" 
-                                data-toggle="dropdown" 
-                                aria-haspopup="true"
-                                :aria-expanded="showLangagesDropDown"
-                                @mouseenter="langageDropDownMouseEnter"
-                                @click="toggleLangagesDropDownResponsive"
-                            >
-                                {{langage.name}}
-                            </a>
-                            <transition name="deroule-langage-dropdown" appear>
-                                <div 
-                                    class="dropdown-menu bg-0 overflow-hidden custom-dropdown-menu rounded-0 p-0 m-0" 
-                                    :class="{
-                                        'show shadow':showLangagesDropDown,
-                                        'border-top-collapse':showCollapseNavBar,
-                                        'black-border':!showCollapseNavBar
-                                        }" 
-                                    aria-labelledby="langagesDropDown"
-                                    v-if="showLangagesDropDown"
-                                    @click="closeCollapseMenu"
-                                >
-                                    <template
-                                        v-for="langage in langages"
-                                    >
-                                        <a 
-                                            class="cursor-pointer dropdown-item red-background-item text-center py-3 px-5 custom-nav-link text-dark text-shadow"
-                                            :class="{
-                                                'arabic-button-font':langage.value === 'ma'
-                                            }" 
-                                            :key="langage.value"
-                                            v-if="langage.value !== selectedLangage"
-                                            @click="selectLangage(langage.value)"
-                                        >
-                                        {{langage.name}}
-                                        </a>
-                                    </template>
-                                </div>
-                            </transition>
-                        </li>
-                    </transition-group>
-                    
-                </ul>
+                            <div>
+                                {{value}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div 
+                    v-else 
+                    id="services-link"
+                    class="collapse-icon-container"
+                    @click="onServicesClicked"
+                >
+                    <i class="fa fa-bars"></i>
+                </div>
             </div>
-        </transition>
-    </nav>
+            <div 
+                class="app-dropdown-container"
+                id="services"
+            >
+                <router-link
+                    v-for="link in links.secondaryLinks"
+                    :key="link.key"
+                    class="app-dropdown-item"
+                    tag="div"
+                    :to="{ name : translate(link.route) }"
+                >
+                    {{ link.title | translate }}
+                </router-link>
+                <template v-if="isMdOrLess">
+                    <router-link 
+                        class="app-dropdown-item w-100"
+                        :to="{ name : translate(links.contact.route) }"
+                        tag="div"
+                        key="contact"
+                    >
+                        {{links.contact.title | translate}}
+                    </router-link>
+                    <div 
+                        id="selected-langage"
+                        class="app-dropdown-item w-100"
+                        @click="onOldLangageClicked"
+                        :key="selectedLangage"
+                    >
+                        {{links.langages[selectedLangage]}}
+                    </div>
+                    <div 
+                        class="app-dropdown-item w-100"
+                        :class="{
+                            'gabriola f-24' : index !== 'ma',
+                            'al-bayan f-26': index === 'ma'
+                        }"
+                        v-for="(value,index) in links.langages"
+                        :id="value"
+                        @click="changeSelectedLangage(index)"
+                        v-if="index != selectedLangage && putLangageMenu"
+                    >
+                        {{value}}
+                    </div>
+                </template>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import { mapActions } from 'vuex';
 export default{
     data(){
         return {
-            showNosServicesDropDown:false,
-            showLangagesDropDown:false,
-            showCollapseNavBar:false,
-            mouseStillOnServices:false, 
-            nosServices:[
-                { title : 'MENU_WEBSITE', routeName : 'ROUTE_WEBSITE' },
-                { title : 'MENU_E_COMMERCE', routeName : 'ROUTE_E_COMMERCE' },
-                { title : 'MENU_MARKETING_DIGITAL', routeName : 'ROUTE_MARKETING_DIGITAL' },
-                { title : 'MENU_SEO', routeName : 'ROUTE_SEO' },
-                { title : 'MENU_TRAININGS', routeName : 'ROUTE_TRAININGS' }
-            ],
-            langages:[
-                {
-                    name:'Français',
-                    value:'fr'
+            links:{
+                secondaryLinks : [
+                    {
+                        key:'website',
+                        route:'ROUTE_WEBSITE',
+                        title:'MENU_WEBSITE'
+                    },
+                    {
+                        key:'e-commerce',
+                        route:'ROUTE_E_COMMERCE',
+                        title:'MENU_E_COMMERCE'
+                    },
+                    {
+                        key:'marketing-digital',
+                        route:'ROUTE_MARKETING_DIGITAL',
+                        title:'MENU_MARKETING_DIGITAL'
+                    },
+                    {
+                        key:'seo',
+                        route:'ROUTE_SEO',
+                        title:'MENU_SEO_LONG'
+                    },
+                    {
+                        key:'trainings',
+                        route:'ROUTE_TRAININGS',
+                        title:'MENU_TRAININGS'
+                    }
+                ],
+                contact : {
+                    key:'contact',
+                    route:'ROUTE_CONTACT',
+                    title:'MENU_CONTACT'
                 },
-                {
-                    name:'English',
-                    value:'en'
-                },
-                {
-                    name:'مغربي',
-                    value:'ma'
+                langages : {
+                    fr:'Français',
+                    en:'English',
+                    ma:'مغربي'
                 }
-            ]
+
+            },
+            showServicesMenu : false,
+            showLangageMenu : false,
+            showLinksList : false,
+            putLangageMenu :false,
+            isMdOrLess:false,
+            lastHeaderHight : null
         }
-    }
-    ,
+    },
+    computed:{
+        slideDirection(){
+            return this.selectedLangage == 'ma' ? 'left' : 'right';
+        }
+    },
+    watch:{
+        showServicesMenu(val){
+            if(val){
+                this.putHeaderHeight(this.heightWithServiceLinks());
+                this.putLangageMenu = this.isMdOrLess;
+            }else{
+                this.putHeaderHeight(this.heightWithoutServiceLinks());
+                this.putLangageMenu = false;
+            }
+        },
+        showLangageMenu(val){
+            if(this.isMdOrLess){
+                if(val){
+                    this.putHeaderHeight(this.heightWithServiceLinks());
+                } else {
+                    this.putHeaderHeight(this.lastHeaderHight);
+                }
+            } else {
+                if(val){
+                    this.putPrimaryLinksPosition('0px');
+                } else {
+                    this.putPrimaryLinksPosition(this.positionWithoutOtherLangages());
+                }
+            }
+        }
+    },
     methods:{
         ...mapActions([
             'changeSelectedLangage',
-            'toggleCollapseMenu'
+            'putPaddingTop'
         ]),
-        closeDropdowns(){
-            this.showNosServicesDropDown = false;
-            this.showLangagesDropDown = false
+        closeServiceMenuWhenClickingOutside(){
+            document.addEventListener('click',(event)=>{
+                if(!document.getElementById('services-link').contains(event.target) && (!this.isMdOrLess || !document.getElementById('selected-langage').contains(event.target)) ){
+                    this.showServicesMenu = false;
+                }
+            });
         },
-        closeCollapseMenu(){
-            this.showCollapseNavBar=false;
+        closeLangageMenuWhenClickingOutside(){
+            document.addEventListener('click',(event)=>{
+                if(!document.getElementById('selected-langage').contains(event.target)){
+                    this.showLangageMenu = false;
+                }
+            });
         },
-        nosServicesDropDownMouseEnter(){
-            if(! this.showCollapseNavBar){
-                this.showNosServicesDropDown=true;
-            }
+        putHeaderHeight(height){
+            this.lastHeaderHight = height;
+            let header = document.getElementById('upper-header-container');
+            header.style.height = height;
         },
-        nosServicesDropDownMouseLeave(){
-            if(! this.showCollapseNavBar){
-                this.showNosServicesDropDown=false;
-                this.mouseStillOnServices=false; 
-            }
+        putPrimaryLinksPosition(position){
+            let linksList = document.getElementById('primary-links');
+            this.slideDirection == "right" ? linksList.style.left = "auto" : linksList.style.right = "auto";
+            linksList.style[this.slideDirection] = position;
         },
-        langageDropDownMouseEnter(){
-            if(! this.showCollapseNavBar){
-                this.showLangagesDropDown=true;
-            }
+        heightWithServiceLinks(){
+            const servicesLinksContainer = document.getElementById('services');
+            return (servicesLinksContainer.offsetTop + servicesLinksContainer.offsetHeight) + 'px';
         },
-        langageDropDownMouseLeave(){
-            if(! this.showCollapseNavBar){
-                this.showLangagesDropDown=false;
-            }
+        heightWithoutServiceLinks(){
+            const servicesLinksContainer = document.getElementById('services');
+            return servicesLinksContainer.offsetTop + 'px';
         },
-        selectLangage(langage){
-            this.changeSelectedLangage(langage);
-            if(this.device === 'pc'){
-                this.showLangagesDropDown = false;
-            }
-        },
-        toggleCollapseNavBar(){
-            this.showCollapseNavBar=!this.showCollapseNavBar;
-            this.toggleCollapseMenu(this.showCollapseNavBar);
-            this.showLangagesDropDown = false;
-            this.showNosServicesDropDown = false;
-        },
-        toggleNosServicesDropDownResponsive(){
-                this.showLangagesDropDown = false;
-                this.showNosServicesDropDown=!this.showNosServicesDropDown;
-        },
-        toggleLangagesDropDownResponsive(){
-            if(this.showCollapseNavBar){
-                this.showNosServicesDropDown = false;
-                this.showLangagesDropDown=!this.showLangagesDropDown;
-            }
+        positionWithoutOtherLangages(){
+            const otherLangages = document.getElementById('other-langages');
+            return '-' + otherLangages.offsetWidth + 'px';
         },
         onServicesClicked(){
-            this.mouseStillOnServices=true;  
-            this.closeDropdowns();
+            this.showServicesMenu = !this.showServicesMenu;
+        },
+        onOldLangageClicked(){
+            this.showLangageMenu = !this.showLangageMenu;
+        },
+        upperContainerSliderInitialization(delay){
+            setTimeout(()=>{
+                this.putHeaderHeight(this.heightWithoutServiceLinks());
+            },delay);
+        },
+        langageSliderInitialization(delay){
+            setTimeout(()=>{
+                this.putPrimaryLinksPosition(this.positionWithoutOtherLangages());
+            },delay-100);
+        },
+        upperContainerInitialization(){
+            this.putHeaderHeight('0px');
+        },
+        manageHeaderInitialization(delay){
+            if(!this.isMdOrLess){
+                this.langageSliderInitialization(delay);
+            }
+            this.upperContainerSliderInitialization(delay);
+            this.upperContainerInitialization();
+        },
+        manageServicesMenuClosing(){
+            this.closeLangageMenuWhenClickingOutside();
+            this.closeServiceMenuWhenClickingOutside();
+        },
+        initializePaddingTop(delay){
+            setTimeout(()=>{
+                this.putPaddingTop(this.heightWithoutServiceLinks());
+            },delay)
+        },
+        initializeIsMdOrLess(){
+            this.isMdOrLess = this.widthLessThan('lg');
+        },
+        determineIsMdOrLessWhenResizing(){
+            window.addEventListener('resize',()=>{
+                this.initializeIsMdOrLess()
+            });
+        },
+        closeMenuesWhenResizing(){
+            window.addEventListener('resize',(event)=>{
+                this.showLangageMenu = false;
+                this.showServicesMenu = false;
+            });
+        },
+        manageLangageMenuWhenResizing(){
+            window.addEventListener('resize',()=>{
+                if(!this.isMdOrLess){
+                    this.putPrimaryLinksPosition(this.positionWithoutOtherLangages());
+                }
+            });
         }
     },
-    created(){
-        document.addEventListener('click',(event)=>{
-            if(this.showCollapseNavBar){
-                if(!document.getElementById('navbarSupportedContent').contains(event.target) && !document.getElementById('toggle-menu-button').contains(event.target)){
-                    this.showCollapseNavBar = false;
-                    this.toggleCollapseMenu(this.showCollapseNavBar);
-                }
-            }
-        });
+    mounted(){
+        this.initializeIsMdOrLess();
+        this.manageServicesMenuClosing();
+        this.initializePaddingTop(1000);
+        this.manageHeaderInitialization(1000);
+        this.determineIsMdOrLessWhenResizing();
+        this.closeMenuesWhenResizing();
+        this.manageLangageMenuWhenResizing();
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    @import '../../../sass/variables.scss';
-    .dropdown-transition{
-        transition: all 1s;
+
+@import '../../../sass/app';
+
+.upper-header-container{
+    overflow:hidden;
+    transition: height 500ms ease-out, background-color 500ms ease-out;
+    @extend .shadow-xxl, .body-bg, .fixed-top;
+}
+.header-container{
+    @extend .py-3, .f-22, .text-shadow-sm;
+}
+.logo-container{
+    @extend .cursor-pointer;
+}
+.links-container{
+    overflow : hidden;
+    @extend .align-items-center, .d-flex, .mx-xl-5,.mx-lg-4, .mx-md-3, .mx-2, .justify-content-between, .p-relative;
+}
+.links-list{
+    transition: right  1s ease-out, left  1s ease-out;
+    @extend .d-flex, .justify-content-around, .p-absolute;
+} 
+.links-item-active{
+    @extend .justify-content-center, .cursor-pointer, .px-3, .py-2, .border-dark-important-2, .mx-3;
+}
+.links-item-active-dark-mode{
+    @extend .justify-content-center, .cursor-pointer, .px-3, .py-2, .border-white-important-2, .mx-3;
+}
+.links-item{
+    transition : all 500ms;
+    width:140px;
+    @extend .d-flex, .align-items-center, .justify-content-center, .cursor-pointer, .border-transparent-2, .mx-3, .px-3, .py-2;
+    &:hover{
+        @extend .border-dark-2, .shadow;
     }
-    .black-border-hover:hover{
-        border : 2px solid rgba(0,0,0,1);
+}
+.links-item-dark-mode{
+    transition : all 500ms;
+    width:140px;
+    @extend .d-flex, .align-items-center, .justify-content-center, .cursor-pointer, .border-transparent-2, .mx-3, .px-3, .py-2;
+    &:hover{
+        @extend .border-white-important-2, .shadow;
     }
-    .red-background-item{
-        transition: all 1s;
+}
+.app-dropdown-container{
+    overflow:hidden;
+    @extend .align-items-center, .d-flex, .justify-content-around, .mt-3, .body-bg, .inset-top-shadow-xxl, .flex-column; 
+}
+.app-dropdown-item{
+    transition : all 500ms;
+    @extend .app-dropdown-item, .text-center,.border-transparent-2, .app-text-dark, .cursor-pointer, .px-3, .py-2, .w-100;
+    &:hover{
+        @extend .app-bg-dark, .app-text-white, .shadow-xxl;
     }
-    .red-background-item:hover{
-        transition: all 500ms;
-        color: #ffffff !important;
-        background-color:$red;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-    }
-    .custom-nav-link{
-        font-weight: 500;
-    }
-    .transparent-border{
-        border : 2px solid rgba(0,0,0,0);
-    }
-    .custom-dropdown-menu{
-        min-width: fit-content;
-    }
-    .border-left-collapse{
-        border-left: 2px solid rgb(0,0,0) !important;
-    }
-    .border-right-collapse{
-        border-right: 2px solid rgb(0,0,0) !important;
-    }
-    .border-top-collapse{
-        border-top: 2px solid rgb(0,0,0) !important;
-    }
-    .border-bottom-collapse{
-        border-bottom: 2px solid rgb(0,0,0) !important;
-    }
-    .border-left-collapse-hover:hover{
-        border-left: 2px solid rgb(0,0,0) !important;
-    }
-    .border-right-collapse-hover:hover{
-        border-right: 2px solid rgb(0,0,0) !important;
-    }
-    .border-top-collapse-hover:hover{
-        border-top: 2px solid rgb(0,0,0) !important;
-    }
-    .border-bottom-collapse-hover:hover{
-        border-bottom: 2px solid rgb(0,0,0) !important;
-    }
-    .black-border{
-        border: 2px solid rgb(0,0,0);
-    }
-    button:focus{
-        outline: none;
-    }
-    .bar-toggle{
-        color: black;
-        font-size: 30px;
-    }
-    .bg-white-95{
-        background-color: rgba(247,247,247,0.95);
-    }
-    .bg-0{
-        background-color: transparent;
-    }
-    .mobile-custom-menu{
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        z-index: 1000;
-        margin-bottom: 16px;
-    }
-    .overflow-hidden{
-        overflow:hidden;
-    }
-    .little-negative-margin-top{
-        margin-top:-2px !important;
-    }
-    .deroule-service-dropdown-enter{
-    }
-    .deroule-service-dropdown-leave-to{
-    }
-    .deroule-service-dropdown-enter-active{
-        animation : deroule-service-dropdown-in 700ms ease-out forwards;
-    }
-    .deroule-service-dropdown-leave-active{
-        animation : deroule-service-dropdown-out 700ms ease-out forwards;
-    }
-    .slide-move{
-        transition : transform 700ms;
-    }
-    @keyframes deroule-service-dropdown-in {
-        from {
-            height:0;
-        }
-        to {
-            height:275px;
-        }
-    }
-    @keyframes deroule-service-dropdown-out {
-        from {
-            height:275px;
-        }
-        to {
-            height:0;
-        }
-    }
-    .deroule-langage-dropdown-enter{
-    }
-    .deroule-langage-dropdown-leave-to{
-    }
-    .deroule-langage-dropdown-enter-active{
-        animation : deroule-langage-dropdown-in 700ms ease-out forwards;
-    }
-    .deroule-langage-dropdown-leave-active{
-        animation : deroule-langage-dropdown-out 700ms ease-out forwards;
-    }
-    @keyframes deroule-langage-dropdown-in {
-        from {
-            height:0;
-        }
-        to {
-            height:110px;
-        }
-    }
-    @keyframes deroule-langage-dropdown-out {
-        from {
-            height:110px;
-        }
-        to {
-            height:0;
-        }
-    }
+}
+#other-langages{
+    @extend .d-flex, .px-2, .mx-n2;
+}
+.collapse-icon-container{
+    @extend .cursor-pointer,.d-flex, .f-36, .mx-2,.p-3;
+}
 </style>

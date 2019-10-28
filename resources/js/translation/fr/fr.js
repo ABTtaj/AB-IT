@@ -6,6 +6,8 @@ import menu from './modules/menu.js'
 import packs from './modules/packs.js'
 import routes from './modules/routes.js'
 import services from './modules/services.js'
+import form from './modules/form.js'
+import titles from './modules/titles.js'
 
 export default {
     ...alt,
@@ -16,4 +18,6 @@ export default {
     ...packs,
     ...routes,
     ...services,
+    ...form,
+    ...titles
 }

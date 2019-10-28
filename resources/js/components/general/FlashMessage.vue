@@ -5,13 +5,13 @@
         appear
     >
         <div 
-            class="custom-flash-message-style py-2 text-center text-white px-2"
+            class="flash-message"
             :class="{
                 'al-bayan f-20':isArabic,
                 'gabriola f-24':!isArabic,
                 'bg-white': flashContent.type === 'white',
-                'bg-dark': flashContent.type === 'dark',
-                'bg-danger': flashContent.type === 'danger',
+                'app-bg-dark': flashContent.type === 'dark',
+                'app-bg-danger': flashContent.type === 'danger',
                 'bg-success': flashContent.type === 'success',
                 'bg-warning': flashContent.type === 'warning',
                 'bg-secondary': flashContent.type === 'secondary',
@@ -20,22 +20,30 @@
             }" 
             v-html="flashContent.message"
             v-if="flashContent.show"
+            @click="toggleFlash"
         >
         </div>
     </transition>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters,mapActions } from 'vuex';
 export default{
     computed : {
         ...mapGetters(['flashContent'])
+    },
+    methods:{
+        ...mapActions([
+            'toggleFlash'
+        ])
     }
 }
 </script>
 
-<style scoped>
-.custom-flash-message-style{
+<style lang="scss" scoped>
+@import '../../../sass/app';
+.flash-message{
+    @extend .text-center, .app-text-white, .p-2;
     opacity:.95;
 }
 </style>

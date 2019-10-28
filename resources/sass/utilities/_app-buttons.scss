@@ -1,0 +1,30 @@
+@import '../variables';
+
+.arabic-button-style{
+    @extend .f-20, .fw-700, .al-bayan, .py-2, .px-3;
+}
+
+.arabic-button-font{
+    @extend .f-20, .fw-700, .al-bayan;
+}
+
+.custom-button-style{
+    @extend .fw-500, .w-fit-content, .cursor-pointer, .text-shadow-sm, .text-center;
+    transition: all 500ms;
+    padding:16px;
+    &:hover{
+        @extend .border-dark-2, .shadow; 
+        background: $red;
+        color: $body-bg;
+    }
+}
+
+.custom-white-button-style{
+    @extend .fw-500, .w-fit-content, .cursor-pointer, .text-shadow-sm, .text-center;
+    transition: all 500ms;
+    padding:16px;
+    &:hover{
+        @extend .body-bg, .border-dark-2, .shadow;
+        color: $red;
+    }
+}

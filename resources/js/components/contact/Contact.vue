@@ -1,75 +1,112 @@
 <template>
-    <transition-group
-        tag="div"
-        class="row justify-content-center"
-        name="slide"
-    >
-        <div key="title" class="col-12 text-center">
-            <app-title category="contact"></app-title>
-        </div>
-        <div key="description" class="col-md-5 mb-4 mt-3">
-            <p class="text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin laoreet quam quis lacus cursus, id lobortis est viverra. Morbi sollicitudin, nisl non placerat malesuada, orci est sagittis nulla, quis egestas enim sem quis ex.             
-            </p>
-        </div>
-        <div key="form" class="col-md-8 px-4" 
-                id="contact-form">
-            <transition-group
-                tag="form"
+    <div class="upper-form-container">
+        <div class="app-form-container">
+            <transition-group 
+                tag="div" 
+                class="row" 
+                id="contact-form" 
                 name="slide" 
+                appear
             >
-                <template v-for="field in fields">
-                    <app-form-title 
-                        :key="field.name+'-title'"
-                        :input="field.name" 
-                        :for="field.name" 
-                        :errors="errors[field.name]"
-                    ></app-form-title>
+                
+                <div 
+                    class="app-form-title col-12"
+                    :class="{
+                        'f-60 gabriola': !isArabic,
+                        'f-56 al-bayan':isArabic
+                    }"
+                    key="form-title"
+                >
+                    {{ 'TITLE_HOME_PAGE_CONTACT' | translate }}
+                </div>
+                <div 
+                    class="app-form-text col-lg-6 mx-1 col-md-8"
+                    :class="{
+                        'f-20 gabriola': !isArabic,
+                        'f-18 al-bayan':isArabic
+                    }"
+                    key="form-text"
+                >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempor mauris sed mi gravida laoreet. Donec et elementum felis. Morbi quis odio eros. 
+                </div>
+                <div 
+                    class="app-form-group col-lg-6 mx-1 col-md-8"
+                    v-for="field in fields"
+                    :key="field.name+'_key'"
+                >
                     <input 
-                        :key="field.name+'-input'"
                         v-if="field.isInput"
-                        :type="field.type" 
-                        :id="field.name" 
-                        v-model="newMessage[field.name]" 
-                        class="input-form-style py-1 px-2 my-2" 
-                        :class="{'input-form-style-error border-danger-2px':errors[field.name] && errors[field.name].length}" 
+                        v-model="newMessage[field.name]"
                         @input="deleteErrors(field.name)"
+                        :id="field.name"
+                        :type="field.type" 
+                        :placeholder="translate(field.placeholder)" 
+                        class="app-form-input"
+                        :class="{
+                            'app-text-danger red-place-holder': !errorsCorrected[field.name],
+                            'f-20 gabriola': !isArabic,
+                            'f-18 al-bayan':isArabic
+                        }"
                     >
                     <textarea 
-                        :key="field.name+'-input'"
                         v-if="!field.isInput"
-                        :id="field.name" 
-                        v-model="newMessage[field.name]" 
-                        rows="6" 
-                        class="input-form-style py-1 px-2 my-2" 
-                        :class="{'input-form-style-error border-danger-2px':errors[field.name] && errors[field.name].length}" 
+                        v-model="newMessage[field.name]"
                         @input="deleteErrors(field.name)"
-                    ></textarea>
-                </template>
+                        :id="field.name"
+                        :type="field.type" 
+                        :placeholder="translate(field.placeholder)" 
+                        class="app-form-input"
+                        :class="{
+                            'app-text-danger red-place-holder': !errorsCorrected[field.name],
+                            'f-20 gabriola': !isArabic,
+                            'f-18 al-bayan':isArabic
+                        }"
+                        rows=6
+                    >
+                    </textarea>
+                    <div 
+                        class="app-form-errors-item" 
+                        :class="{
+                            'f-18 gabriola text-left' : !isArabic, 
+                            'f-16 al-bayan text-right' : isArabic
+                        }" 
+                        v-for="error in errors[field.name]"
+                    >
+                        <i class="fa fa-exclamation-triangle f-18 app-text-danger mx-1"></i>
+                        {{ 'CONTACT_ERROR_' + field.name.toUpperCase() + '_' + error | translate }}
+                    </div>
+                </div>
+                <div 
+                    class="col-lg-6 mx-1 col-md-8 d-flex justify-content-center p-0"
+                    key="submit-button"
+                >
+                    <div 
+                        class="app-form-submit" 
+                        @click="submitMessage"
+                        :class="{
+                            'f-20 gabriola': !isArabic,
+                            'f-18 al-bayan':isArabic
+                        }"
+                    >
+                        <div 
+                            class="spinner-grow" 
+                            role="status" 
+                            v-if="sending"
+                        >
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div v-if="!sending">
+                            {{'BUTTON_CONTACT_SUBMIT' | translate }}
+                        </div>
+                    </div>
+                </div>
             </transition-group>
         </div>
-        <div key="spinner" class="col-12 mt-4 text-center" v-if="sending">
-            <div class="spinner-grow text-danger" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <div key="submit_button" class="col-12 d-flex justify-content-center my-3">
-            <div
-                class="custom-button-style"
-                :class="{'arabic-button-style' : isArabic}"
-                @click="submitMessage"
-            >
-                {{'BUTTON_CONTACT_SUBMIT' | translate}}
-            </div>
-        </div>
-    </transition-group>
+    </div>
 </template>
 
 <script>
-import AppTitle from '../helpers/Title.vue';
-import AppFormTitle from '../helpers/FormTitle.vue';
-import AppErrorMessage from '../helpers/ErrorMessage.vue';
-import { mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 export default{
     data(){
         return {
@@ -87,99 +124,177 @@ export default{
                 object:[],
                 message:[],
             },
+            errorsCorrected:{
+                name:true,
+                email:true,
+                phone:true,
+                object:true,
+                message:true,
+            },
             fields:[
                 {
                     name:'name',
                     type:'text',
+                    placeholder:'CONTACT_FORM_NAME',
                     isInput:true
                 },
                 {
                     name:'email',
                     type:'email',
+                    placeholder:'CONTACT_FORM_EMAIL',
                     isInput:true
                 },
                 {
                     name:'phone',
                     type:'phone',
+                    placeholder:'CONTACT_FORM_PHONE',
                     isInput:true
                 },
                 {
                     name:'object',
                     type:'text',
+                    placeholder:'CONTACT_FORM_OBJECT',
                     isInput:true
                 },
                 {
                     name:'message',
                     type:null,
+                    placeholder:'CONTACT_FORM_MESSAGE',
                     isInput:false
                 }
             ],
             sending:false
         }
     },
-    computed:{
-        ...mapGetters([
-            'selectedLangage'
-        ])
-    },
-    components:{
-        AppTitle,
-        AppFormTitle,
-        AppErrorMessage
-    },
     methods:{
-        submitMessage(){
-            this.sending = true;
-            axios.post('/api/messages',this.newMessage).then(response => {
-                this.sending = false;
-                this.flash('FLASH_CONTACT_SUBMIT_SUCCESS','success','bottom');
-                this.$router.push({name : translate('ROUTE_SERVICES')});
-            })
-            .catch(({response})=>{
-                this.sending = false;
-                if(response.data.errors){
-                    this.errors=response.data.errors;
-                    this.flash('FLASH_CONTACT_SUBMIT_FAIL','danger','bottom');
-
-                const elmnt = document.getElementById("contact-form");
-                elmnt.scrollIntoView({behavior:"smooth"});
+        fillErrors(errors){
+            for(let key in this.errors){
+                if(errors[key]){
+                    this.errors[key]=errors[key];
+                    this.errorsCorrected[key]=false;
                 } else {
-                    this.flash('FLASH_CONTACT_UNKOWN_ERROR','danger','bottom');
+                    this.errors[key]=[];
                 }
-            })
+            }
         },
         deleteErrors(field){
-            this.errors[field]=[];
+            this.errorsCorrected[field]=true;
         },
-        scrollToForm(){
-            const elmnt = document.getElementById("contact-form");
+        submitMessage(){
+            if(!this.sending){
+                this.sending = true;
+                axios.post('/api/messages',this.newMessage).then(response => {
+                    this.resetData();
+                    this.sending = false;
+                    this.flash('FLASH_CONTACT_SUBMIT_SUCCESS','success','bottom');
+                    this.scrollTo("upper-header-container");
+                })
+                .catch((error)=>{
+                    if(error.response.data.errors){
+                        this.fillErrors(error.response.data.errors);
+                        this.sending = false;
+                        this.flash('FLASH_CONTACT_SUBMIT_FAIL','danger','bottom');
+                        this.scrollTo("contact-form");
+                    } else {
+                        this.flash('FLASH_CONTACT_UNKOWN_ERROR','danger','bottom');
+                        this.sending = false;
+                    }
+
+                })
+            }
+        },
+        resetData(){
+            this.errors = {
+                name:[],
+                email:[],
+                phone:[],
+                object:[],
+                message:[],
+            }
+            this.newMessage={
+                name:'',
+                email:'',
+                phone:'',
+                object:'',
+                message:'',
+            };
+        },
+        scrollTo(id){
+            const elmnt = document.getElementById(id);
             elmnt.scrollIntoView({behavior:"smooth"});
+        },
+        initializeTheHeaderColor(){
+            this.switchDarkMode(true);
+        },
+        manageDarkModeOfTheHeader(){
+            setTimeout(()=>{
+                this.initializeTheHeaderColor();
+            },500);
         }
+    },
+    mounted(){
+        this.manageDarkModeOfTheHeader();
     }
 }
 </script>
 
-<style scoped>
-.input-form-style{
-    transition: all 200ms;
-    font-weight: 400;
-    width: 100%;
-    border: 2px solid rgba(0,0,0,1);
-    transform: scaleX(1);
-    background-color: rgba(255,255,255,0.5);
-    box-shadow : 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+<style lang="scss" scoped>
+
+@import '../../../sass/app';
+
+.upper-form-container{
+    @extend .d-flex, .justify-content-center, .pb-3, .app-bg-black;
+    min-height:100vh;
+}
+.app-form-container{
+    @extend .p-1, .p-lg-4, .p-lg-3, .p-sm-2, .p-xl-5;
+}
+.app-form-title{
+    @extend .mb-3, .mt-2, .mt-lg-0, .text-center, .text-shadow-sm, .text-uppercase, .app-text-white;
+}
+.app-form-text{
+    @extend .mb-5, .text-center, .app-text-white;
+}
+.app-form-group{
+    @extend .my-3, .p-0, .text-center;
+}
+.app-form-input{
+    transition : all 500ms ease-out;
+    @extend .body-bg, .border-0, .pb-1, .pt-2, .px-2, .w-95, .inset-shadow-lg;
     resize: none;
+    &:focus{
+        outline-offset:0;
+        outline:none;
+        @extend .w-100;
+    }
 }
-.input-form-style-error border-danger-2px{
-    transition: all 200ms;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-    transform: scaleX(1.05);
+.app-form-errors-item{
+    @extend .app-text-white, .mt-3, .px-4;
 }
-.input-form-style:focus{
-    transition: all 200ms;
-    outline-offset:0;
-    outline:none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-    transform: scaleX(1.05);
+.app-form-submit{
+    transition : all 500ms ease-out;
+    height:57px;
+    @extend .app-bg-black, .app-text-white, .border-white-2, .cursor-pointer, .p-2, .text-center, .shadow-lg, .text-shadow-sm, .mt-4, .d-flex, .align-items-center, .justify-content-center, .w-95;
+    &:hover{
+        @extend .app-bg-danger, .app-text-white, .w-100;
+    }
+}
+.red-place-holder::-webkit-input-placeholder { 
+  color: $red;
+}
+.red-place-holder::-moz-placeholder { 
+  color: $red;
+}
+.red-place-holder:-ms-input-placeholder { 
+  color: $red;
+}
+.red-place-holder:-moz-placeholder { 
+  color: $red;
+}
+.red-place-holder::placeholder { 
+  color: $red;
+}
+#contact-form{
+    @extend .justify-content-center, .align-items-center, .h-100, .px-4;
 }
 </style>

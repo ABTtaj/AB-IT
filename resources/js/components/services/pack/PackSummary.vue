@@ -1,12 +1,12 @@
 <template>
     <div 
-        class="align-items-center bg-body f-18 flex-column justify-content-between p-4 row text-shadow pack-shadow h-100"
+        class="align-items-center body-bg f-18 flex-column justify-content-between p-4 row text-shadow-sm shadow-xxl h-100"
         :class="{
             'gabriola':!isArabic,
             'al-bayan':isArabic
         }"
     >
-        <div class="text-danger text-center w-100">
+        <div class="app-text-danger text-center w-100">
             <div class="f-50">
                 {{data.title | translate}}
             </div>
@@ -42,7 +42,7 @@
         <router-link 
             tag="div" 
             :to="{name : translate(data.route)}" 
-            class="custom-button-style mt-3 raleway f-14"
+            class="custom-button-style mt-3 f-20"
         >
             {{'BUTTON_LEARN_MORE_PACK' | translate}}
         </router-link>
@@ -56,9 +56,4 @@ export default {
 }
 </script>
 <style scoped>
-.pack-shadow{
-    -webkit-box-shadow: 0px 0px 26px 10px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 0px 26px 10px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 26px 10px rgba(0,0,0,0.5);
-}
 </style>

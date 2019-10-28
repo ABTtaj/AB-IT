@@ -1,5 +1,3 @@
-import Agence from '../../components/agence/Agence.vue';
-import Services from '../../components/services/Services.vue';
 import WebSiteCreation from '../../components/services/web-site-creation/WebSiteCreation.vue';
 import SolutionECommerce from '../../components/services/solution-e-commerce/SolutionECommerce.vue';
 import DigitalMarketing from '../../components/services/digital-marketing/DigitalMarketing.vue';
@@ -14,8 +12,6 @@ import SecondECommercePack from '../../components/services/pack/e-commerce/Secon
 import ThirdECommercePack from '../../components/services/pack/e-commerce/ThirdECommercePack.vue';
 
 export default [
-    { path : '/agency', component : Agence, name: 'agence-en'},
-    { path : '/services', component : Services, name: 'services-en'},
     { path : '/services/website-developement', component : WebSiteCreation, name: 'website-en'},
     { path : '/services/website-developement/pack-name-1', component : FirstWebsitePack, name: 'first-website-pack-en'},
     { path : '/services/website-developement/pack-name-2', component : SecondWebsitePack, name: 'second-website-pack-en'},

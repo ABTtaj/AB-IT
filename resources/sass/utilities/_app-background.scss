@@ -1,0 +1,17 @@
+@import '../variables';
+
+.body-bg{
+    background-color:$body-bg;
+}
+.bg-white-95{
+    background-color: rgba(247,247,247,0.95);
+}
+.app-bg-danger{
+    background-color:$red ;
+}
+.app-bg-dark{
+    background-color:$dark ;
+}
+.app-bg-black{
+    background-color:rgba(0,0,0,1);
+}

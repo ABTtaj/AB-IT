@@ -8,7 +8,7 @@
         <li 
             v-for="error in errors" 
             :key="input+'_'+error" 
-            class="text-danger text-shadow" 
+            class="app-text-danger text-shadow" 
             :class="{
                 'al-bayan arabic-error-message-size text-right': isArabic,
                 'gabriola f-18 text-left' : !isArabic

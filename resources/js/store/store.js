@@ -8,7 +8,9 @@ export default {
             type:'',
             show:false
         },
-        collapseMenuOpen:false
+        collapseMenuOpen:false,
+        paddingTop:null,
+        darkMode:false
     },
     getters:{
         selectedLangage(state){
@@ -22,6 +24,12 @@ export default {
         },
         collapseMenuOpen(state){
             return state.collapseMenuOpen;
+        },
+        paddingTop(state){
+            return state.paddingTop;
+        },
+        darkMode(state){
+            return state.darkMode;
         }
     },
     mutations:{
@@ -36,11 +44,17 @@ export default {
             state.flash.type = payload.type;
             state.flash.where = payload.where;
         },
-        toggleFlash(state){
-            state.flash.show = !state.flash.show;
+        toggleFlash(state, payload){
+            state.flash.show = payload;
         },
         toggleCollapseMenu(state,payload){
             state.collapseMenuOpen = payload;
+        },
+        putPaddingTop(state,payload){
+            state.paddingTop = payload;
+        },
+        switchDarkMode(state,payload){
+            state.darkMode = payload;
         }
     },
     actions:{
@@ -55,13 +69,22 @@ export default {
         },
         configureFlash({ commit },payload){
             commit('configureFlash',payload);
-            commit('toggleFlash');
+            commit('toggleFlash',true);
             setTimeout(()=>{
-                commit('toggleFlash');
+                commit('toggleFlash',false);
             },6000);
+        },
+        toggleFlash({commit}){
+            commit('toggleFlash',false);
         },
         toggleCollapseMenu({ commit },payload){
             commit('toggleCollapseMenu',payload);
+        },
+        putPaddingTop({ commit },payload){
+            commit('putPaddingTop',payload);
+        },
+        switchDarkMode({ commit },payload){
+            commit('switchDarkMode',payload);
         }
     }
 }

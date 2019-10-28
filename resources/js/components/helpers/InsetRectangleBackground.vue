@@ -5,10 +5,10 @@
             :class="{
                 'service-container':!isArabic,
                 'service-container-arabic':isArabic,
-                'bg-danger':background == 'danger',
+                'app-bg-danger':background == 'danger',
                 'bg-success':background == 'success',
                 'bg-primary':background == 'primary',
-                'bg-dark':background == 'dark',
+                'app-bg-dark':background == 'dark',
                 'bg-secondary':background == 'secondary',
                 'bg-light':background == 'light',
                 'bg-warning':background == 'warning',

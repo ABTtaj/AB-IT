@@ -3,7 +3,7 @@
         <div class="col-12 text-center">
             <app-title category="website"></app-title>
         </div>
-        <div class="col-md-4 image-col-container">
+        <div class="col-md-4 h-fit-content">
             <inset-rectangle-background 
                 background="danger" 
                 class="h-100 mt-5"
@@ -23,7 +23,7 @@
                         </scroll-transition-manager>
                     </div>
                     <div 
-                        class="col-lg-7 col-xl-6 text-justify text-white text-shadow" 
+                        class="col-lg-7 col-xl-6 text-justify app-text-white text-shadow" 
                         :class="{
                             'raleway f-18':!isArabic,
                             'al-bayan f-20':isArabic
@@ -34,6 +34,7 @@
                             animation-class="animated fadeInUp slow"
                         >
                             <div 
+                                class=" line-height-xxl"
                                 id="first-text"
                             >
                             {{ 'WEBSITE_IMAGE_TEXT' | translate }}
@@ -49,7 +50,7 @@
                 animation-class="animated fadeInUp slow"
             >
                 <div 
-                    class="text-shadow text-center text-danger my-5 f-46" 
+                    class="text-shadow-sm text-center app-text-danger my-5 f-46" 
                     :class="{
                         'gabriola':!isArabic,
                         'al-bayan':isArabic
@@ -65,7 +66,7 @@
                 animation-class="animated fadeInUp slow"
             >
                 <div 
-                    class="my-5 text-shadow text-center"
+                    class="my-5 text-shadow-sm text-center line-height-xl"
                     :class="{
                         'raleway f-18':!isArabic,
                         'al-bayan f-20':isArabic
@@ -109,7 +110,7 @@
                 animation-class="animated fadeInUp slow"
             >
                 <div 
-                    class="my-5 text-shadow text-center" 
+                    class="my-5 text-shadow-sm text-center line-height-xl" 
                     :class="{
                         'raleway f-18':!isArabic,
                         'al-bayan f-20':isArabic
@@ -225,7 +226,4 @@ export default{
 </script>
 
 <style scoped>
-.image-col-container{
-    height:fit-content;
-}
 </style>

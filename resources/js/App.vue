@@ -1,14 +1,25 @@
 <template>
-    <div id="app-container">
-        <div class="container">
+    <div 
+        id="app-container" 
+        :class="{
+            'app-bg-black':darkMode,
+            'body-bg':!darkMode
+        }"
+    >
+        <div>
             <app-header></app-header>
             <transition 
                 appear
-                enter-active-class="animated zoomIn"
-                leave-active-class="animated zoomOut"
+                enter-active-class="animated slideInDown"
+                leave-active-class="animated slideOutUp"
                 mode="out-in"
             >
-                <router-view></router-view>
+                <router-view 
+                    :style="{
+                        'padding-top' : paddingTop
+                    }"
+                    id="route-viewer"
+                ></router-view>
             </transition>
         </div>
         <app-flash-message></app-flash-message>
@@ -17,18 +28,16 @@
  
 <script>
 import AppHeader from './components/general/Header.vue';
-import AppFooter from './components/general/Footer.vue';
 import AppFlashMessage from './components/general/FlashMessage.vue';
 import { mapGetters } from 'vuex';
 export default{
     computed:{
         ...mapGetters([
-            'dir'
+            'dir',
         ])
     },
     components:{
         AppHeader,
-        AppFooter,
         AppFlashMessage
     },
     watch: {
@@ -43,4 +52,7 @@ export default{
 </script>
 
 <style scoped>
+#route-viewer{
+    transition: margin 500ms ease-out;
+}
 </style>

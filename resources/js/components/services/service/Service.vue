@@ -28,7 +28,7 @@
                 </transition>
             </div>
             <div 
-                class="text-center text-white d-flex col-7 justify-content-center"
+                class="text-center app-text-white d-flex col-7 justify-content-center"
             >
                 <div class="align-items-center flex-column h-100 justify-content-center row">
                     <transition enter-active-class="animated zoomIn slow" appear>
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div 
-            class="align-items-center flex-column h-100 justify-content-around px-3 row text-center text-white" 
+            class="align-items-center flex-column h-100 justify-content-around px-3 row text-center app-text-white" 
             v-if="!widthGreater"
         >
             <transition enter-active-class="animated zoomIn slow" appear>

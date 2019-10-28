@@ -2,13 +2,13 @@ import './bootstrap';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import VueAnimateOnScroll from 'vue-animate-onscroll'
+import VueAnimateOnScroll from 'vue-animate-onscroll';
 import App from './App.vue';
 import { routes } from './routes/routes.js';
 import storeData from './store/store';
 import translation from './translation/translation';
 import { mapGetters, mapActions } from 'vuex';
-
+import widthSizes from './helpers/widthSizes';
 
 window.Vue = Vue;
 Vue.use(VueRouter);
@@ -20,19 +20,24 @@ Vue.use(Vuex);
 Vue.mixin({
     data(){
         return {
-            device:null,      
+            windowSize:null      
         }
     },
     computed:{
         ...mapGetters([
-            'selectedLangage'
+            'selectedLangage',
+            'paddingTop',
+            'darkMode'
         ]),
         isArabic(){
             return this.selectedLangage === 'ma' ? true : false;
         }
     },
     methods:{
-        ...mapActions(['configureFlash']),
+        ...mapActions([
+            'configureFlash',
+            'switchDarkMode'
+        ]),
         flash(message,type,where,translation = true){
             this.configureFlash({
                 message: translation ? this.translate(message) : message,
@@ -43,13 +48,44 @@ Vue.mixin({
         translate(param){
             const langage = storeData.state.langage;
             return translation[langage][param];
+        },
+        widthIsOrMoreThan(widthSize){
+            return window.innerWidth >= widthSizes[widthSize];
+        },
+        widthLessThan(widthSize){
+            return window.innerWidth < widthSizes[widthSize];
+        },
+        onlyFor(widthSize){
+            return widthSize === this.getSize();
+        },
+        exceptFor(widthSize){
+            return !(widthSize === this.getSize());
+        },  
+        getSize(){
+            const windowWidth = window.innerWidth;
+            if(windowWidth < widthSizes.sm){
+                return 'xs';
+            } else if(windowWidth >= widthSizes.sm && windowWidth < widthSizes.md ){
+                return 'sm';
+            } else if(windowWidth >= widthSizes.md && windowWidth < widthSizes.lg ){
+                return 'md';
+            } else if(windowWidth >= widthSizes.lg && windowWidth < widthSizes.xl ){
+                return 'lg';
+            } else {
+                return 'xl'
+            }
+        },
+        initializeWindowSize(){
+            this.windowSize = this.getSize();
         }
     },
     created() {
-        window.addEventListener('resize',()=>{
-            this.device = window.innerWidth < 992 ? 'mobile' : 'pc';
-        })
-        this.device = window.innerWidth < 992 ? 'mobile' : 'pc';
+        this.initializeWindowSize();
+    },
+    mounted(){
+        if(this.$route.name !== 'home' && this.$route.name !== ("contact-" + this.selectedLangage)){
+            this.switchDarkMode(false);
+        }
     }
 });
 
