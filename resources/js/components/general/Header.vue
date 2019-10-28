@@ -99,6 +99,7 @@
                             }"
                             v-for="(value,index) in links.langages"
                             :id="value"
+                            :key="value"
                             @click="changeSelectedLangage(index)"
                             v-if="index != selectedLangage"
                         >
@@ -154,6 +155,7 @@
                             'al-bayan f-26': index === 'ma'
                         }"
                         v-for="(value,index) in links.langages"
+                        :key="value"
                         :id="value"
                         @click="changeSelectedLangage(index)"
                         v-if="index != selectedLangage && putLangageMenu"

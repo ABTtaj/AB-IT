@@ -3,115 +3,139 @@
         <div class="row">
             <div class="col-xl-7 col-lg-6">
                 <div class="row upper-logo-container">
-                    <div class="col-12 logo-container">
-                        <img 
-                            src="../../../../images/logo/logo_black_version.png" 
-                            :alt="translate('ALT_HEADER_LOGO')" 
-                            class="img-fluid"
-                        >
-                    </div>
-                    <div 
-                        class="col-lg-10 upper-text-container"
-                        :class="{
-                            'f-24 gabriola' : !isArabic,
-                            'f-20 al-bayan' : isArabic
-                            }"
+                    <scroll-transition-manager 
+                        scroll-animation-class="slid"
+                        direction="x"
+                        appear-animation-class="rollIn"
+                        speed="slow"
+                        id="home-page-upper-block-logo" 
                     >
-                        Integer eu sollicitudin eros, congue ultrices nisl. Fusce tincidunt ante eget vulputate dictum. Quisque imperdiet libero rutrum risus euismod posuere. Etiam diam libero, vehicula eget porta mollis, bibendum sed urna. Praesent pulvinar tincidunt eleifend. Vivamus commodo congue metus, eget accumsan neque pulvinar vitae. Quisque dictum, quam vel vestibulum pellentesque, mauris ex rutrum ante, ut euismod justo lectus at augue. Nulla porttitor congue mi auctor scelerisque. Proin sed euismod tortor.
-                    </div>
+                        <div class="col-12 logo-container">
+                            <img 
+                                src="../../../../images/logo/logo_black_version.png" 
+                                :alt="translate('ALT_HEADER_LOGO')" 
+                                class="img-fluid"
+                            >
+                        </div>
+                    </scroll-transition-manager>
+                    <scroll-transition-manager 
+                        scroll-animation-class="zoomIn"
+                        appear-animation-class="zoomIn"
+                        speed="slow"
+                        id="home-page-upper-block-logo-text" 
+                    >
+                        <div 
+                            class="col-lg-10 upper-text-container"
+                            :class="{
+                                'f-24 gabriola' : !isArabic,
+                                'f-20 al-bayan' : isArabic
+                                }"
+                        >
+                            {{ 'TEXT_HOME_UPPER_BLOCK_LOGO' | translate }}
+                        </div>
+                    </scroll-transition-manager>
                 </div>
             </div>
             <div class="col-xl-5 col-lg-6 upper-form-container">
                 <div class="app-form-container">
-                    <transition-group tag="form" id="contact-from" name="slide" appear>
-                        <div 
-                            class="app-form-title"
-                            :class="{
-                                'f-60 gabriola': !isArabic,
-                                'f-56 al-bayan':isArabic
-                            }"
-                            key="form-title"
-                        >
-                            {{ 'TITLE_HOME_PAGE_CONTACT' | translate }}
-                        </div>
-                        <div 
-                            class="app-form-text"
-                            :class="{
-                                'f-20 gabriola': !isArabic,
-                                'f-18 al-bayan':isArabic
-                            }"
-                            key="form-text"
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempor mauris sed mi gravida laoreet. Donec et elementum felis. Morbi quis odio eros. 
-                        </div>
-                        <div 
-                            class="app-form-group"
-                            v-for="field in fields"
-                            :key="field.name + '_key'"
-                        >
-                            <input 
-                                v-if="field.isInput"
-                                v-model="newMessage[field.name]"
-                                @input="deleteErrors(field.name)"
-                                :id="field.name"
-                                :type="field.type" 
-                                :placeholder="translate(field.placeholder)" 
-                                class="app-form-input"
+                    <scroll-transition-manager 
+                        scroll-animation-class="slide"
+                        direction="x"
+                        :appear-animation-class="isArabic ? 'slideInLeft' : 'slideInRight'"
+                        speed="slow"
+                        id="home-page-upper-block-contact" 
+                    >
+                        <transition-group tag="form" id="contact-from" name="slide" appear>
+                            <div 
+                                class="app-form-title"
                                 :class="{
-                                    'app-text-danger red-place-holder':!errorsCorrected[field.name],
+                                    'f-60 gabriola': !isArabic,
+                                    'f-56 al-bayan':isArabic
+                                }"
+                                key="form-title"
+                            >
+                                {{ 'TITLE_HOME_PAGE_CONTACT' | translate }}
+                            </div>
+                            <div 
+                                class="app-form-text"
+                                :class="{
                                     'f-20 gabriola': !isArabic,
                                     'f-18 al-bayan':isArabic
                                 }"
+                                key="form-text"
                             >
-                            <textarea 
-                                v-if="!field.isInput"
-                                v-model="newMessage[field.name]"
-                                @input="deleteErrors(field.name)"
-                                :id="field.name"
-                                :type="field.type" 
-                                :placeholder="translate(field.placeholder)" 
-                                class="app-form-input"
+                                {{ 'TEXT_HOME_UPPER_BLOCK_CONTACT' | translate }}
+                            </div>
+                            <div 
+                                class="app-form-group"
+                                v-for="field in fields"
+                                :key="field.name + '_key'"
+                            >
+                                <input 
+                                    v-if="field.isInput"
+                                    v-model="newMessage[field.name]"
+                                    @input="deleteErrors(field.name)"
+                                    :id="field.name"
+                                    :type="field.type" 
+                                    :placeholder="translate(field.placeholder)" 
+                                    class="app-form-input"
+                                    :class="{
+                                        'app-text-danger red-place-holder':!errorsCorrected[field.name],
+                                        'f-20 gabriola': !isArabic,
+                                        'f-18 al-bayan':isArabic
+                                    }"
+                                >
+                                <textarea 
+                                    v-if="!field.isInput"
+                                    v-model="newMessage[field.name]"
+                                    @input="deleteErrors(field.name)"
+                                    :id="field.name"
+                                    :type="field.type" 
+                                    :placeholder="translate(field.placeholder)" 
+                                    class="app-form-input"
+                                    :class="{
+                                        'app-text-danger red-place-holder':!errorsCorrected[field.name],
+                                        'f-20 gabriola': !isArabic,
+                                        'f-18 al-bayan':isArabic
+                                    }"
+                                    rows=6
+                                >
+                                </textarea>
+                                <div 
+                                    class="app-form-errors-item" 
+                                    :class="{
+                                        'f-18 gabriola text-left' : !isArabic, 
+                                        'f-16 al-bayan text-right' : isArabic
+                                    }" 
+                                    v-for="error in errors[field.name]"
+                                    :key="error"
+                                >
+                                    <i class="fa fa-exclamation-triangle f-18 app-text-danger mx-1"></i>
+                                    {{ 'CONTACT_ERROR_' + field.name.toUpperCase() + '_' + error | translate }}
+                                </div>
+                            </div>
+                            <div 
+                                class="app-form-submit" 
+                                @click="submitMessage"
                                 :class="{
-                                    'app-text-danger red-place-holder':!errorsCorrected[field.name],
                                     'f-20 gabriola': !isArabic,
                                     'f-18 al-bayan':isArabic
                                 }"
-                                rows=6
+                                key="form-action"
                             >
-                            </textarea>
-                            <div 
-                                class="app-form-errors-item" 
-                                :class="{
-                                    'f-18 gabriola text-left' : !isArabic, 
-                                    'f-16 al-bayan text-right' : isArabic
-                                }" 
-                                v-for="error in errors[field.name]"
-                            >
-                                <i class="fa fa-exclamation-triangle f-18 app-text-danger mx-1"></i>
-                                {{ 'CONTACT_ERROR_' + field.name.toUpperCase() + '_' + error | translate }}
+                                <div 
+                                    class="spinner-grow" 
+                                    role="status" 
+                                    v-if="sending"
+                                >
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <div v-if="!sending">
+                                    {{'BUTTON_CONTACT_SUBMIT' | translate }}
+                                </div>
                             </div>
-                        </div>
-                        <div 
-                            class="app-form-submit" 
-                            @click="submitMessage"
-                            key="submit-button"
-                            :class="{
-                                'f-20 gabriola': !isArabic,
-                                'f-18 al-bayan':isArabic
-                            }"
-                        >
-                            <div 
-                                class="spinner-grow" 
-                                role="status" 
-                                v-if="sending"
-                            >
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                            <div v-if="!sending">
-                                {{'BUTTON_CONTACT_SUBMIT' | translate }}
-                            </div>
-                        </div>
-                    </transition-group>
+                        </transition-group>
+                    </scroll-transition-manager>
                 </div>
             </div>
         </div>

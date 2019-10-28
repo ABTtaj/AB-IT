@@ -9,6 +9,7 @@ import storeData from './store/store';
 import translation from './translation/translation';
 import { mapGetters, mapActions } from 'vuex';
 import widthSizes from './helpers/widthSizes';
+import ScrollTransitionManager from './components/helpers/ScrollTransitionManager.vue';
 
 window.Vue = Vue;
 Vue.use(VueRouter);
@@ -20,7 +21,8 @@ Vue.use(Vuex);
 Vue.mixin({
     data(){
         return {
-            windowSize:null      
+            windowSize : null,
+            isLessThanMd : null     
         }
     },
     computed:{
@@ -77,15 +79,31 @@ Vue.mixin({
         },
         initializeWindowSize(){
             this.windowSize = this.getSize();
+        },
+        determineIsLessThanMd(){
+            this.isLessThanMd = this.widthLessThan('md');
+        },
+        determineIsLessThanMdWhenResizing(){
+            window.addEventListener('resize',()=>{
+                this.determineIsLessThanMd();
+            });
+        },
+        manageImagesPositionWithWidthResizing(){
+            this.determineIsLessThanMd();
+            this.determineIsLessThanMdWhenResizing();
+        },
+        makeHeaderWhite(){
+            if(this.$route.name !== 'home' && this.$route.name !== ("contact-" + this.selectedLangage)){
+                this.switchDarkMode(false);
+            }
         }
     },
     created() {
         this.initializeWindowSize();
     },
     mounted(){
-        if(this.$route.name !== 'home' && this.$route.name !== ("contact-" + this.selectedLangage)){
-            this.switchDarkMode(false);
-        }
+        this.makeHeaderWhite();
+        this.manageImagesPositionWithWidthResizing();
     }
 });
 
@@ -93,6 +111,8 @@ Vue.filter('translate',(value) => {
     const langage = storeData.state.langage;
     return translation[langage][value];
 })
+
+Vue.component('ScrollTransitionManager',ScrollTransitionManager);
 
 const store = new Vuex.Store(storeData);
 

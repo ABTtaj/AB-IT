@@ -71,6 +71,7 @@
                             'f-16 al-bayan text-right' : isArabic
                         }" 
                         v-for="error in errors[field.name]"
+                        :key="field.name + '_' + error"
                     >
                         <i class="fa fa-exclamation-triangle f-18 app-text-danger mx-1"></i>
                         {{ 'CONTACT_ERROR_' + field.name.toUpperCase() + '_' + error | translate }}

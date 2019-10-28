@@ -8,6 +8,7 @@ import routes from './modules/routes.js'
 import services from './modules/services.js'
 import form from './modules/form.js'
 import titles from './modules/titles.js'
+import text from './modules/text.js'
 
 export default {
     ...alt,
@@ -19,5 +20,6 @@ export default {
     ...routes,
     ...services,
     ...form,
-    ...titles
+    ...titles,
+    ...text
 }

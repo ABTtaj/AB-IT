@@ -1,7 +1,17 @@
 <template>
     <div class="row app-bg-black">
-        <upper-block class="col-12"  id="upper-home-page"></upper-block>
-        <agence class="col-12" id="agence"></agence>
+        <upper-block 
+            class="col-12"  
+            id="upper-home-page"
+        ></upper-block>
+        <agence 
+            class="col-12" 
+            id="agence"
+        ></agence>
+        <services 
+            class="col-12" 
+            id="services-presentation"
+        ></services>
     </div>
 </template>
 
@@ -9,6 +19,7 @@
 import { mapActions } from 'vuex';
 import UpperBlock from './upper-block/UpperBlock.vue'; 
 import Agence from './agence/Agence.vue'; 
+import Services from './services/Services.vue'; 
 export default{
     data(){
         return {
@@ -20,7 +31,9 @@ export default{
         ]),
         initializeTheHeaderColor(){
             const upperHomePage = document.getElementById('upper-home-page');
-            if(window.scrollY <= upperHomePage.offsetHeight){
+            const services = document.getElementById('services-presentation');
+            const header = document.getElementById('upper-header-container');
+            if(window.scrollY <= upperHomePage.offsetHeight || (services.getBoundingClientRect().top - header.offsetHeight) < 0){
                 this.switchDarkMode(true);
             } else {
                 this.switchDarkMode(false);
@@ -43,7 +56,8 @@ export default{
     },
     components:{
         UpperBlock,
-        Agence
+        Agence,
+        Services
     }
 }
 </script>

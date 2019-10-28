@@ -6,5 +6,10 @@ export default {
     'ALT_SERVICES_SEO':'Site Web Image',
     'ALT_SERVICES_TRAININGS':'Site Web Image',
     'ALT_WEBSITE_PRIMARY':'Site Web Image',
-    'ALT_E_COMMERCE_PRIMARY':'Site Web Image'
+    'ALT_E_COMMERCE_PRIMARY':'Site Web Image',
+    'ALT_SERVICES_PRESENTATION_WEBSITE':'Site Web Image',
+    'ALT_SERVICES_PRESENTATION_E_COMMERCE':'Site Web Image',
+    'ALT_SERVICES_PRESENTATION_MARKETING_DIGITAL':'Site Web Image',
+    'ALT_SERVICES_PRESENTATION_SEO':'Site Web Image',
+    'ALT_SERVICES_PRESENTATION_TRAININGS':'Site Web Image',
 }
