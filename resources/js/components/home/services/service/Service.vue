@@ -1,6 +1,6 @@
 <template>
     <div class="service-container">
-        <div class="row">
+        <div class="row h-100">
             <scroll-transition-manager 
                 class="col-12" 
                 scroll-animation-class="slide"

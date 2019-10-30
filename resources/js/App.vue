@@ -23,12 +23,14 @@
             </transition>
         </div>
         <app-flash-message></app-flash-message>
+        <app-social-media></app-social-media>
     </div>
 </template>
  
 <script>
 import AppHeader from './components/general/Header.vue';
 import AppFlashMessage from './components/general/FlashMessage.vue';
+import AppSocialMedia from './components/general/SocialMedia.vue';
 import { mapGetters } from 'vuex';
 export default{
     computed:{
@@ -38,7 +40,8 @@ export default{
     },
     components:{
         AppHeader,
-        AppFlashMessage
+        AppFlashMessage,
+        AppSocialMedia
     },
     watch: {
         dir(val) {

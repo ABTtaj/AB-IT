@@ -172,9 +172,11 @@ export default {
             }
         },
         addClassToActionForm(ref){
-            let element = document.getElementById(ref + '-action-form');
-            this.removeAllClasses(element);
-            this.addClasses(element,['h-10','rounded-lg','opacity-1','body-bg']);
+            if(this.lastActiveAction !== ref){
+                let element = document.getElementById(ref + '-action-form');
+                this.removeAllClasses(element);
+                this.addClasses(element,['h-10','rounded-lg','opacity-1','body-bg']);
+            }
         },
         removeClassFromActionForm(ref){
             if(this.lastActiveAction !== ref){
@@ -316,7 +318,7 @@ export default {
     left : 0;
     right : auto;
 }
-.rigth-0-left-auto{
+.right-0-left-auto{
     right : 0;
     left : auto;
 }
