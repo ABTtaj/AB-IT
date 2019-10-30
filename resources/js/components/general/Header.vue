@@ -27,16 +27,9 @@
                     tag="div"
                 >
                     <img 
-                        v-if="!darkMode"
-                        src="../../../images/logo/logo_171x69.png" 
+                        :src="logoSrc" 
                         :alt="translate('ALT_HEADER_LOGO')"
-                        class="img-fluid"
-                    >
-                    <img 
-                        v-else
-                        src="../../../images/logo/logo_171x69_dark_mode.png" 
-                        :alt="translate('ALT_HEADER_LOGO')"
-                        class="img-fluid"
+                        class="img-fluid image_logo"
                     >
                 </router-link>
                 <div 
@@ -44,7 +37,7 @@
                     class="links-list"
                     tag="div" 
                     name="slide"
-                    v-if="!isMdOrLess"   
+                    v-if="!isLessThanMd"   
                 >
                     <div 
                         id="services-link"
@@ -131,7 +124,7 @@
                 >
                     {{ link.title | translate }}
                 </router-link>
-                <template v-if="isMdOrLess">
+                <template v-if="isLessThanMd">
                     <router-link 
                         class="app-dropdown-item w-100"
                         :to="{ name : translate(links.contact.route) }"
@@ -218,27 +211,34 @@ export default{
             showLangageMenu : false,
             showLinksList : false,
             putLangageMenu :false,
-            isMdOrLess:false,
+            isLessThanMd:false,
             lastHeaderHight : null
         }
     },
     computed:{
         slideDirection(){
             return this.selectedLangage == 'ma' ? 'left' : 'right';
+        },
+        logoSrc(){
+            if(this.darkMode){
+                return '../../../images/logo/logo_white_primary.png';
+            } else {
+                return '../../../images/logo/logo_black_primary.png';
+            }
         }
     },
     watch:{
         showServicesMenu(val){
             if(val){
                 this.putHeaderHeight(this.heightWithServiceLinks());
-                this.putLangageMenu = this.isMdOrLess;
+                this.putLangageMenu = this.isLessThanMd;
             }else{
                 this.putHeaderHeight(this.heightWithoutServiceLinks());
                 this.putLangageMenu = false;
             }
         },
         showLangageMenu(val){
-            if(this.isMdOrLess){
+            if(this.isLessThanMd){
                 if(val){
                     this.putHeaderHeight(this.heightWithServiceLinks());
                 } else {
@@ -260,7 +260,7 @@ export default{
         ]),
         closeServiceMenuWhenClickingOutside(){
             document.addEventListener('click',(event)=>{
-                if(!document.getElementById('services-link').contains(event.target) && (!this.isMdOrLess || !document.getElementById('selected-langage').contains(event.target)) ){
+                if(!document.getElementById('services-link').contains(event.target) && (!this.isLessThanMd || !document.getElementById('selected-langage').contains(event.target)) ){
                     this.showServicesMenu = false;
                 }
             });
@@ -314,7 +314,7 @@ export default{
             this.putHeaderHeight('0px');
         },
         manageHeaderInitialization(delay){
-            if(!this.isMdOrLess){
+            if(!this.isLessThanMd){
                 this.langageSliderInitialization(delay);
             }
             this.upperContainerSliderInitialization(delay);
@@ -329,12 +329,9 @@ export default{
                 this.putPaddingTop(this.heightWithoutServiceLinks());
             },delay)
         },
-        initializeIsMdOrLess(){
-            this.isMdOrLess = this.widthLessThan('lg');
-        },
-        determineIsMdOrLessWhenResizing(){
+        determineisLessThanMdWhenResizing(){
             window.addEventListener('resize',()=>{
-                this.initializeIsMdOrLess()
+                this.initializeisLessThanMd()
             });
         },
         closeMenuesWhenResizing(){
@@ -345,18 +342,16 @@ export default{
         },
         manageLangageMenuWhenResizing(){
             window.addEventListener('resize',()=>{
-                if(!this.isMdOrLess){
+                if(!this.isLessThanMd){
                     this.putPrimaryLinksPosition(this.positionWithoutOtherLangages());
                 }
             });
         }
     },
     mounted(){
-        this.initializeIsMdOrLess();
         this.manageServicesMenuClosing();
         this.initializePaddingTop(1000);
-        this.manageHeaderInitialization(1000);
-        this.determineIsMdOrLessWhenResizing();
+        this.manageHeaderInitialization(1200);
         this.closeMenuesWhenResizing();
         this.manageLangageMenuWhenResizing();
     }
@@ -387,23 +382,23 @@ export default{
     @extend .d-flex, .justify-content-around, .p-absolute;
 } 
 .links-item-active{
-    @extend .justify-content-center, .cursor-pointer, .px-3, .py-2, .border-dark-important-2, .mx-3;
+    @extend .justify-content-center, .cursor-pointer, .border-dark-important-2, .mx-3;
 }
 .links-item-active-dark-mode{
-    @extend .justify-content-center, .cursor-pointer, .px-3, .py-2, .border-white-important-2, .mx-3;
+    @extend .justify-content-center, .cursor-pointer, .border-white-important-2, .mx-3;
 }
 .links-item{
     transition : all 500ms;
-    width:140px;
-    @extend .d-flex, .align-items-center, .justify-content-center, .cursor-pointer, .border-transparent-2, .mx-3, .px-3, .py-2;
+    width:120px;
+    @extend .d-flex,.pt-1, .align-items-center, .justify-content-center, .cursor-pointer, .border-transparent-2, .mx-3;
     &:hover{
         @extend .border-dark-2, .shadow;
     }
 }
 .links-item-dark-mode{
     transition : all 500ms;
-    width:140px;
-    @extend .d-flex, .align-items-center, .justify-content-center, .cursor-pointer, .border-transparent-2, .mx-3, .px-3, .py-2;
+    width:120px;
+    @extend .d-flex,.pt-1, .align-items-center, .justify-content-center, .cursor-pointer, .border-transparent-2, .mx-3;
     &:hover{
         @extend .border-white-important-2, .shadow;
     }
@@ -423,6 +418,9 @@ export default{
     @extend .d-flex, .px-2, .mx-n2;
 }
 .collapse-icon-container{
-    @extend .cursor-pointer,.d-flex, .f-36, .mx-2,.p-3;
+    @extend .cursor-pointer,.d-flex, .f-36, .mx-2;
+}
+.image_logo{
+    width:118px;
 }
 </style>

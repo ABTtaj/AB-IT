@@ -1,193 +1,64 @@
 <template>
     <div class="agence-container">
-        <div class="row agence-inner-container">
-            <scroll-transition-manager 
-                class="col-md-6 text-center"
-                scroll-animation-class="slide"
-                direction="y"
-                appear-animation-class="zoomIn"
-                speed="slow"
-                id="mission-image" 
-            >
-                <img src="/images/general_images/mission.png" alt="" class="img-fluid drop-shadow mb-2">
-            </scroll-transition-manager>
-            <div class="col-md-6">
-                <scroll-transition-manager 
-                    class="row"
-                    scroll-animation-class="zoomIn"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="mission-title" 
-                >
-                    <div 
-                        class="col-12 title-container"
-                        :class="{
-                            'f-80 gabriola':!isArabic,
-                            'f-76 al-bayan':isArabic
-                        }"
-                    >
-                        {{'TITLE_HOME_AGENCE_MISSION' | translate }}
-                    </div>
-                </scroll-transition-manager>
-                <scroll-transition-manager 
-                    class="row"
-                    scroll-animation-class="zoomIn"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="mission-text" 
-                >
-                    <div 
-                        class="col-12 text-container"
-                        :class="{
-                            'f-22 gabriola':!isArabic,
-                            'f-20 al-bayan':isArabic
-                        }"
-                    >
-                        {{'TEXT_HOME_AGENCE_MISSION' | translate }}
-                    </div>
-                </scroll-transition-manager>
-            </div>
-        </div>
-        <div class="row agence-inner-container">
-            <scroll-transition-manager 
-                class="col-md-6 text-center" 
-                v-if="widthLessThanMd"
-                scroll-animation-class="slide"
-                direction="y"
-                appear-animation-class="zoomIn"
-                speed="slow"
-                id="vision-image" 
-            >
-                <img src="/images/general_images/vision.png" alt="" class="img-fluid drop-shadow mb-2">
-            </scroll-transition-manager>
-            <div class="col-md-6">
-                <scroll-transition-manager 
-                    class="row"
-                    scroll-animation-class="zoomIn"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="vision-title" 
-                >
-                    <div 
-                        class="col-12 title-container"
-                        :class="{
-                            'f-80 gabriola':!isArabic,
-                            'f-76 al-bayan':isArabic
-                        }"
-                    >
-                        {{'TITLE_HOME_AGENCE_VISION' | translate }}
-                    </div>
-                </scroll-transition-manager>
-                <scroll-transition-manager 
-                    class="row"
-                    scroll-animation-class="zoomIn"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="vision-text" 
-                >
-                    <div 
-                        class="col-12 text-container"
-                        :class="{
-                            'f-22 gabriola':!isArabic,
-                            'f-20 al-bayan':isArabic
-                        }"
-                    >
-                        {{'TEXT_HOME_AGENCE_VISION' | translate }}
-                    </div>
-                </scroll-transition-manager>
-            </div>
-            <scroll-transition-manager 
-                class="col-md-6 text-center" 
-                v-if="!widthLessThanMd"
-                scroll-animation-class="slide"
-                direction="y"
-                appear-animation-class="zoomIn"
-                speed="slow"
-                id="vision-image" 
-            >
-                <img src="/images/general_images/vision.png" alt="" class="img-fluid drop-shadow mb-2">
-            </scroll-transition-manager>
-        </div>
-        <div class="row agence-inner-container">
-            <scroll-transition-manager 
-                class="col-md-6 text-center" 
-                scroll-animation-class="slide"
-                direction="y"
-                appear-animation-class="zoomIn"
-                speed="slow"
-                id="promise-image" 
-            >
-                <img src="/images/general_images/promise.png" alt="" class="img-fluid drop-shadow mb-2">
-            </scroll-transition-manager>
-            <div class="col-md-6">
-                <scroll-transition-manager 
-                    scroll-animation-class="zoomIn"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="promise-title" 
-                    class="row"
-                >
-                    <div 
-                        class="col-12 title-container"
-                        :class="{
-                            'f-80 gabriola':!isArabic,
-                            'f-76 al-bayan':isArabic
-                        }"
-                    >
-                        {{'TITLE_HOME_AGENCE_PROMISE' | translate }}
-                    </div>
-                </scroll-transition-manager>
-                <scroll-transition-manager 
-                    scroll-animation-class="zoomIn"
-                    appear-animation-class="zoomIn"
-                    speed="slow"
-                    id="promise-text" 
-                    class="row"
-                >
-                    <div 
-                        class="col-12 text-container"
-                        :class="{
-                            'f-22 gabriola':!isArabic,
-                            'f-20 al-bayan':isArabic
-                        }"
-                    >
-                        {{'TEXT_HOME_AGENCE_PROMISE' | translate }}
-                    </div>
-                </scroll-transition-manager>
-            </div>
-        </div>
+        <quote 
+            v-for="(quote,index) in quotes" 
+            :key="quote.key" 
+            :data="quote" 
+            :index="index"
+        ></quote>
     </div>
 </template>
 
 <script>
+import Quote from './quote/Quote.vue';
 export default{
     data(){
         return {
-            widthLessThanMd:null
+            quotes:[
+                {
+                    key:"mission-quote",
+                    title:"TITLE_HOME_AGENCE_MISSION",
+                    text:"TEXT_HOME_AGENCE_MISSION",
+                    image:{
+                        src:"/images/general_images/mission.png",
+                        alt:"ALT_AGENCE_QUOTE_MISSION",
+                        direction:"left"
+                    }
+                },
+                {
+                    key:"vision-quote",
+                    title:"TITLE_HOME_AGENCE_VISION",
+                    text:"TEXT_HOME_AGENCE_VISION",
+                    image:{
+                        src:"/images/general_images/vision.png",
+                        alt:"ALT_AGENCE_QUOTE_VISION",
+                        direction:"right"
+                    }
+                },
+                {
+                    key:"promise-quote",
+                    title:"TITLE_HOME_AGENCE_PROMISE",
+                    text:"TEXT_HOME_AGENCE_PROMISE",
+                    image:{
+                        src:"/images/general_images/promise.png",
+                        alt:"ALT_AGENCE_QUOTE_PROMISE",
+                        direction:"left"
+                    }
+                }
+            ]
         }
     },
-    mounted(){
-        this.widthLessThanMd = this.widthLessThan('md');
-        window.addEventListener('resize',()=>{
-            this.widthLessThanMd = this.widthLessThan('md');
-        })
+    components:{
+        Quote
     }
 }
 </script>
 
 <style lang="scss" scoped>
+
 @import '../../../../sass/app'; 
 
 .agence-container{
-    @extend .body-bg, .inset-top-shadow-xxl, .inset-bottom-shadow-xxl, .pb-5;
-}
-.agence-inner-container{
-    @extend .align-items-center, .justify-content-around, .px-3, .pt-5, .pb-md-5;
-}
-.title-container{   
-    @extend .my-4, .text-center, .text-shadow, .text-uppercase;
-}
-.text-container{
-    @extend .text-center, .text-shadow-sm;
+    @extend .body-bg, .inset-y-shadow-xxl, .pb-5;
 }
 </style>

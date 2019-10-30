@@ -12,4 +12,7 @@ export default {
     'ALT_SERVICES_PRESENTATION_MARKETING_DIGITAL':'Site Web Image',
     'ALT_SERVICES_PRESENTATION_SEO':'Site Web Image',
     'ALT_SERVICES_PRESENTATION_TRAININGS':'Site Web Image',
+    'ALT_AGENCE_QUOTE_MISSION':'Site Web Image',
+    'ALT_AGENCE_QUOTE_VISION':'Site Web Image',
+    'ALT_AGENCE_QUOTE_PROMISE':'Site Web Image'
 }

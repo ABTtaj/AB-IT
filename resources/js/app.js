@@ -10,6 +10,7 @@ import translation from './translation/translation';
 import { mapGetters, mapActions } from 'vuex';
 import widthSizes from './helpers/widthSizes';
 import ScrollTransitionManager from './components/helpers/ScrollTransitionManager.vue';
+import inViewport from 'in-viewport';
 
 window.Vue = Vue;
 Vue.use(VueRouter);
@@ -77,6 +78,19 @@ Vue.mixin({
                 return 'xl'
             }
         },
+        isInViewportById(id){
+            let element = document.getElementById(id);
+            return inViewport(element);
+        },
+        isInViewportByElement(element){
+            return inViewport(element);
+        },
+        scrollToViewById(id){
+            let element = document.getElementById(id);
+            element.scrollIntoView({
+                behavior: "smooth"
+            });
+        },
         initializeWindowSize(){
             this.windowSize = this.getSize();
         },
@@ -95,6 +109,36 @@ Vue.mixin({
         makeHeaderWhite(){
             if(this.$route.name !== 'home' && this.$route.name !== ("contact-" + this.selectedLangage)){
                 this.switchDarkMode(false);
+            }
+        },
+        getAnimationDirection(direction){
+            if(direction === 'left'){
+                if(this.isArabic){
+                    return 'slideInRight';
+                } else {
+                    return 'slideInLeft';
+                }
+            } else {
+                if(this.isArabic){
+                    return 'slideInLeft';
+                } else {
+                    return 'slideInRight';
+                }
+            }
+        },
+        getAnimationDirectionByLangage( speed , out = false ){
+            if(out){
+                if(this.isArabic){
+                    return 'animated slideOutRight ' + (speed ? speed : '') ;
+                } else {
+                    return 'animated slideOutLeft ' + (speed ? speed : '') ;
+                }
+            } else {
+                if(this.isArabic){
+                    return 'animated slideInRight ' + (speed ? speed : '') ;
+                } else {
+                    return 'animated slideInLeft ' + (speed ? speed : '') ;
+                }
             }
         }
     },

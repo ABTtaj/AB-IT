@@ -1,7 +1,6 @@
 <template>
     <div 
-        :id="id" 
-        :ref="id" 
+        ref="primary-div" 
         class="animated" 
         :class="[show ? '' : 'opacity-0']"
     >
@@ -64,7 +63,7 @@ export default {
         },
         isAppearOrScrollAnimation(delay){
             setTimeout(()=>{
-                const element = this.$refs[this.id];
+                const element = this.$refs['primary-div'];
                 if(element){
                     this.show = inViewport(element);
                     if(!this.show){
@@ -76,7 +75,7 @@ export default {
         }
     },
     mounted(){
-            this.isAppearOrScrollAnimation(1000);
+        this.isAppearOrScrollAnimation(1000);
     }
 }
 </script>

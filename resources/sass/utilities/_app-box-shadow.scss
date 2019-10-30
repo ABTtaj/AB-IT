@@ -14,14 +14,19 @@
     box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.75) !important;
 }
 .inset-top-shadow-xxl{
-    -webkit-box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.75);
-    -moz-box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.75);
+    -webkit-box-shadow: inset 0px 20px 25px -25px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 20px 25px -25px rgba(0,0,0,0.75);
     box-shadow: inset 0px 20px 25px -25px rgba(0,0,0,0.75);
 }
 .inset-bottom-shadow-xxl{
-    -webkit-box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.75);
-    -moz-box-shadow: inset 0px 25px 25px -25px rgba(0,0,0,0.75);
+    -webkit-box-shadow: inset 0px 20px 25px -25px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 20px 25px -25px rgba(0,0,0,0.75);
     box-shadow: inset 0px -20px 25px -25px rgba(0,0,0,0.75);
+}
+.inset-y-shadow-xxl{
+    -webkit-box-shadow: inset 0px -20px 25px -25px rgba(0,0,0,0.75), inset 0px 20px 25px -25px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px -20px 25px -25px rgba(0,0,0,0.75), inset 0px 20px 25px -25px rgba(0,0,0,0.75);
+    box-shadow: inset 0px -20px 25px -25px rgba(0,0,0,0.75), inset 0px 20px 25px -25px rgba(0,0,0,0.75);
 }
 .drop-shadow{
     -webkit-filter: drop-shadow(5px 5px 5px rgba(0,0,0,.5));

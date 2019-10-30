@@ -1,27 +1,26 @@
 <template>
     <div class="col-12 upper-home-page">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-6">
                 <div class="row upper-logo-container">
                     <scroll-transition-manager 
                         class="col-12 logo-container"
                         scroll-animation-class="slid"
-                        direction="x"
+                        direction="y"
                         appear-animation-class="rollIn"
                         speed="slow"
-                        id="home-page-upper-block-logo" 
                     >
                         <img 
-                            src="../../../../images/logo/logo_black_version.png" 
+                            src="../../../../images/logo/logo_white_primary.png" 
                             :alt="translate('ALT_HEADER_LOGO')" 
                             class="img-fluid"
                         >
                     </scroll-transition-manager>
                     <scroll-transition-manager 
-                        scroll-animation-class="zoomIn"
+                        scroll-animation-class="slide"
+                        dicrection="y"
                         appear-animation-class="zoomIn"
                         speed="slow"
-                        id="home-page-upper-block-logo-text" 
                         class="col-lg-10 upper-text-container"
                         :class="{
                             'f-24 gabriola' : !isArabic,
@@ -34,14 +33,13 @@
                     </scroll-transition-manager>
                 </div>
             </div>
-            <div class="col-xl-5 col-lg-6 upper-form-container">
+            <div class="col-xl-5 col-lg-6 col-md-8 upper-form-container">
                 <scroll-transition-manager 
                     class="app-form-container"
                     scroll-animation-class="slide"
-                    direction="x"
-                    :appear-animation-class="isArabic ? 'slideInLeft' : 'slideInRight'"
+                    direction="y"
+                    appear-animation-class="zoomIn"
                     speed="slow"
-                    id="home-page-upper-block-contact" 
                 >
                     <transition-group 
                         tag="form" 
@@ -218,26 +216,30 @@ export default{
         deleteErrors(field){
             this.errorsCorrected[field]=true;
         },
+        submitSuccessFull(){
+            this.resetData();
+            this.sending = false;
+            this.flash('FLASH_CONTACT_SUBMIT_SUCCESS','success','bottom');
+            this.scrollTo("upper-header-container");
+        },
+        dataNotComplete(errors){
+            this.fillErrors(errors);
+            this.flash('FLASH_CONTACT_SUBMIT_FAIL','danger','bottom');
+            this.scrollTo("contact-form");
+        },
         submitMessage(){
             if(!this.sending){
                 this.sending = true;
                 axios.post('/api/messages',this.newMessage).then(response => {
-                    this.resetData();
-                    this.sending = false;
-                    this.flash('FLASH_CONTACT_SUBMIT_SUCCESS','success','bottom');
-                    this.scrollTo("upper-header-container");
+                    this.submitSuccessFull();
                 })
                 .catch((error)=>{
                     if(error.response.data.errors){
-                        this.fillErrors(error.response.data.errors);
-                        this.sending = false;
-                        this.flash('FLASH_CONTACT_SUBMIT_FAIL','danger','bottom');
-                        this.scrollTo("contact-form");
+                        this.dataNotComplete(error.response.data.errors);
                     } else {
                         this.flash('FLASH_CONTACT_UNKOWN_ERROR','danger','bottom');
-                        this.sending = false;
                     }
-
+                    this.sending = false;
                 })
             }
         },

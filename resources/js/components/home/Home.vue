@@ -44,15 +44,15 @@ export default{
                 this.initializeTheHeaderColor();
             }
         },
-        manageDarkModeOfTheHeader(){
+        manageDarkModeOfTheHeader(delay){
             setTimeout(()=>{
                 this.initializeTheHeaderColor();
-                window.addEventListener('scroll',this.initializeTheHeaderColor);
-            },500);
+                window.addEventListener('scroll',this.updateTheHeaderWhenScrolling);
+            },delay);
         }
     },
     mounted(){
-        this.manageDarkModeOfTheHeader();
+        this.manageDarkModeOfTheHeader(800);
     },
     components:{
         UpperBlock,

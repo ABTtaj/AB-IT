@@ -1,18 +1,27 @@
 <template>
     <div class="service-container">
-        <hr 
-            class="service-divider"  
-            v-if="index !== 0"
-        >
         <div class="row">
+            <scroll-transition-manager 
+                class="col-12" 
+                scroll-animation-class="slide"
+                direction="y"
+                appear-animation-class="zoomIn"
+                speed="slow"
+            >
+                <hr 
+                    class="service-divider"  
+                    :style="{
+                        opacity : index === 0 ? 0 : 1
+                    }"
+                >
+            </scroll-transition-manager>
             <scroll-transition-manager 
                 class="col-md-6 service-image-container" 
                 v-if="data.image.direction === 'left' && !isLessThanMd"
                 scroll-animation-class="slide"
                 :direction="isLessThanMd ? 'y' : 'x'"
-                :appear-animation-class="!isLessThanMd ? getAnimationDirection() : 'zoomIn'"
+                :appear-animation-class="!isLessThanMd ? getAnimationDirection(data.image.direction) : 'zoomIn'"
                 speed="slow"
-                :id="'service-image-left'+ '-' +data.key" 
             >
                 <img 
                     :src="data.image.src" 
@@ -31,7 +40,6 @@
                     direction="y"
                     appear-animation-class="zoomIn"
                     speed="slow"
-                    id="service-title" 
                 >
                     <div>
                         {{ data.title | translate }}
@@ -44,7 +52,6 @@
                     direction="y"
                     appear-animation-class="zoomIn"
                     speed="slow"
-                    :id="'service-image-center'+ '-' +data.key" 
                 >
                     <img 
                         :src="data.image.src" 
@@ -57,7 +64,6 @@
                     direction="y"
                     appear-animation-class="zoomIn"
                     speed="slow"
-                    id="service-text" 
                     class="service-text"
                     :class="{
                         'f-22 gabriola' : !isArabic,
@@ -73,7 +79,6 @@
                     direction="y"
                     appear-animation-class="zoomIn"
                     speed="slow"
-                    id="service-action" 
                 >
                     <router-link
                         :to="{ 
@@ -95,9 +100,8 @@
                 v-if="data.image.direction === 'right' && !isLessThanMd"
                 scroll-animation-class="slide"
                 :direction="isLessThanMd ? 'y' : 'x'"
-                :appear-animation-class="!isLessThanMd ? getAnimationDirection() : 'zoomIn'"
+                :appear-animation-class="!isLessThanMd ? getAnimationDirection(data.image.direction) : 'zoomIn'"
                 speed="slow"
-                :id="'service-image-right'+ '-' +data.key" 
             >
                 <img 
                     :src="data.image.src" 
@@ -113,24 +117,7 @@ export default {
     props:[
         'data',
         'index'
-    ],
-    methods:{
-        getAnimationDirection(){
-            if(this.data.image.direction === 'left'){
-                if(this.isArabic){
-                    return 'slideInRight';
-                } else {
-                    return 'slideInLeft';
-                }
-            } else {
-                if(this.isArabic){
-                    return 'slideInLeft';
-                } else {
-                    return 'slideInRight';
-                }
-            }
-        }
-    }
+    ]
 }
 </script>
 <style lang="scss" scoped>
@@ -138,7 +125,8 @@ export default {
 @import '../../../../../sass/app'; 
 
 .service-container{
-    @extend .mb-5;
+    @extend .mb-5, .d-flex, .flex-column, .justify-content-around, .align-items-center;
+    min-height:100vh;
 }
 .service-image-container{
     @extend .text-center, .d-flex, .flex-column, .justify-content-center, .align-items-center, .mb-md-0, .mb-5;
