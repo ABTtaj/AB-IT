@@ -3,81 +3,81 @@
         <template v-if="selectedLangage ==='fr'">
             <template v-if="input ==='name'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Nom</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Nom</span>
                 </span>
             </template>
             <template v-if="input ==='email'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Email</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Email</span>
                 </span>
             </template>
             <template v-if="input ==='phone'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Numéro de Téléphone</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Numéro de Téléphone</span>
                 </span>
             </template>
             <template v-if="input ==='object'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Objet</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Objet</span>
                 </span>
             </template>
             <template v-if="input ==='message'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Message</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Message</span>
                 </span>
             </template>
         </template>
         <template v-if="selectedLangage ==='en'">
             <template v-if="input ==='name'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Name</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Name</span>
                 </span>
             </template>
             <template v-if="input ==='email'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Email</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Email</span>
                 </span>
             </template>
             <template v-if="input ==='phone'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Phone Number</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Phone Number</span>
                 </span>
             </template>
             <template v-if="input ==='object'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Object</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Object</span>
                 </span>
             </template>
             <template v-if="input ==='message'">
                 <span class="global-style">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">Message</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">Message</span>
                 </span>
             </template>
         </template>
         <template v-if="selectedLangage ==='ma'">
             <template v-if="input ==='name'">
                 <span class="global-style-arabic">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">الإسم الكامل</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">الإسم الكامل</span>
                 </span>
             </template>
             <template v-if="input ==='email'">
                 <span class="global-style-arabic">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">البريد الإلكتروني</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">البريد الإلكتروني</span>
                 </span>
             </template>
             <template v-if="input ==='phone'">
                 <span class="global-style-arabic">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">رقم الهاتف</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">رقم الهاتف</span>
                 </span>
             </template>
             <template v-if="input ==='object'">
                 <span class="global-style-arabic">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">موضوع الرسالة</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">موضوع الرسالة</span>
                 </span>
             </template>
             <template v-if="input ==='message'">
                 <span class="global-style-arabic">
-                    <span :class="{'app-text-danger':isError,'app-text-dark':!isError}">الرسالة</span>
+                    <span :class="{'app-text-danger':isError,'app-text-black':!isError}">الرسالة</span>
                 </span>
             </template>
         </template>

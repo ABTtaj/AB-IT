@@ -24,6 +24,9 @@
         </div>
         <app-flash-message></app-flash-message>
         <app-social-media></app-social-media>
+        <app-md-social-media 
+            v-if="isLessThanMd"
+        ></app-md-social-media>
     </div>
 </template>
  
@@ -31,6 +34,7 @@
 import AppHeader from './components/general/Header.vue';
 import AppFlashMessage from './components/general/FlashMessage.vue';
 import AppSocialMedia from './components/general/SocialMedia.vue';
+import AppMdSocialMedia from './components/general/MdSocialMedia.vue';
 import { mapGetters } from 'vuex';
 export default{
     computed:{
@@ -41,7 +45,8 @@ export default{
     components:{
         AppHeader,
         AppFlashMessage,
-        AppSocialMedia
+        AppSocialMedia,
+        AppMdSocialMedia
     },
     watch: {
         dir(val) {

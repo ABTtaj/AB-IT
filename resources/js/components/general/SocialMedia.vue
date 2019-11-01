@@ -1,10 +1,7 @@
 <template>
     <dir 
         class="upper-social-media-container"
-        :class="{
-            'left-0-right-auto' : isArabic,
-            'right-0-left-auto' : !isArabic
-        }"
+        id="upper-social-media-container-id"
     >
         <div 
             class="social-media-container"
@@ -14,11 +11,12 @@
                 class="social-media-item"
                 :class="{
                     'body-bg': darkMode,
-                    'app-bg-dark': !darkMode,
+                    'app-bg-black': !darkMode,
                     'opacity-0':!showSociaMediaMenu,
                     'opacity-1':showSociaMediaMenu
                 }"
                 v-for="socialMedia in socialMedias"
+                v-if="getSocialMediaShowingCondition(socialMedia.key)"
                 :key="socialMedia.key + '-key'"
                 :id="socialMedia.key + '-id'"
                 @mouseleave="restartSocialMediaIconAnimation(socialMedia.key)"
@@ -33,7 +31,7 @@
                         class="social-media-icon animated" 
                         :class="{
                             'app-text-white': !darkMode,
-                            'app-text-dark': darkMode
+                            'app-text-black': darkMode
                         }"
                         :id="socialMedia.key + '-icon-id'"
                     >
@@ -48,7 +46,7 @@
                         class="social-media-link-content"  
                         :class="{
                             'app-text-white': !darkMode,
-                            'app-text-dark': darkMode
+                            'app-text-black': darkMode
                         }"
                         :id="socialMedia.key + '-link-content-id'"
                     >
@@ -72,7 +70,7 @@ export default{
                     link: ''
                 },
                 {
-                    key:'phone-media ',
+                    key:'phone-media',
                     icon:'fa fa-phone',
                     content: '+(212) 6 379 14 379',
                     link: ''
@@ -108,25 +106,34 @@ export default{
         }
     },
     computed:{
-        direction(){
+        containerDirection(){
             return this.isArabic ? 'left' : 'right';
         },
+        itemsDirection(){
+            return this.isArabic ? 'right' : 'left';
+        }
     },
     watch:{
         isArabic(val){
             this.socialMedias.forEach((socialMedia)=>{
-                let socialMediaItem = document.getElementById(socialMedia.key + '-id');
-                if(val){
-                    socialMediaItem.style.left = socialMediaItem.style.right;
-                    socialMediaItem.style.right = "auto";
-                }else{
-                    socialMediaItem.style.right = socialMediaItem.style.left;
-                    socialMediaItem.style.left = "auto";
+                if(this.getSocialMediaShowingCondition(socialMedia.key)){
+                    let socialMediaItem = document.getElementById(socialMedia.key + '-id');
+                    socialMediaItem.style[this.itemsDirection] = "0px";
+                    socialMediaItem.style[this.containerDirection] = "auto";
                 }
-            });
+            }); 
+            let socialMediaContainer = document.getElementById('upper-social-media-container-id');
+            socialMediaContainer.style[this.containerDirection] = '-' + (socialMediaContainer.offsetWidth - 40) + 'px';
+            socialMediaContainer.style[this.itemsDirection] = "auto";
         }
     },
     methods:{
+        getSocialMediaShowingCondition(key){
+            return (!this.isLessThanMd || key === "mail-media" || key === "phone-media") ;
+        },
+        getSocialMediaShowingConditionInverce(key){
+            return (key !== "mail-media" && key !== "phone-media") ;
+        },
         animateSocialMediaIcon(key){
             let icon = document.getElementById(key + '-icon-id');
             icon.classList.add(this.iconAnimation);
@@ -139,7 +146,8 @@ export default{
             if(key !== this.openedTicket){
                 this.closeSocialMediaTicket(this.openedTicket);
                 let socialMediaItem = document.getElementById(key + '-id');
-                socialMediaItem.style[this.direction] = '0px';
+                const socialMediaLink = document.getElementById(key + '-link-id');
+                socialMediaItem.style[this.itemsDirection] = '-' + socialMediaLink.offsetWidth + 'px';
                 this.openedTicket = key;
             }else{
                 this.closeSocialMediaTicket(key);
@@ -147,17 +155,24 @@ export default{
         },
         closeSocialMediaTicket(key){
             if(key){
-                const socialMediaLink = document.getElementById(key + '-link-id');
                 let socialMediaItem = document.getElementById(key + '-id');
-                socialMediaItem.style[this.direction] = '-' + socialMediaLink.offsetWidth + 'px';
+                socialMediaItem.style[this.itemsDirection] = '0px';
                 this.openedTicket = null;
             }
+        },
+        initializeSocialMediaContainerPosition(delay){
+            setTimeout(()=>{
+                let socialMediaContainer = document.getElementById('upper-social-media-container-id');
+                socialMediaContainer.style[this.containerDirection] = '-' + (socialMediaContainer.offsetWidth - 40) + 'px';
+            },delay);
         },
         initializeSocialMediaTicketsPosition(delay){
             setTimeout(()=>{
                 this.socialMedias.forEach((socialMedia)=>{
-                    this.closeSocialMediaTicket(socialMedia.key);
-                    this.showSociaMediaMenu = true;
+                    if(this.getSocialMediaShowingCondition(socialMedia.key)){
+                        this.closeSocialMediaTicket(socialMedia.key);
+                        this.showSociaMediaMenu = true;
+                    }
                 });
             },delay);
         },
@@ -173,7 +188,8 @@ export default{
         }
     },
     mounted(){
-        this.initializeSocialMediaTicketsPosition(2000);
+        this.initializeSocialMediaContainerPosition(1000);
+        this.initializeSocialMediaTicketsPosition(1000);
         this.closeTicketWhenClickingAway();
     }
 }
@@ -184,7 +200,7 @@ export default{
 @import '../../../sass/app';
 
 .upper-social-media-container{
-    @extend .h-100, .d-flex, .justify-content-center, .align-items-center;
+    @extend .h-100, .d-flex, .justify-content-center, .align-items-center, .p-0;
     position:fixed;
     top:0;
 }

@@ -140,6 +140,21 @@ Vue.mixin({
                     return 'animated slideInLeft ' + (speed ? speed : '') ;
                 }
             }
+        },
+        getAnimationDirectionByLangageInverce( speed , out = false ){
+            if(out){
+                if(this.isArabic){
+                    return 'animated slideOutLeft ' + (speed ? speed : '') ;
+                } else {
+                    return 'animated slideOutRight ' + (speed ? speed : '') ;
+                }
+            } else {
+                if(this.isArabic){
+                    return 'animated slideInLeft ' + (speed ? speed : '') ;
+                } else {
+                    return 'animated slideInRight ' + (speed ? speed : '') ;
+                }
+            }
         }
     },
     created() {

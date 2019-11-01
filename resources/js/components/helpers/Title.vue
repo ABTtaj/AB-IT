@@ -3,126 +3,126 @@
         <template v-if="selectedLangage ==='fr'">
             <template v-if="category ==='agence'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Qui <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Sommes-</span>Nous <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">?</span></span>
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Qui <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Sommes-</span>Nous <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">?</span></span>
                 </span>
             </template>
             <template v-if="category ==='services'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Nos </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Services</span>
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Nos </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Services</span>
                 </span>
             </template>
             <template v-if="category ==='website'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Création de </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Site </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Web</span>
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Création de </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Site </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Web</span>
                 </span>
             </template>
             <template v-if="category ==='e-commerce'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Solutions </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">E-Commerce</span>            
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Solutions </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">E-Commerce</span>            
                 </span>
             </template>
             <template v-if="category ==='marketing-digital'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Marketing </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Digital</span>            
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Marketing </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Digital</span>            
                 </span>
             </template>
             <template v-if="category ==='seo'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Référencement </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Naturel</span>            
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Référencement </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Naturel</span>            
                 </span>
             </template>
             <template v-if="category ==='trainings'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Formations & </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Conseils</span>            
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Formations & </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Conseils</span>            
                 </span>
             </template>
             <template v-if="category ==='contact'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Contactez-</span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Nous</span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}"> !</span>
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Contactez-</span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Nous</span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}"> !</span>
                 </span>
             </template>
         </template>
         <template v-if="selectedLangage ==='en'">
             <template v-if="category ==='agence'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">The </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Agency</span>
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">The </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Agency</span>
                 </span>
             </template>
             <template v-if="category ==='services'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Our </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Services</span>
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Our </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Services</span>
                 </span>
             </template>
             <template v-if="category ==='website'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Web </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Development</span>
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Web </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Development</span>
                 </span>
             </template>
             <template v-if="category ==='e-commerce'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">E-Commerce </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Solutions</span>        
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">E-Commerce </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Solutions</span>        
                 </span>
             </template>
             <template v-if="category ==='marketing-digital'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Digital </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Marketing</span>            
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Digital </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Marketing</span>            
                 </span>
             </template>
             <template v-if="category ==='seo'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Search </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Engine</span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}"> Optimization</span>           
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Search </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Engine</span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}"> Optimization</span>           
                 </span>
             </template>
             <template v-if="category ==='trainings'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">Trainings & </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Advices</span>            
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">Trainings & </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Advices</span>            
                 </span>
             </template>
             <template v-if="category ==='contact'">
                 <span class="global-style font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">Contact</span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}"> Us</span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}"> !</span>
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">Contact</span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}"> Us</span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}"> !</span>
                 </span>
             </template>
         </template>
         <template v-if="selectedLangage ==='ma'">
             <template v-if="category ==='agence'">
                 <span class="global-style-arabic font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">شكون </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">حنا </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">؟</span>
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">شكون </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">حنا </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">؟</span>
                 </span>
             </template>
             <template v-if="category ==='services'">
                 <span class="global-style-arabic font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">خـدمــا</span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">تـنــا</span>
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">خـدمــا</span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">تـنــا</span>
                 </span>
             </template>
             <template v-if="category ==='website'">
                 <span class="global-style-arabic font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">تطوير مواقع</span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}"> الإنترنت</span>
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">تطوير مواقع</span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}"> الإنترنت</span>
                 </span>
             </template>
             <template v-if="category ==='e-commerce'">
                 <span class="global-style-arabic font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">حلولنا للـ </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}" class="global-style">E-Commerce</span>      
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">حلولنا للـ </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}" class="global-style">E-Commerce</span>      
                 </span>
             </template>
             <template v-if="category ==='marketing-digital'">
                 <span class="global-style-arabic font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">التسويق </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">الرقمي</span>            
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">التسويق </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">الرقمي</span>            
                 </span>
             </template>
             <template v-if="category ==='seo'">
                 <span class="global-style-arabic font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">تحسين </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">محركات </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">البحث</span>           
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">تحسين </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">محركات </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">البحث</span>           
                 </span>
             </template>
             <template v-if="category ==='trainings'">
                 <span class="global-style-arabic font-size-titles">
-                    <span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">دورات تعليمية </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">و نصائح</span>            
+                    <span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">دورات تعليمية </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">و نصائح</span>            
                 </span>
             </template>
             <template v-if="category ==='contact'">
                 <span class="global-style-arabic font-size-titles">
-                    <span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">اتّصلوا </span><span :class="{'text-danger':!isInverse,'app-text-dark':isInverse}">بنا </span><span :class="{'text-danger':isInverse,'app-text-dark':!isInverse}">!</span>
+                    <span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">اتّصلوا </span><span :class="{'text-danger':!isInverse,'app-text-black':isInverse}">بنا </span><span :class="{'text-danger':isInverse,'app-text-black':!isInverse}">!</span>
                 </span>
             </template>
         </template>
