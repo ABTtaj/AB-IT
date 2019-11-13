@@ -16,7 +16,6 @@
                     'opacity-1':showSociaMediaMenu
                 }"
                 v-for="socialMedia in socialMedias"
-                v-if="getSocialMediaShowingCondition(socialMedia.key)"
                 :key="socialMedia.key + '-key'"
                 :id="socialMedia.key + '-id'"
                 @mouseleave="restartSocialMediaIconAnimation(socialMedia.key)"
@@ -50,7 +49,13 @@
                         }"
                         :id="socialMedia.key + '-link-content-id'"
                     >
-                        <bdi>{{socialMedia.content}}</bdi>
+                        <bdi>
+                            <a 
+                                :href="socialMedia.link" 
+                                class="social-media-link-style"
+                                target="_blank"
+                            >{{socialMedia.content}}</a>
+                        </bdi>
                     </div>
                 </div>
             </div>
@@ -67,37 +72,37 @@ export default{
                     key:'mail-media',
                     icon:'fa fa-envelope',
                     content: 'contact@ab-it.ma',
-                    link: ''
+                    link: 'mailto:contact@ab-it.ma'
                 },
                 {
                     key:'phone-media',
                     icon:'fa fa-phone',
                     content: '+(212) 6 379 14 379',
-                    link: ''
+                    link: 'tel:+212637914379'
                 },
                 {
                     key:'facebook-media',
                     icon:'fa fa-facebook',
                     content: 'Facebook AB.IT',
-                    link: ''
+                    link: 'https://www.facebook.com/ABIT-108523727273458'
                 },
                 {
                     key:'twitter-media',
                     icon:'fa fa-twitter',
                     content: 'Twitter AB.IT',
-                    link: ''
+                    link: 'https://twitter.com/ABIT03888925'
                 },
                 {
                     key:'skype-media',
                     icon:'fa fa-skype',
                     content: 'Skype AB.IT',
-                    link: ''
+                    link: 'skype:live:.cid.9911e619c83ddaa7?chat'
                 },
                 {
                     key:'linked-in-media',
                     icon:'fa fa-linkedin',
                     content: 'LinkedIn AB.IT',
-                    link: ''
+                    link: 'https://www.linkedin.com/company/ab-it-maroc'
                 },
             ],
             openedTicket : null,
@@ -116,11 +121,9 @@ export default{
     watch:{
         isArabic(val){
             this.socialMedias.forEach((socialMedia)=>{
-                if(this.getSocialMediaShowingCondition(socialMedia.key)){
-                    let socialMediaItem = document.getElementById(socialMedia.key + '-id');
-                    socialMediaItem.style[this.itemsDirection] = "0px";
-                    socialMediaItem.style[this.containerDirection] = "auto";
-                }
+                let socialMediaItem = document.getElementById(socialMedia.key + '-id');
+                socialMediaItem.style[this.itemsDirection] = "0px";
+                socialMediaItem.style[this.containerDirection] = "auto";
             }); 
             let socialMediaContainer = document.getElementById('upper-social-media-container-id');
             socialMediaContainer.style[this.containerDirection] = '-' + (socialMediaContainer.offsetWidth - 40) + 'px';
@@ -128,12 +131,6 @@ export default{
         }
     },
     methods:{
-        getSocialMediaShowingCondition(key){
-            return (!this.isLessThanMd || key === "mail-media" || key === "phone-media") ;
-        },
-        getSocialMediaShowingConditionInverce(key){
-            return (key !== "mail-media" && key !== "phone-media") ;
-        },
         animateSocialMediaIcon(key){
             let icon = document.getElementById(key + '-icon-id');
             icon.classList.add(this.iconAnimation);
@@ -169,10 +166,8 @@ export default{
         initializeSocialMediaTicketsPosition(delay){
             setTimeout(()=>{
                 this.socialMedias.forEach((socialMedia)=>{
-                    if(this.getSocialMediaShowingCondition(socialMedia.key)){
-                        this.closeSocialMediaTicket(socialMedia.key);
-                        this.showSociaMediaMenu = true;
-                    }
+                    this.closeSocialMediaTicket(socialMedia.key);
+                    this.showSociaMediaMenu = true;
                 });
             },delay);
         },
@@ -221,7 +216,7 @@ export default{
     min-height : 40px;
 }
 .social-media-link{
-    @extend .d-flex, .align-items-center, .justify-content-center, .px-3,  .gabriola, .f-22, .w-100;
+    @extend .d-flex, .align-items-center, .justify-content-center, .px-3,  .gabriola, .f-24, .w-100;
 }
 .social-media-icon{
     transition: all 500ms ease-out;
@@ -240,5 +235,14 @@ export default{
 .right-0-left-auto{
     right : 0 !important;
     left : auto !important;
+}
+.social-media-link-style{
+    transition: 500ms all ease-out;
+    color:inherit;
+    text-decoration: none;
+    &:hover{
+        @extend .app-text-danger;
+        text-decoration: none;
+    }   
 }
 </style>

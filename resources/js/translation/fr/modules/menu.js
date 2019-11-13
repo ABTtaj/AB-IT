@@ -1,11 +1,9 @@
 export default {
-    'MENU_AGENCE':'Notre Agence',
     'MENU_SERVICES':'Nos Services',
     'MENU_CONTACT':'Contact',
-    'MENU_WEBSITE':'Création de Site Web',
-    'MENU_E_COMMERCE':'Solutions E-Commerce',
+    'MENU_WEBSITE':'Développement Web',
+    'MENU_E_COMMERCE':'Création de Sites Web E-Commerce',
     'MENU_MARKETING_DIGITAL':'Marketing Digital',
-    'MENU_SEO':'Référencement Naturel',
-    'MENU_SEO_LONG':'Référencement Naturel',
-    'MENU_TRAININGS':'Formations & Conseils'
+    'MENU_SEO':'Référencement et Visibilité',
+    'MENU_SEO_LONG':'Référencement et Visibilité',
 }

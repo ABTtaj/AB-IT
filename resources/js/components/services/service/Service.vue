@@ -1,158 +1,197 @@
 <template>
-    <inset-rectangle-background 
-        class="py-3 my-5"
-        background="danger" 
-        :id="data.id"
-    >   
-        <div 
-            class="row h-100" 
-            v-if="widthGreater"
-        >
-            <div 
-                class="col-5 d-flex justify-content-center align-items-center"
+    <div class="row service-container">
+        <div class="col-12 service-inner-container">
+            <div class="row"
+                :style="{
+                    'background-image' : 'url(' + backgroundImage + ')',
+                    'background-size' : 'cover',
+                    'background-position' : 'center'
+                }"
             >
-                <transition 
-                    :enter-active-class="isArabic ? 'animated slideInRight slow' : 'animated slideInLeft slow'" 
-                    appear
+                <div 
+                    class="col-12 service-title-container"
+                    id="service-title-container"
                 >
-                    <div 
-                        class="text-center"
-                        v-if="data.show"
+                    <scroll-transition-manager 
+                        class="service-title"
+                        scroll-animation-class="slide"
+                        direction="y"
+                        appear-animation-class="zoomIn"
+                        speed="slow"
                     >
-                        <img 
-                            :src="data.image.url" 
-                            :alt="translate(data.image.alt)" 
-                            class="img-fluid"
-                        >
-                    </div>
-                </transition>
-            </div>
-            <div 
-                class="text-center app-text-white d-flex col-7 justify-content-center"
-            >
-                <div class="align-items-center flex-column h-100 justify-content-center row">
-                    <transition enter-active-class="animated zoomIn slow" appear>
-                        <div 
-                            class=" text-shadow-xl"
+                        <h1
                             :class="{
-                                'd-flex justify-content-center font-size-services-hor-ar al-bayan': isArabic,
-                                'font-size-services-hor gabriola': !isArabic
-                            }" 
-                            v-if="data.show"
-                            v-html="translate(data.title)"
-                        ></div>
-                    </transition>
-                    <transition enter-active-class="animated zoomIn slow" appear>
-                        <div 
-                            class="text-shadow-xl mt-3 mb-2"
-                            :class="{
-                                'raleway font-size-services-quote-hor':!isArabic,
-                                'al-bayan font-size-services-quote-hor-ar':isArabic
+                                'f-80 gabriola' : !isArabic,
+                                'f-76 al-bayan' : isArabic
                             }"
-                            v-if="data.show"
-                            v-html="translate(data.quote)"
-                        ></div>
-                    </transition>
-                    <transition enter-active-class="animated zoomIn slow" appear>
-                        <router-link 
-                            tag="div" 
-                            :to="{ name: translate(data.route) }" 
-                            class="text-shadow-xl custom-white-button-style font-size-services-button mt-xl-3" 
-                            :class="{
-                                'gabriola':!isArabic,
-                                'al-bayan':isArabic
-                            }"
-                            v-if="data.show"
                         >
-                            {{data.action | translate}}
-                        </router-link>
-                    </transition>
+                            {{ 'TITLE_' + text | translate }}
+                        </h1>
+                    </scroll-transition-manager>
+                    <scroll-transition-manager 
+                        class="service-sub-title"
+                        :class="{
+                            'f-24 gabriola' : !isArabic,
+                            'f-22 al-bayan' : isArabic
+                        }"
+                        scroll-animation-class="slide"
+                        direction="y"
+                        appear-animation-class="zoomIn"
+                        speed="slow"
+                    >
+                        <div>
+                        {{ 'TEXT_SERVICE_' + text | translate }}
+                        </div>
+                    </scroll-transition-manager>
                 </div>
             </div>
-        </div>
-        <div 
-            class="align-items-center flex-column h-100 justify-content-around px-3 row text-center app-text-white" 
-            v-if="!widthGreater"
-        >
-            <transition enter-active-class="animated zoomIn slow" appear>
-                <div 
-                    class="text-shadow-xl"
-                    :class="{
-                        'gabriola font-size-services-ver':!isArabic,
-                        'al-bayan font-size-services-ver-ar':isArabic
-                    }" 
-                    v-if="data.show"
-                    v-html="translate(data.title)"
-                ></div>
-            </transition>
-            <transition enter-active-class="animated zoomIn slow" appear>
-                <div 
-                    v-if="data.show"
+            <div class="row service-descriptions-container">
+                <service-description
+                    v-for="serviceDescription in data"
+                    :key="serviceDescription.key"
+                    :data="serviceDescription"
+                ></service-description>
+            </div>
+            <div    
+                class="row service-contact-us-container"
+                id="service-contact-us"
+            >
+                <scroll-transition-manager 
+                    class="service-contact-us-title"
+                    scroll-animation-class="slide"
+                    direction="y"
+                    appear-animation-class="zoomIn"
+                    speed="slow"
                 >
-                    <img 
-                        :src="data.image.url" 
-                        :alt="translate(data.image.alt)" 
-                        class="img-fluid"
+                    <h2
+                        :class="{
+                            'f-60 gabriola' : !isArabic,
+                            'f-56 al-bayan' : isArabic
+                        }"
                     >
-                </div>
-            </transition>
-            <transition enter-active-class="animated zoomIn slow" appear>
-                <div 
-                    class="my-2 text-shadow-xl" 
+                        {{'TITLE_HOME_PAGE_CONTACT' | translate}}
+                    </h2>
+                </scroll-transition-manager>
+                <scroll-transition-manager 
+                    class="service-contact-us-text"
                     :class="{
-                        'raleway font-size-services-quote-ver':!isArabic,
-                        'al-bayan font-size-services-quote-ver-ar':isArabic
-                    }" 
-                    v-if="data.show"
-                    v-html="translate(data.quote)"
-                ></div>
-            </transition>
-            <transition enter-active-class="animated slideInUp slow" appear>
-                <router-link 
-                    tag="div" 
-                    :to="{ name: translate(data.route) }" 
-                    class="text-shadow-xl custom-white-button-style font-size-services-button my-xl-3" 
-                    :class="{
-                        'raleway':!isArabic,
-                        'al-bayan':isArabic
+                        'f-24 gabriola' : !isArabic,
+                        'f-22 al-bayan' : isArabic
                     }"
-                    v-if="data.show"
+                    scroll-animation-class="slide"
+                    direction="y"
+                    appear-animation-class="zoomIn"
+                    speed="slow"
                 >
-                    {{data.action | translate}}
-                </router-link>
-            </transition>
+                    <div>
+                        {{ 'TEXT_SERVICE_CONTACT_US_TEXT' |translate}}
+                    </div>
+                </scroll-transition-manager>
+                <scroll-transition-manager 
+                    class="service-contact-us-action"
+                    :class="{
+                        'f-24 gabriola' : !isArabic,
+                        'f-22 al-bayan' : isArabic
+                    }"
+                    scroll-animation-class="slide"
+                    direction="y"
+                    appear-animation-class="zoomIn"
+                    speed="slow"
+                >
+                    <router-link 
+                        class="service-contact-us-button"
+                        :to="{ name : translate('ROUTE_CONTACT')}"
+                        tag="div"
+                    >
+                        <div>
+                            {{ 'TITLE_HOME_PAGE_CONTACT' | translate }}
+                        </div>
+                    </router-link>
+                </scroll-transition-manager>
+            </div>
         </div>
-    </inset-rectangle-background>
+    </div>
 </template>
 <script>
-import InsetRectangleBackground from '../../helpers/InsetRectangleBackground.vue';
+import ServiceDescription from '../service-description/ServiceDescription.vue';
 export default {
     props:[
-        'data'
+        'backgroundImage',
+        'data',
+        'service',
+        'text'
     ],
-    data(){
-        return {
-            widthGreater:false
-        }
-    },
     methods:{
-        getWidthGreater(){
-            this.widthGreater = window.innerWidth > window.innerHeight ? true : false;
-            window.addEventListener('resize',()=>{
-                this.widthGreater = window.innerWidth > window.innerHeight ? true : false;
-            });
+        initializeTheHeaderColor(){
+            const serviceUpperBlock = document.getElementById('service-title-container');
+            const contactUs = document.getElementById('service-contact-us');
+            const header = document.getElementById('upper-header-container');
+            if(window.scrollY <= serviceUpperBlock.offsetHeight || (contactUs.getBoundingClientRect().top - header.offsetHeight) < 0){
+                this.switchDarkMode(true);
+            } else {
+                this.switchDarkMode(false);
+            }
+        },
+        updateTheHeaderWhenScrolling(){
+            if(this.$route.name === this.service + "-" + this.selectedLangage ){
+                this.initializeTheHeaderColor();
+            }
+        },
+        manageDarkModeOfTheHeader(delay){
+            setTimeout(()=>{
+                this.initializeTheHeaderColor();
+                window.addEventListener('scroll',this.updateTheHeaderWhenScrolling);
+            },delay);
         }
-    },
-    components:{
-        InsetRectangleBackground
     },
     mounted(){
-        this.getWidthGreater();
+        this.manageDarkModeOfTheHeader(800);
+    },
+    components:{
+        ServiceDescription
     }
 }
 </script>
-<style scoped>
-.img-vertical{
-    margin-top : -5%;
+<style lang="scss" scoped>
+
+@import '../../../../sass/app';
+
+.service-container{
+    @extend .app-bg-black, .pb-5;
+}
+.service-title-container{
+    @extend .app-text-white, .d-flex, .flex-column, .align-content-center, .justify-content-center, .shadow-xxl, .py-5, .px-3, .px-md-5;
+    background-color:rgba(0,0,0,.9);
+    min-height:100vh;
+}
+.service-title{
+    @extend .text-center, .mb-3, .mb-md-5, .text-uppercase, .text-break;
+}
+.service-sub-title{
+    @extend .text-center;
+}
+.service-descriptions-container{
+    @extend .body-bg, .inset-y-shadow-xxl, .py-5;
+}
+.service-contact-us-container{
+    @extend .flex-column, .app-text-white, .text-center, .justify-content-center, .align-items-center, .px-4;
+}
+.service-contact-us-title{
+    @extend .mt-5, .text-uppercase;
+}
+.service-contact-us-text{
+    @extend .my-5;
+}
+.service-contact-us-action{
+    @extend .border-white-2, .w-95, .d-flex, .justify-content-center, .align-items-center, .mt-4, .mb-md-4, .mb-5;
+    cursor:pointer;
+    transition : all 500ms ease-out;
+    height:57px;
+    &:hover{
+        @extend .app-bg-danger, .w-100;
+    }
+}
+.service-contact-us-button{
+        @extend .w-100, .h-100, .d-flex, .align-items-center, .justify-content-center;
 }
 </style>

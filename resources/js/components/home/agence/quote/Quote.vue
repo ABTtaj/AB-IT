@@ -30,7 +30,7 @@
                 appear-animation-class="zoomIn"
                 speed="slow"
             >
-                <div 
+                <h2 
                     class="col-12 title-container"
                     :class="{
                         'f-80 gabriola':!isArabic,
@@ -38,7 +38,7 @@
                     }"
                 >
                     {{ data.title | translate }}
-                </div>
+                </h2>
             </scroll-transition-manager>
             <scroll-transition-manager 
                 class="col-md-6 image-container"
@@ -60,8 +60,8 @@
                 <div 
                     class="col-12 text-container"
                     :class="{
-                        'f-22 gabriola':!isArabic,
-                        'f-20 al-bayan':isArabic
+                        'f-24 gabriola':!isArabic,
+                        'f-22 al-bayan':isArabic
                     }"
                 >
                     {{ data.text | translate }}
@@ -99,7 +99,7 @@ export default {
     @extend  .text-center, .mb-md-0, .mb-5;
 }
 .title-container{   
-    @extend .my-4, .text-center, .text-shadow, .text-uppercase;
+    @extend .my-4, .text-center, .text-shadow, .text-uppercase, .text-break;
 }
 .text-container{
     @extend .text-center, .text-shadow-sm;

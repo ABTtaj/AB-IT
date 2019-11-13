@@ -7,7 +7,7 @@
         <div 
             class="flash-message"
             :class="{
-                'al-bayan f-20':isArabic,
+                'al-bayan f-22':isArabic,
                 'gabriola f-24':!isArabic,
                 'bg-white': flashContent.type === 'white',
                 'app-bg-black': flashContent.type === 'dark',

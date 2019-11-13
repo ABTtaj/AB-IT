@@ -21,7 +21,13 @@
                 }"
                 :id="socialMedia.key + '-md-icon-id'"
             >
-                <i :class="socialMedia.icon"></i>
+                <a 
+                    class="social-media-link-style"
+                    :href="socialMedia.link"
+                    target="_blank"
+                >
+                    <i :class="socialMedia.icon"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -32,28 +38,35 @@ export default {
         return {
             socialMedias : [
                 {
+                    key:'mail-media',
+                    icon:'fa fa-envelope',
+                    link: 'mailto:contact@ab-it.ma'
+                },
+                {
+                    key:'phone-media',
+                    icon:'fa fa-phone',
+                    link: 'tel:+212637914379'
+                },
+                {
                     key:'facebook-media',
                     icon:'fa fa-facebook',
-                    content: 'Facebook AB.IT',
-                    link: ''
+                    link: 'fb://facewebmodal/f?href=https://www.facebook.com/ABIT-108523727273458'
                 },
                 {
                     key:'twitter-media',
                     icon:'fa fa-twitter',
-                    content: 'Twitter AB.IT',
-                    link: ''
+                    link: 'twitter://user?id=ABIT03888925'
                 },
                 {
                     key:'skype-media',
                     icon:'fa fa-skype',
                     content: 'Skype AB.IT',
-                    link: ''
+                    link: 'skype:live:.cid.9911e619c83ddaa7?username'
                 },
                 {
                     key:'linked-in-media',
                     icon:'fa fa-linkedin',
-                    content: 'LinkedIn AB.IT',
-                    link: ''
+                    link: 'https://www.linkedin.com/company/ab-it-maroc'
                 },
             ],
             iconAnimation : 'wobble'
@@ -82,7 +95,7 @@ export default {
 @import '../../../sass/app';
 
 .upper-social-media-md-container{
-    @extend .d-flex, .align-items-center, .justify-content-around, .w-100, .shadow-xxl;
+    @extend .d-flex, .align-items-center, .justify-content-around, .w-100, .shadow-xxl, .py-1;
     position:fixed;
     bottom:0;
 
@@ -96,5 +109,13 @@ export default {
 .social-media-md-icon{
     @extend .f-20;
 }
-
+.social-media-link-style{
+    transition: 500ms all ease-out;
+    color:inherit;
+    text-decoration: none;
+    &:hover{
+        color:inherit;
+        text-decoration: none;
+    }   
+}
 </style>

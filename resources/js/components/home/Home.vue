@@ -21,14 +21,17 @@ import UpperBlock from './upper-block/UpperBlock.vue';
 import Agence from './agence/Agence.vue'; 
 import Services from './services/Services.vue'; 
 export default{
-    data(){
+    metaInfo(){
         return {
+            titleTemplate: '%s | ' + this.translate('META_TITLE_HOME_PAGE'),
+            meta: [{
+                vmid: 'description',
+                name: 'description',
+                content: this.translate('META_DESCRIPTION_HOME_PAGE'),
+            }]
         }
     },
     methods:{
-        ...mapActions([
-            'switchDarkMode'
-        ]),
         initializeTheHeaderColor(){
             const upperHomePage = document.getElementById('upper-home-page');
             const services = document.getElementById('services-presentation');
@@ -61,6 +64,3 @@ export default{
     }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

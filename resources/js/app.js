@@ -1,21 +1,24 @@
 import './bootstrap';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Vuex from 'vuex';
 import VueAnimateOnScroll from 'vue-animate-onscroll';
 import App from './App.vue';
-import { routes } from './routes/routes.js';
-import storeData from './store/store';
+import { router } from './router/router.js';
+import {store} from './store/store';
 import translation from './translation/translation';
 import { mapGetters, mapActions } from 'vuex';
 import widthSizes from './helpers/widthSizes';
 import ScrollTransitionManager from './components/helpers/ScrollTransitionManager.vue';
 import inViewport from 'in-viewport';
+import VueMeta from 'vue-meta';
 
 window.Vue = Vue;
+
+Vue.use(VueMeta, {
+  refreshOnceOnNavigation: true
+})
 Vue.use(VueRouter);
 Vue.use(VueAnimateOnScroll);
-Vue.use(Vuex);
 
 // Mixins 
 
@@ -33,7 +36,7 @@ Vue.mixin({
             'darkMode'
         ]),
         isArabic(){
-            return this.selectedLangage === 'ma' ? true : false;
+            return this.selectedLangage === 'ar' ? true : false;
         }
     },
     methods:{
@@ -49,7 +52,7 @@ Vue.mixin({
             });
         },
         translate(param){
-            const langage = storeData.state.langage;
+            const langage = store.getters.selectedLangage;
             return translation[langage][param];
         },
         widthIsOrMoreThan(widthSize){
@@ -106,11 +109,6 @@ Vue.mixin({
             this.determineIsLessThanMd();
             this.determineIsLessThanMdWhenResizing();
         },
-        makeHeaderWhite(){
-            if(this.$route.name !== 'home' && this.$route.name !== ("contact-" + this.selectedLangage)){
-                this.switchDarkMode(false);
-            }
-        },
         getAnimationDirection(direction){
             if(direction === 'left'){
                 if(this.isArabic){
@@ -161,27 +159,16 @@ Vue.mixin({
         this.initializeWindowSize();
     },
     mounted(){
-        this.makeHeaderWhite();
         this.manageImagesPositionWithWidthResizing();
     }
 });
 
 Vue.filter('translate',(value) => {
-    const langage = storeData.state.langage;
+    const langage = store.getters.selectedLangage;
     return translation[langage][value];
 })
 
 Vue.component('ScrollTransitionManager',ScrollTransitionManager);
-
-const store = new Vuex.Store(storeData);
-
-const router = new VueRouter({
-    mode:'history',
-    routes,
-    scrollBehavior (to, from, savedPosition) {
-        return { x: 0, y: 0 }
-    }
-})
 
 const app = new Vue({
     el: '#app',
@@ -189,4 +176,4 @@ const app = new Vue({
     router,
     render: h => h(App)
 });
-window.app = app;
+

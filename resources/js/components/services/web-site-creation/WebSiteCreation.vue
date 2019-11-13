@@ -1,229 +1,62 @@
 <template>
-    <div class="row justify-content-center ">
-        <div class="col-12 text-center">
-            <app-title category="website"></app-title>
-        </div>
-        <div class="col-md-4 h-fit-content">
-            <inset-rectangle-background 
-                background="danger" 
-                class="h-100 mt-5"
-            >
-                <div class="row justify-content-around align-items-center p-md-5 py-4 px-2">
-                    <div class="col-lg-5 col-xl-6">
-                        <scroll-transition-manager 
-                            :show="transitions['first-image']" 
-                            animation-class="animated fadeInUp slow"
-                        >
-                            <img 
-                                src="../../../../images/general_images/website.png" 
-                                :alt="translate('ALT_WEBSITE_PRIMARY')" 
-                                class="img-fluid"
-                                id="first-image"
-                            >
-                        </scroll-transition-manager>
-                    </div>
-                    <div 
-                        class="col-lg-7 col-xl-6 text-justify app-text-white text-shadow" 
-                        :class="{
-                            'raleway f-18':!isArabic,
-                            'al-bayan f-20':isArabic
-                        }"
-                    >
-                        <scroll-transition-manager 
-                            :show="transitions['first-text']" 
-                            animation-class="animated fadeInUp slow"
-                        >
-                            <div 
-                                class=" line-height-xxl"
-                                id="first-text"
-                            >
-                            {{ 'WEBSITE_IMAGE_TEXT' | translate }}
-                            </div> 
-                        </scroll-transition-manager>               
-                    </div>
-                </div>
-            </inset-rectangle-background>
-        </div>
-        <div class="col-12">
-            <scroll-transition-manager 
-                :show="transitions['second-title']" 
-                animation-class="animated fadeInUp slow"
-            >
-                <div 
-                    class="text-shadow-sm text-center app-text-danger my-5 f-46" 
-                    :class="{
-                        'gabriola':!isArabic,
-                        'al-bayan':isArabic
-                    }"
-                    id="second-title"
-                >
-                    
-                    {{ 'WEBSITE_SECOND_TITLE' | translate }}
-                </div> 
-            </scroll-transition-manager>
-            <scroll-transition-manager 
-                :show="transitions['second-text']" 
-                animation-class="animated fadeInUp slow"
-            >
-                <div 
-                    class="my-5 text-shadow-sm text-center line-height-xl"
-                    :class="{
-                        'raleway f-18':!isArabic,
-                        'al-bayan f-20':isArabic
-                    }"
-                    id="second-text"
-                >
-                    
-                    {{ 'WEBSITE_SECOND_TEXT' | translate }}
-                </div>  
-            </scroll-transition-manager>               
-        </div>
-        <div class="col-12">
-            <inset-rectangle-background 
-                background="danger" 
-                class="h-100"
-            >
-                <div class="row justify-content-center">
-                    <div 
-                        class="col-xl-4 col-lg-7 p-5" 
-                        v-for="packData in packsData" 
-                        :key="packData.title"
-                    >   
-                        <scroll-transition-manager 
-                            :show="transitions[packData.id]" 
-                            animation-class="animated fadeInUp slow" 
-                            :full-height="true"
-                        >
-                            <pack-summary 
-                                :data="packData" 
-                                :id="packData.id"
-                            >
-                            </pack-summary> 
-                        </scroll-transition-manager>                     
-                    </div>
-                </div>
-            </inset-rectangle-background>
-        </div>
-        <div class="col-12">
-            <scroll-transition-manager 
-                :show="transitions['third-text']" 
-                animation-class="animated fadeInUp slow"
-            >
-                <div 
-                    class="my-5 text-shadow-sm text-center line-height-xl" 
-                    :class="{
-                        'raleway f-18':!isArabic,
-                        'al-bayan f-20':isArabic
-                    }"
-                    id="third-text"
-                >
-                    {{ 'WEBSITE_THIRD_TEXT' | translate }}
-                </div> 
-            </scroll-transition-manager>            
-        </div>
-    </div>
+    <service 
+    :data="serviceDescriptions"
+    service="website"
+    text="WEBSITE"
+    backgroundImage='/images/general_images/developpement-web-coding-background.jpg' 
+    ></service>
 </template>
-
 <script>
-import AppTitle from '../../helpers/Title.vue';
-import inViewport from 'in-viewport';
-import InsetRectangleBackground from '../../helpers/InsetRectangleBackground.vue';
-import ScrollTransitionManager from '../../helpers/ScrollTransitionManager.vue';
-import PackSummary from '../pack/PackSummary.vue';
-export default{
-    components:{
-        AppTitle,
-        PackSummary,
-        InsetRectangleBackground,
-        ScrollTransitionManager
+import Service from '../service/Service.vue';
+export default {
+    metaInfo(){
+        return {
+            titleTemplate: '%s | ' + this.translate('META_TITLE_WEBSITE_PAGE'),
+            meta: [{
+                vmid: 'description',
+                name: 'description',
+                content: this.translate('META_DESCRIPTION_WEBSITE_PAGE'),
+            }]
+        }
     },
     data(){
         return {
-            packsData:[
+            serviceDescriptions:[
                 {
-                    id:"first-pack",
-                    title:"FIRST_WEBSITE_PACK_TITLE",
-                    cost:"3000",
-                    hasDefinedCost:true,
-                    properties:[
-                        'FIRST_WEBSITE_PACK_FIRST_PREPERTY',
-                        'FIRST_WEBSITE_PACK_SECOND_PREPERTY',
-                        'FIRST_WEBSITE_PACK_THIRD_PREPERTY',
-                        'FIRST_WEBSITE_PACK_FOURTH_PREPERTY',
-                        'FIRST_WEBSITE_PACK_FIFTH_PREPERTY',
-                        'FIRST_WEBSITE_PACK_SIXTH_PREPERTY',
-                        'FIRST_WEBSITE_PACK_SEVENTH_PREPERTY',
-                        'FIRST_WEBSITE_PACK_EIGHTH_PREPERTY'
-                    ],
-                    route:"ROUTE_WEBSITE_FIRST_PACK"
+                    title:'TITLE_SERVICE_WEBSITE_FIRST_DESCRIPTION',
+                    description:'TEXT_SERVICE_WEBSITE_FIRST_DESCRIPTION',
+                    image:{
+                        src:"/images/general_images/developpement-web-responsive.png",
+                        alr:"",
+                        direction:"left"
+                    },
+                    key:'website-service-first-description'
                 },
                 {
-                    id:"second-pack",
-                    title:"SECOND_WEBSITE_PACK_TITLE",
-                    cost:"5000",
-                    hasDefinedCost:true,
-                    properties:[
-                        'SECOND_WEBSITE_PACK_FIRST_PREPERTY',
-                        'SECOND_WEBSITE_PACK_SECOND_PREPERTY',
-                        'SECOND_WEBSITE_PACK_THIRD_PREPERTY',
-                        'SECOND_WEBSITE_PACK_FOURTH_PREPERTY',
-                        'SECOND_WEBSITE_PACK_FIFTH_PREPERTY',
-                        'SECOND_WEBSITE_PACK_SIXTH_PREPERTY',
-                        'SECOND_WEBSITE_PACK_SEVENTH_PREPERTY',
-                        'SECOND_WEBSITE_PACK_EIGHTH_PREPERTY'
-                    ],
-                    route:"ROUTE_WEBSITE_SECOND_PACK"
+                    title:'TITLE_SERVICE_WEBSITE_SECOND_DESCRIPTION',
+                    description:'TEXT_SERVICE_WEBSITE_SECOND_DESCRIPTION',
+                    image:{
+                        src:"/images/general_images/web-security.png",
+                        alr:"ALT_SERVICE_WEBSITE_SECOND_DESCRIPTION",
+                        direction:"right"
+                    },
+                    key:'website-service-second-description'
                 },
                 {
-                    id:"third-pack",
-                    title:"THIRD_WEBSITE_PACK_TITLE",
-                    cost:null,
-                    hasDefinedCost:null,
-                    properties:[
-                        'THIRD_WEBSITE_PACK_FIRST_PREPERTY',
-                        'THIRD_WEBSITE_PACK_SECOND_PREPERTY',
-                        'THIRD_WEBSITE_PACK_THIRD_PREPERTY',
-                        'THIRD_WEBSITE_PACK_FOURTH_PREPERTY',
-                        'THIRD_WEBSITE_PACK_FIFTH_PREPERTY',
-                        'THIRD_WEBSITE_PACK_SIXTH_PREPERTY',
-                        'THIRD_WEBSITE_PACK_SEVENTH_PREPERTY',
-                        'THIRD_WEBSITE_PACK_EIGHTH_PREPERTY'
-                    ],
-                    route:"ROUTE_WEBSITE_THIRD_PACK"
+                    title:'TITLE_SERVICE_WEBSITE_THIRD_DESCRIPTION',
+                    description:'TEXT_SERVICE_WEBSITE_THIRD_DESCRIPTION',
+                    image:{
+                        src:"/images/general_images/creation-site-web-innovant.png",
+                        alr:"ALT_SERVICE_WEBSITE_THIRD_DESCRIPTION",
+                        direction:"left"
+                    },
+                    key:'website-service-third-description'
                 }
             ],
-            transitions:{
-                'first-image':true,
-                'first-text':true,
-                'second-title':true,
-                'second-text':true,
-                'third-text':true,
-                'first-pack':true,
-                'second-pack':true,
-                'third-pack':true,
-            }
         }
     },
-    methods:{
-        inViewportById(id){
-            const element = document.getElementById(id);
-            return inViewport(element);
-        },
-        managetransitions(){
-                for(let id in this.transitions){
-                    if(!this.inViewportById(id)){
-                        this.transitions[id]=false;
-                    }
-                }
-        }
-    },
-    mounted(){
-        setTimeout(()=>{
-            this.managetransitions();
-        },1000);
+    components:{
+        Service
     }
 }
 </script>
-
-<style scoped>
-</style>

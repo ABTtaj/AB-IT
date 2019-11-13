@@ -20,7 +20,7 @@ export default{
                     title:"TITLE_HOME_AGENCE_MISSION",
                     text:"TEXT_HOME_AGENCE_MISSION",
                     image:{
-                        src:"/images/general_images/mission.png",
+                        src:"/images/general_images/cerveau-creativite.png",
                         alt:"ALT_AGENCE_QUOTE_MISSION",
                         direction:"left"
                     }
@@ -30,7 +30,7 @@ export default{
                     title:"TITLE_HOME_AGENCE_VISION",
                     text:"TEXT_HOME_AGENCE_VISION",
                     image:{
-                        src:"/images/general_images/vision.png",
+                        src:"/images/general_images/construction-developpement-web.png",
                         alt:"ALT_AGENCE_QUOTE_VISION",
                         direction:"right"
                     }
@@ -40,7 +40,7 @@ export default{
                     title:"TITLE_HOME_AGENCE_PROMISE",
                     text:"TEXT_HOME_AGENCE_PROMISE",
                     image:{
-                        src:"/images/general_images/promise.png",
+                        src:"/images/general_images/croissance-finance-entreprenariat.png",
                         alt:"ALT_AGENCE_QUOTE_PROMISE",
                         direction:"left"
                     }

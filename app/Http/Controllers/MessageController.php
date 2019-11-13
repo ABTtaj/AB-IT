@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use App\Admin;
+use App\Mail\ContactMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
@@ -12,9 +16,7 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
     }
 
     /**
@@ -35,30 +37,32 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $arguments = request()->validate([
-            'name'=>'required|min:2|max:50',
-            'email'=>'required|email',
-            'phone'=>'nullable|min:8|max:30|regex:/^(\+\(?[1-9]{1,3}\)?)?[0-9\s\-\.]{1,20}[0-9\s]$/|bail',
-            'object'=>'nullable|min:2|max:50',
-            'message'=>'required|min:10|max:5000|string'
-        ],
-        [
-            'name.required'=>'REQUIRED',
-            'name.min'=>'MIN_LENGTH',
-            'name.max'=>'MAX_LENGTH',
-            'email.required'=>'REQUIRED',
-            'email.email'=>'NOT_VALID',
-            'phone.min'=>'MIN_LENGTH',
-            'phone.max'=>'MAX_LENGTH',
-            'phone.regex'=>'REGEX',
-            'object.min'=>'MIN_LENGTH',
-            'object.max'=>'MAX_LENGTH',
-            'message.required'=>'REQUIRED', 
-            'message.min'=>'MIN_LENGTH',
-            'message.max'=>'MAX_LENGTH',
-            'message.string'=>'STRING'
-        ]
+        $arguments = request()->validate(
+            [
+                'name'=>'required|min:2|max:50',
+                'email'=>'required|email',
+                'phone'=>'nullable|min:8|max:30|regex:/^(\+\(?[1-9]{1,3}\)?)?[0-9\s\-\.]{1,20}[0-9\s]$/|bail',
+                'subject'=>'nullable|min:2|max:50',
+                'message'=>'required|min:10|max:5000|string'
+            ],
+            [
+                'name.required'=>'REQUIRED',
+                'name.min'=>'MIN_LENGTH',
+                'name.max'=>'MAX_LENGTH',
+                'email.required'=>'REQUIRED',
+                'email.email'=>'NOT_VALID',
+                'phone.min'=>'MIN_LENGTH',
+                'phone.max'=>'MAX_LENGTH',
+                'phone.regex'=>'REGEX',
+                'subject.min'=>'MIN_LENGTH',
+                'subject.max'=>'MAX_LENGTH',
+                'message.required'=>'REQUIRED', 
+                'message.min'=>'MIN_LENGTH',
+                'message.max'=>'MAX_LENGTH',
+                'message.string'=>'STRING'
+            ]
         );
+        Mail::send(new ContactMessage($arguments));
         Message::create($arguments);
     }
 
@@ -93,7 +97,7 @@ class MessageController extends Controller
      */
     public function update(Request $request, Message $message)
     {
-        //
+
     }
 
     /**

@@ -7,12 +7,10 @@
                 direction="y"
                 appear-animation-class="zoomIn"
                 speed="slow"
+                v-if="index !== 0"
             >
                 <hr 
                     class="service-divider"  
-                    :style="{
-                        opacity : index === 0 ? 0 : 1
-                    }"
                 >
             </scroll-transition-manager>
             <scroll-transition-manager 
@@ -20,7 +18,7 @@
                 v-if="data.image.direction === 'left' && !isLessThanMd"
                 scroll-animation-class="slide"
                 :direction="isLessThanMd ? 'y' : 'x'"
-                :appear-animation-class="!isLessThanMd ? getAnimationDirection(data.image.direction) : 'zoomIn'"
+                :appear-animation-class="getAnimationDirection(data.image.direction)"
                 speed="slow"
             >
                 <img 
@@ -32,18 +30,19 @@
             <div class="col-md-6 service-text-container">
                 <scroll-transition-manager 
                     class="service-title" 
-                    :class="{
-                        'f-60 gabriola' : !isArabic,
-                        'f-56 al-bayan' : isArabic
-                    }"
                     scroll-animation-class="slide"
                     direction="y"
                     appear-animation-class="zoomIn"
                     speed="slow"
                 >
-                    <div>
+                    <h3
+                        :class="{
+                            'f-60 gabriola' : !isArabic,
+                            'f-56 al-bayan' : isArabic
+                        }"
+                    >
                         {{ data.title | translate }}
-                    </div>
+                    </h3>
                 </scroll-transition-manager>
                 <scroll-transition-manager 
                     class="service-image-container" 
@@ -66,8 +65,8 @@
                     speed="slow"
                     class="service-text"
                     :class="{
-                        'f-22 gabriola' : !isArabic,
-                        'f-20 al-bayan' : isArabic
+                        'f-24 gabriola' : !isArabic,
+                        'f-22 al-bayan' : isArabic
                     }"
                 >
                     <div>
@@ -87,8 +86,8 @@
                         tag="div"
                         class="service-button"
                         :class="{
-                            'f-22 gabriola' : !isArabic,
-                            'f-20 al-bayan' : isArabic
+                            'f-24 gabriola' : !isArabic,
+                            'f-22 al-bayan' : isArabic
                         }"
                     >
                         {{ 'BUTTON_LEARN_MORE_PACK' | translate}}
@@ -135,7 +134,7 @@ export default {
     @extend .d-flex, .flex-column, .justify-content-center;
 }
 .service-title{
-    @extend .my-4, .text-center;
+    @extend .my-4, .text-center, .text-break;
 }
 .service-text{
     @extend .text-center;

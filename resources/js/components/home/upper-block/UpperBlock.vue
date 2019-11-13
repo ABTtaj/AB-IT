@@ -5,16 +5,18 @@
                 <div class="row upper-logo-container">
                     <scroll-transition-manager 
                         class="col-12 logo-container"
-                        scroll-animation-class="slid"
+                        scroll-animation-class="slide"
                         direction="y"
                         appear-animation-class="rollIn"
                         speed="slow"
                     >
-                        <img 
-                            src="../../../../images/logo/logo_white_primary.png" 
-                            :alt="translate('ALT_HEADER_LOGO')" 
-                            class="img-fluid"
-                        >
+                        <h1>
+                            <img 
+                                src="/images/logo/logo-AB-IT-white-primary.png" 
+                                :alt="translate('ALT_HEADER_LOGO')" 
+                                class="img-fluid"
+                            >
+                        </h1>
                     </scroll-transition-manager>
                     <scroll-transition-manager 
                         scroll-animation-class="slide"
@@ -24,7 +26,7 @@
                         class="col-lg-10 upper-text-container"
                         :class="{
                             'f-24 gabriola' : !isArabic,
-                            'f-20 al-bayan' : isArabic
+                            'f-22 al-bayan' : isArabic
                         }"
                     >
                         <div>
@@ -43,11 +45,11 @@
                 >
                     <transition-group 
                         tag="form" 
-                        id="contact-from" 
+                        id="contact-form" 
                         name="slide" 
                         appear
                     >
-                        <div 
+                        <h2 
                             class="app-form-title"
                             :class="{
                                 'f-60 gabriola': !isArabic,
@@ -56,12 +58,12 @@
                             key="form-title"
                         >
                             {{ 'TITLE_HOME_PAGE_CONTACT' | translate }}
-                        </div>
+                        </h2>
                         <div 
                             class="app-form-text"
                             :class="{
-                                'f-20 gabriola': !isArabic,
-                                'f-18 al-bayan':isArabic
+                                'f-24 gabriola': !isArabic,
+                                'f-22 al-bayan':isArabic
                             }"
                             key="form-text"
                         >
@@ -150,21 +152,21 @@ export default{
                 name:'',
                 email:'',
                 phone:'',
-                object:'',
+                subject:'',
                 message:'',
             },
             errors:{
                 name:[],
                 email:[],
                 phone:[],
-                object:[],
+                subject:[],
                 message:[],
             },
             errorsCorrected:{
                 name:true,
                 email:true,
                 phone:true,
-                object:true,
+                subject:true,
                 message:true,
             },
             fields:[
@@ -187,7 +189,7 @@ export default{
                     isInput:true
                 },
                 {
-                    name:'object',
+                    name:'subject',
                     type:'text',
                     placeholder:'CONTACT_FORM_OBJECT',
                     isInput:true
@@ -248,14 +250,14 @@ export default{
                 name:[],
                 email:[],
                 phone:[],
-                object:[],
+                subject:[],
                 message:[],
             }
             this.newMessage={
                 name:'',
                 email:'',
                 phone:'',
-                object:'',
+                subject:'',
                 message:'',
             };
         },
@@ -316,7 +318,7 @@ export default{
 .app-form-submit{
     transition : all 500ms ease-out;
     height:57px;
-    @extend .app-bg-black, .app-text-white, .border-white-2, .cursor-pointer, .p-2, .text-center, .shadow-lg, .w-95, .text-shadow-sm, .mx-auto, .mt-5, .d-flex, .align-items-center, .justify-content-center;
+    @extend .app-bg-black, .app-text-white, .border-white-2, .cursor-pointer, .p-2, .text-center, .shadow-lg, .w-95, .text-shadow-sm, .mx-auto, .my-5, .d-flex, .align-items-center, .justify-content-center;
     &:hover{
         @extend .app-bg-danger, .app-text-white, .w-100;
     }

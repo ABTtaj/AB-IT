@@ -3,19 +3,20 @@
         <div class="row services-inner-container">
             <scroll-transition-manager 
                 class="col-12 services-primary-title" 
-                :class="{
-                    'f-80 gabriola' : !isArabic,
-                    'f-76 al-bayan' : isArabic
-                }"
                 scroll-animation-class="slide"
                 direction="y"
                 appear-animation-class="zoomIn"
                 speed="slow"
                 id="services-title" 
             >
-                <div>
+                <h2
+                    :class="{
+                        'f-80 gabriola' : !isArabic,
+                        'f-76 al-bayan' : isArabic
+                    }"
+                >
                     {{ 'TITLE_SERVICES' | translate }}
-                </div>
+                </h2>
             </scroll-transition-manager>
             <service 
                 class="col-12" 
@@ -74,7 +75,7 @@ export default {
                     text : 'TEXT_SERVICES_PRESENTATION_WEBSITE',
                     route : 'ROUTE_WEBSITE',
                     image : {
-                        src : '/images/general_images/website2.png',
+                        src : '/images/general_images/developpement-web-service.png',
                         alt :'ALT_SERVICES_PRESENTATION_WEBSITE',
                         direction : 'left'
                     }
@@ -85,7 +86,7 @@ export default {
                     text : 'TEXT_SERVICES_PRESENTATION_E_COMMERCE',
                     route : 'ROUTE_E_COMMERCE',
                     image : {
-                        src : '/images/general_images/e_commerce.png',
+                        src : '/images/general_images/e-commerce-service.png',
                         alt :'ALT_SERVICES_PRESENTATION_E_COMMERCE',
                         direction : 'right'
                     }
@@ -96,7 +97,7 @@ export default {
                     text : 'TEXT_SERVICES_PRESENTATION_MARKETING_DIGITAL',
                     route : 'ROUTE_MARKETING_DIGITAL',
                     image : {
-                        src : '/images/general_images/marketing_digital.png',
+                        src : '/images/general_images/marketing-digital-developpement-web.png',
                         alt :'ALT_SERVICES_PRESENTATION_MARKETING_DIGITAL',
                         direction : 'left'
                     }
@@ -107,20 +108,9 @@ export default {
                     text : 'TEXT_SERVICES_PRESENTATION_SEO',
                     route : 'ROUTE_SEO',
                     image : {
-                        src : '/images/general_images/seo.png',
+                        src : '/images/general_images/seo-service.png',
                         alt :'ALT_SERVICES_PRESENTATION_SEO',
                         direction : 'right'
-                    }
-                },
-                {
-                    key:"trainings",
-                    title : 'TITLE_TRAININGS',
-                    text : 'TEXT_SERVICES_PRESENTATION_TRAININGS',
-                    route : 'ROUTE_TRAININGS',
-                    image : {
-                        src : '/images/general_images/idea_bulb.png',
-                        alt :'ALT_SERVICES_PRESENTATION_TRAININGS',
-                        direction : 'left'
                     }
                 }
             ],

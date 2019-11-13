@@ -27,7 +27,14 @@
                     tag="div"
                 >
                     <img 
-                        :src="logoSrc" 
+                        v-show="darkMode"
+                        src="/images/logo/logo-AB-IT-white-primary.png" 
+                        :alt="translate('ALT_HEADER_LOGO')"
+                        class="img-fluid image_logo"
+                    >
+                    <img 
+                        v-show="!darkMode"
+                        src="/images/logo/logo-AB-IT-black-primary.png" 
                         :alt="translate('ALT_HEADER_LOGO')"
                         class="img-fluid image_logo"
                     >
@@ -87,8 +94,8 @@
                             :class="{
                                 'links-item':!darkMode,
                                 'links-item-dark-mode':darkMode,
-                                'gabriola f-24' : index !== 'ma',
-                                'al-bayan f-26': index === 'ma'
+                                'gabriola f-24' : index !== 'ar',
+                                'al-bayan f-26': index === 'ar'
                             }"
                             v-for="(value,index) in links.langages"
                             :id="value"
@@ -144,8 +151,8 @@
                     <div 
                         class="app-dropdown-item w-100"
                         :class="{
-                            'gabriola f-24' : index !== 'ma',
-                            'al-bayan f-26': index === 'ma'
+                            'gabriola f-24' : index !== 'ar',
+                            'al-bayan f-26': index === 'ar'
                         }"
                         v-for="(value,index) in links.langages"
                         :key="value"
@@ -188,11 +195,6 @@ export default{
                         key:'seo',
                         route:'ROUTE_SEO',
                         title:'MENU_SEO_LONG'
-                    },
-                    {
-                        key:'trainings',
-                        route:'ROUTE_TRAININGS',
-                        title:'MENU_TRAININGS'
                     }
                 ],
                 contact : {
@@ -203,7 +205,7 @@ export default{
                 langages : {
                     fr:'Français',
                     en:'English',
-                    ma:'مغربي'
+                    ar:'العربية'
                 }
 
             },
@@ -217,13 +219,13 @@ export default{
     },
     computed:{
         slideDirection(){
-            return this.selectedLangage == 'ma' ? 'left' : 'right';
+            return this.selectedLangage == 'ar' ? 'left' : 'right';
         },
         logoSrc(){
             if(this.darkMode){
-                return '../../../images/logo/logo_white_primary.png';
+                return '/images/logo/logo-AB-IT-white-primary.png';
             } else {
-                return '../../../images/logo/logo_black_primary.png';
+                return '/images/logo/logo-AB-IT-black-primary.png';
             }
         }
     },
@@ -368,7 +370,7 @@ export default{
     @extend .shadow-xxl, .body-bg, .fixed-top;
 }
 .header-container{
-    @extend .py-3, .f-22, .text-shadow-sm;
+    @extend .py-3, .f-24, .text-shadow-sm;
 }
 .logo-container{
     @extend .cursor-pointer;

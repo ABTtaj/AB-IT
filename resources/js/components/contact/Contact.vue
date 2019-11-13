@@ -9,7 +9,7 @@
                 appear
             >
                 
-                <div 
+                <h1 
                     class="app-form-title col-12"
                     :class="{
                         'f-60 gabriola': !isArabic,
@@ -18,16 +18,16 @@
                     key="form-title"
                 >
                     {{ 'TITLE_HOME_PAGE_CONTACT' | translate }}
-                </div>
+                </h1>
                 <div 
                     class="app-form-text col-lg-6 mx-1 col-md-8"
                     :class="{
-                        'f-20 gabriola': !isArabic,
-                        'f-18 al-bayan':isArabic
+                        'f-24 gabriola': !isArabic,
+                        'f-22 al-bayan':isArabic
                     }"
                     key="form-text"
                 >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempor mauris sed mi gravida laoreet. Donec et elementum felis. Morbi quis odio eros. 
+                    {{ 'TEXT_HOME_UPPER_BLOCK_CONTACT' | translate }}
                 </div>
                 <div 
                     class="app-form-group col-lg-6 mx-1 col-md-8"
@@ -109,27 +109,37 @@
 <script>
 import { mapActions } from 'vuex';
 export default{
+    metaInfo(){
+        return {
+            titleTemplate: '%s | ' + this.translate('META_TITLE_CONTACT_PAGE'),
+            meta: [{
+                vmid: 'description',
+                name: 'description',
+                content: this.translate('META_DESCRIPTION_CONTACT_PAGE'),
+            }]
+        }
+    },
     data(){
         return {
             newMessage:{
                 name:'',
                 email:'',
                 phone:'',
-                object:'',
+                subject:'',
                 message:'',
             },
             errors:{
                 name:[],
                 email:[],
                 phone:[],
-                object:[],
+                subject:[],
                 message:[],
             },
             errorsCorrected:{
                 name:true,
                 email:true,
                 phone:true,
-                object:true,
+                subject:true,
                 message:true,
             },
             fields:[
@@ -152,7 +162,7 @@ export default{
                     isInput:true
                 },
                 {
-                    name:'object',
+                    name:'subject',
                     type:'text',
                     placeholder:'CONTACT_FORM_OBJECT',
                     isInput:true
@@ -184,7 +194,8 @@ export default{
         submitMessage(){
             if(!this.sending){
                 this.sending = true;
-                axios.post('/api/messages',this.newMessage).then(response => {
+                axios.post('/api/messages',this.newMessage)
+                .then(response => {
                     this.resetData();
                     this.sending = false;
                     this.flash('FLASH_CONTACT_SUBMIT_SUCCESS','success','bottom');
@@ -209,14 +220,14 @@ export default{
                 name:[],
                 email:[],
                 phone:[],
-                object:[],
+                subject:[],
                 message:[],
             }
             this.newMessage={
                 name:'',
                 email:'',
                 phone:'',
-                object:'',
+                subject:'',
                 message:'',
             };
         },
@@ -231,10 +242,18 @@ export default{
             setTimeout(()=>{
                 this.initializeTheHeaderColor();
             },500);
+        },
+        manageDarkModeOfTheHeaderWhenResizing(){
+            window.addEventListener('resize',()=>{
+                if(this.$router.name !== 'not-found'){
+                    this.initializeTheHeaderColor();
+                }
+            });
         }
     },
     mounted(){
         this.manageDarkModeOfTheHeader();
+        this.manageDarkModeOfTheHeaderWhenResizing();
     }
 }
 </script>
@@ -254,7 +273,7 @@ export default{
     @extend .mb-3, .mt-2, .mt-lg-0, .text-center, .text-shadow-sm, .text-uppercase, .app-text-white;
 }
 .app-form-text{
-    @extend .mb-5, .text-center, .app-text-white;
+    @extend .mb-4, .mt-3, .text-center, .app-text-white;
 }
 .app-form-group{
     @extend .my-3, .p-0, .text-center;
@@ -275,7 +294,7 @@ export default{
 .app-form-submit{
     transition : all 500ms ease-out;
     height:57px;
-    @extend .app-bg-black, .app-text-white, .border-white-2, .cursor-pointer, .p-2, .text-center, .shadow-lg, .text-shadow-sm, .mt-4, .d-flex, .align-items-center, .justify-content-center, .w-95;
+    @extend .mb-5 ,.app-bg-black, .app-text-white, .border-white-2, .cursor-pointer, .p-2, .text-center, .shadow-lg, .text-shadow-sm, .mt-4, .d-flex, .align-items-center, .justify-content-center, .w-95;
     &:hover{
         @extend .app-bg-danger, .app-text-white, .w-100;
     }

@@ -1,0 +1,21 @@
+export default {
+    'ALT_HEADER_LOGO':'شعار AB.IT',
+    'ALT_AGENCE_QUOTE_MISSION':'الإبداع في إنشاء مواقع الويب',
+    'ALT_AGENCE_QUOTE_VISION':'إنشاء مواقع قابلة للتخصيص',
+    'ALT_AGENCE_QUOTE_PROMESSE':'نمو أعمالكم و مشاريعكم',
+    'ALT_SERVICES_PRESENTATION_WEBSITE':'تطوير مواقع الإنترنت',
+    'ALT_SERVICES_PRESENTATION_E_COMMERCE':'حلولنا للتجارة الإلكترونية',
+    'ALT_SERVICES_PRESENTATION_MARKETING_DIGITAL':'التسويق الرقمي',
+    'ALT_SERVICES_PRESENTATION_SEO':'تحسين محركات البحث',
+    'ALT_SERVICE_WEBSITE_FIRST_DESCRIPTION':'إنشاء مواقع إلكترونية سريعة الاستجابة',
+    'ALT_SERVICE_WEBSITE_SECOND_DESCRIPTION':'أمن الويب',
+    'ALT_SERVICE_WEBSITE_THIRD_DESCRIPTION':'إنشاء مواقع قابلة للتخصيص',
+    'ALT_SERVICE_E_COMMERCE_FIRST_DESCRIPTION':'إنشاء مواقع إلكترونية سريعة الاستجابة',
+    'ALT_SERVICE_E_COMMERCE_SECOND_DESCRIPTION':'أمن الويب',
+    'ALT_SERVICE_E_COMMERCE_THIRD_DESCRIPTION':'إنشاء مواقع ديناميكية',
+    'ALT_SERVICE_MARKETING_DIGITAL_FIRST_DESCRIPTION':'التسويق الرقمي والسمعة الإلكترونية',
+    'ALT_SERVICE_MARKETING_DIGITAL_SECOND_DESCRIPTION':'الشبكات الاجتماعية',
+    'ALT_SERVICE_MARKETING_DIGITAL_THIRD_DESCRIPTION':'التسويق الرقمي والنشر',
+    'ALT_SERVICE_SEO_FIRST_DESCRIPTION':'تحسين محركات البحث و التدقيق التقني',
+    'ALT_SERVICE_SEO_SECOND_DESCRIPTION':'تحسين محركات البحث'
+}

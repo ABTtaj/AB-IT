@@ -1,7 +1,12 @@
-export default {
+import Vuex from 'vuex';
+import Vue from 'vue';
+
+Vue.use(Vuex);
+
+const storeData = {
     state:{
         langage : window.localStorage.getItem('langage') ? window.localStorage.getItem('langage') : 'fr',
-        dir: window.localStorage.getItem('langage') ? (window.localStorage.getItem('langage') ==='ma' ? 'rtl' : 'ltr') : 'ltr',
+        dir: window.localStorage.getItem('langage') ? (window.localStorage.getItem('langage') ==='ar' ? 'rtl' : 'ltr') : 'ltr',
         flash:{
             where:'',
             message:'',
@@ -10,7 +15,8 @@ export default {
         },
         collapseMenuOpen:false,
         paddingTop:null,
-        darkMode:false
+        darkMode:false,
+        admin:null
     },
     getters:{
         selectedLangage(state){
@@ -30,6 +36,9 @@ export default {
         },
         darkMode(state){
             return state.darkMode;
+        },
+        admin(state){
+            return state.admin;
         }
     },
     mutations:{
@@ -55,11 +64,14 @@ export default {
         },
         switchDarkMode(state,payload){
             state.darkMode = payload;
+        },
+        addAdmin(state,payload){
+            state.admin = payload;
         }
     },
     actions:{
         changeSelectedLangage({ commit },payload){
-            if(payload === 'ma'){
+            if(payload === 'ar'){
                 commit('changeDir',"rtl");
             }else{
                 commit('changeDir',"ltr");  
@@ -85,6 +97,11 @@ export default {
         },
         switchDarkMode({ commit },payload){
             commit('switchDarkMode',payload);
+        },
+        addAdmin({ commit }, payload){
+            commit('addAdmin', payload);
         }
     }
 }
+
+export const store = new Vuex.Store(storeData);
